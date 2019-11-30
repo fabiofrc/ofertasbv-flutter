@@ -8,6 +8,7 @@ class SobrePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Sobre"),
+        elevation: 0.0,
       ),
       body: Container(
         child: Center(

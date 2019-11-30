@@ -8,8 +8,18 @@ import 'package:rxdart/rxdart.dart';
 class PromocaoController extends BlocBase {
   PromocaoApiProvider _promocaoApiProvider = PromocaoApiProvider();
 
+  /* ================= get count ================= */
+  // ignore: close_sinks
+  final StreamController<int> _counter = StreamController<int>();
+  Stream<int> get counter => _counter.stream;
+
+  Stream<List<Promocao>> get listView async*{
+    yield await _promocaoApiProvider.getAll();
+  }
+
   PromocaoController() {
     responseOut = promocao.switchMap(create);
+    listView.listen((list) => _counter.add(list.length));
   }
 
   /* ================= get promocao ================= */

@@ -1,6 +1,7 @@
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/home.dart';
 import 'package:ofertasbv/src/teste/leitor_codigo_barra.dart';
 import 'package:ofertasbv/src/teste/mapa_principal.dart';
 
@@ -23,11 +24,17 @@ class _CatalogoAppState extends State<CatalogoApp> {
         MapaPageApp(),
       ].elementAt(elementIndex),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.camera_enhance),
+        child: Icon(Icons.home),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: BubbleBottomBar(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.grey[200],
         opacity: 0.2,
         currentIndex: elementIndex,
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
@@ -38,38 +45,27 @@ class _CatalogoAppState extends State<CatalogoApp> {
         inkColor: Colors.transparent,
         items: <BubbleBottomBarItem>[
           BubbleBottomBarItem(
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.grey[700],
               icon: Icon(
                 Icons.dashboard,
                 color: Colors.black,
               ),
               activeIcon: Icon(
                 Icons.dashboard,
-                color: Colors.red,
+                color: Colors.deepOrange,
               ),
               title: Text("Dashboard")),
           BubbleBottomBarItem(
-              backgroundColor: Colors.deepPurple,
-              icon: Icon(
-                Icons.home,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                Icons.home,
-                color: Colors.deepPurple,
-              ),
-              title: Text("Home")),
-          BubbleBottomBarItem(
-            backgroundColor: Colors.indigo,
+            backgroundColor: Colors.grey[700],
             icon: Icon(
-              Icons.map,
+              Icons.scanner,
               color: Colors.black,
             ),
             activeIcon: Icon(
-              Icons.map,
-              color: Colors.indigo,
+              Icons.scanner,
+              color: Colors.deepOrange,
             ),
-            title: Text("Folders"),
+            title: Text("Scanner"),
           ),
         ],
         onTap: onBarTapItem,

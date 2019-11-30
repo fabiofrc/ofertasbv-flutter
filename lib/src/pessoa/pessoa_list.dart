@@ -1,28 +1,35 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ofertasbv/src/produto/produto_page.dart';
-import 'package:ofertasbv/src/promocao/promocao_controller.dart';
-import 'package:ofertasbv/src/promocao/promocao_detalhes.dart';
-import 'package:ofertasbv/src/promocao/promocao_model.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
+import 'package:ofertasbv/src/subcategoria/subcategoria_page.dart';
 
-class PromocaoHome extends StatefulWidget {
+class PessoaList extends StatefulWidget {
   @override
-  _PromocaoHomeState createState() => _PromocaoHomeState();
+  _PessoaListState createState() => _PessoaListState();
 }
 
-class _PromocaoHomeState extends State<PromocaoHome>
-    with AutomaticKeepAliveClientMixin<PromocaoHome> {
-  final _bloc = BlocProvider.getBloc<PromocaoController>();
+class _PessoaListState extends State<PessoaList>
+    with AutomaticKeepAliveClientMixin<PessoaList> {
+  PessoaController _bloc = BlocProvider.getBloc<PessoaController>();
+
+  var tipoPessoaFisica = "PESSOAFISICA";
+  var tipoPessoaJuridica = "PESSOAJURIDICA";
+
+  final urlArquivo = "http://192.168.1.3:8080/pessoas/download/";
+  final urlAsset = "assets/images/upload/default.jpg";
 
   @override
   void initState() {
-    _bloc.carregaPromocoes();
+    _bloc.getAll();
+    urlArquivo;
+    urlAsset;
     super.initState();
   }
 
   Future<void> onRefresh() {
-    return _bloc.carregaPromocoes();
+    return _bloc.getAll();
   }
 
   @override
@@ -34,7 +41,7 @@ class _PromocaoHomeState extends State<PromocaoHome>
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(
-              child: Text("não foi possivel buscar promoções"),
+              child: Text("não foi possivel buscar pessoas"),
             );
           }
           if (!snapshot.hasData) {
@@ -43,30 +50,29 @@ class _PromocaoHomeState extends State<PromocaoHome>
             );
           }
 
-          List<Promocao> promocoes = snapshot.data;
+          List<Pessoa> pessoas = snapshot.data;
 
           return RefreshIndicator(
             onRefresh: onRefresh,
-            child: builderList(promocoes),
+            child: builderList(pessoas),
           );
         },
       ),
     );
   }
 
-  ListView builderList(List<Promocao> promocoes) {
-    final urlArquivo = "http://192.168.1.3:8080/promocoes/download/";
+  ListView builderList(List<Pessoa> pessoas) {
+    final urlArquivo = "http://192.168.1.3:8080/pessoas/download/";
     final urlAsset = "assets/images/upload/default.jpg";
 
     return ListView.builder(
-      itemCount: promocoes.length,
+      itemCount: pessoas.length,
       itemBuilder: (context, index) {
-        Promocao p = promocoes[index];
+        Pessoa p = pessoas[index];
         return Card(
           margin: EdgeInsets.all(1),
           elevation: 0.0,
           child: ListTile(
-            isThreeLine: true,
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: p.arquivo != null
@@ -84,16 +90,13 @@ class _PromocaoHomeState extends State<PromocaoHome>
                     ),
             ),
             title: Text(p.nome, style: TextStyle(fontWeight: FontWeight.w600),),
-            subtitle: Text(p.descricao),
-            trailing: Text(
-              "${p.desconto} %",
-              style: TextStyle(color: Colors.pink[700], fontSize: 18),
-            ),
-            onLongPress: () {
+            subtitle: Text(p.usuario.email),
+            trailing: Text("${p.id}"),
+            onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {
-                    return PromocaoDetalhes(p);
+                    return SubcategoriaPage();
                   },
                 ),
               );

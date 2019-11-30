@@ -18,7 +18,7 @@ class PromocaoCreatePage extends StatefulWidget {
 }
 
 class _PromocaoCreatePageState extends State<PromocaoCreatePage> {
-  PromocaoController _bloc = BlocProvider.getBloc<PromocaoController>();
+  final _bloc = BlocProvider.getBloc<PromocaoController>();
   final _promocao = Promocao();
 
   DateTime dataAtual = DateTime.now();
@@ -75,6 +75,7 @@ class _PromocaoCreatePageState extends State<PromocaoCreatePage> {
       appBar: AppBar(
         title: Text("Promoção cadastro"),
         centerTitle: true,
+        elevation: 0.0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.file_upload),

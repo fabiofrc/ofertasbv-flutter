@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:io';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:barcode_scan/barcode_scan.dart';
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:ofertasbv/src/produto/produto_api_provider.dart';
+import 'package:ofertasbv/src/produto/produto_detalhes.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
-import 'package:link/link.dart';
 
 class LeitorCodigoBarra extends StatefulWidget {
   @override
@@ -17,10 +17,13 @@ class LeitorCodigoBarra extends StatefulWidget {
 
 class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
   String barcode = "";
-  Produto _produto = Produto();
+  var p = Produto();
   var codigoBarraController = TextEditingController();
+  var descricaoController = TextEditingController();
 
   AudioCache _audioCache = AudioCache(prefix: "audios/");
+
+  DateFormat dateFormat = DateFormat('dd-MM-yyyy');
 
   _executar(String nomeAudio) {
     _audioCache.play(nomeAudio + ".mp3");
@@ -45,6 +48,7 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
   }
 
   Controller controller;
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   @override
   void didChangeDependencies() {
@@ -52,7 +56,7 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
     super.didChangeDependencies();
   }
 
-  void _showErrorSnackBar() {
+  void showErrorSnackBar() {
     Scaffold.of(context).showSnackBar(
       SnackBar(
         content: Text('Oops... the URL couldn\'t be opened!'),
@@ -62,51 +66,80 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
 
   @override
   Widget build(BuildContext context) {
-    _produto.codigoBarra = barcode;
-    print("construindo tela: " + _produto.codigoBarra);
+    p.codigoBarra = barcode;
+    print("construindo tela: " + p.codigoBarra);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Leitor código'),
+        title: Text('Leitor código de barra'),
+        elevation: 0.0,
       ),
       body: ListView(
         children: <Widget>[
           Card(
+            elevation: 0.0,
             child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    controller: codigoBarraController,
-                    decoration: InputDecoration(
-                      labelText: "Codigo de barra",
-                      hintText: "Digite o código de barra",
+              padding: EdgeInsets.all(20),
+              child: Form(
+                autovalidate: true,
+                key: formkey,
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      autofocus: true,
+                      controller: codigoBarraController,
+                      validator: (value) =>
+                          value.isEmpty ? "campo obrigário" : null,
+                      decoration: InputDecoration(
+                        labelText: "Codigo de barra",
+                        hintText: "Digite o código de barra",
+                        prefixIcon: Icon(Icons.scanner),
+                      ),
+                      maxLength: 13,
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Card(
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: <Widget>[
-                  Link(
-                    child: Text(
-                      barcode,
-                      style: TextStyle(color: Colors.blue),
+                    SizedBox(
+                      height: 10,
                     ),
-                    url: barcode,
-                    onError: _showErrorSnackBar,
-                  ),
-                ],
+                    RaisedButton.icon(
+                      autofocus: true,
+                      color: Colors.grey,
+                      icon: Icon(Icons.search),
+                      label: Text("Pesquisar"),
+                      onPressed: () {
+                        if (codigoBarraController.text.isNotEmpty &&
+                            p != null) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return ProdutoDetalhes(p);
+                              },
+                            ),
+                          );
+                        } else {
+                          print("nada");
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        elevation: 10,
+        child: Icon(Icons.camera),
+        onPressed: () {
+          barcodeScanning();
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  pesquisarCodigo(String codbar) async {
+    p = await ProdutoApiProvider.getProdutoByCodBarra(codbar);
+    print(p.descricao);
   }
 
   Widget displayImage() {
@@ -119,7 +152,7 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
     );
   }
 
-  _getDateNow() {
+  getDateNow() {
     var now = new DateTime.now();
     var formatter = new DateFormat('MM-dd-yyyy H:mm');
     return formatter.format(now);
@@ -134,6 +167,7 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
         _executar("beep-07");
         this.barcode = barcode;
         codigoBarraController.text = this.barcode;
+        pesquisarCodigo(this.barcode);
       });
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
@@ -148,26 +182,6 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
     } catch (e) {
       setState(() => this.barcode = 'Erros: $e');
     }
-  }
-}
-
-class BarraCode extends StatefulWidget {
-  Produto _produto;
-
-  BarraCode(this._produto);
-
-  @override
-  _BarraCodeState createState() => _BarraCodeState();
-}
-
-class _BarraCodeState extends State<BarraCode> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(""),
-      ),
-    );
   }
 }
 

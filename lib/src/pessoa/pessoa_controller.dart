@@ -8,8 +8,18 @@ import 'package:rxdart/rxdart.dart';
 class PessoaController extends BlocBase {
   PessoaApiProvider _pessoaApiProvider = PessoaApiProvider();
 
+  /* ================= get count ================= */
+  // ignore: close_sinks
+  final StreamController<int> _counter = StreamController<int>();
+  Stream<int> get counter => _counter.stream;
+
+  Stream<List<Pessoa>> get listView async*{
+    yield await _pessoaApiProvider.getAll();
+  }
+
   PessoaController() {
     responseOut = pessoa.switchMap(create);
+    listView.listen((list) => _counter.add(list.length));
   }
 
   /* ================= get pessoa ================= */

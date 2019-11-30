@@ -35,6 +35,7 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Promoção detalhes"),
+        elevation: 0.0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),

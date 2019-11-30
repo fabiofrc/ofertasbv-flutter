@@ -1,15 +1,15 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ofertasbv/src/categoria/categoria_controller.dart';
-import 'package:ofertasbv/src/categoria/categoria_home.dart';
+import 'package:ofertasbv/src/categoria/categoria_list.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
-import 'package:ofertasbv/src/pessoa/pessoa_home.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_list.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
-import 'package:ofertasbv/src/produto/produto_home.dart';
+import 'package:ofertasbv/src/produto/produto_grid.dart';
+import 'package:ofertasbv/src/produto/produto_list.dart';
 import 'package:ofertasbv/src/promocao/promocao_controller.dart';
-import 'package:ofertasbv/src/promocao/promocao_home.dart';
+import 'package:ofertasbv/src/promocao/promocao_list.dart';
 import 'package:ofertasbv/drawer_list.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_controller.dart';
@@ -56,9 +56,9 @@ class _HomePageState extends State<HomePage>
               )
             ],
             bottom: TabBar(
-              labelColor: Colors.grey,
+              labelColor: Colors.grey[700],
               isScrollable: true,
-              unselectedLabelColor: Colors.white,
+              unselectedLabelColor: Colors.black,
               tabs: [
                 Tab(
                   text: "Produto",
@@ -82,10 +82,10 @@ class _HomePageState extends State<HomePage>
           body: TabBarView(
             physics: NeverScrollableScrollPhysics(),
             children: <Widget>[
-              ProdutoHome(),
-              CategoriaHome(),
-              PromocaoHome(),
-              PessoaHome(),
+              ProdutoGrid(),
+              CategoriaList(),
+              PromocaoList(),
+              PessoaList(),
             ],
           ),
           

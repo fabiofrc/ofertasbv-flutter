@@ -177,6 +177,7 @@ class _GeoCodeState extends State<GeoCode> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0.0,
         title: Form(
           child: TextFormField(
             controller: pesquisaController,

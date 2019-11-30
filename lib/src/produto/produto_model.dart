@@ -19,18 +19,18 @@ class Produto {
 
   Produto(
       {this.id,
-        this.nome,
-        this.descricao,
-        this.arquivo,
-        this.valorUnitario,
-        this.quantidade,
-        this.isFavorito,
-        this.dataRegistro,
-        this.codigoBarra,
-        this.status,
-        this.unidade,
-        this.subCategoria,
-        this.pessoa});
+      this.nome,
+      this.descricao,
+      this.arquivo,
+      this.valorUnitario,
+      this.quantidade,
+      this.isFavorito,
+      this.dataRegistro,
+      this.codigoBarra,
+      this.status,
+      this.unidade,
+      this.subCategoria,
+      this.pessoa});
 
   Produto.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -48,7 +48,7 @@ class Produto {
         ? new SubCategoria.fromJson(json['subCategoria'])
         : null;
     pessoa =
-    json['pessoa'] != null ? new Pessoa.fromJson(json['pessoa']) : null;
+        json['pessoa'] != null ? new Pessoa.fromJson(json['pessoa']) : null;
   }
 
   Map<String, dynamic> toJson() {

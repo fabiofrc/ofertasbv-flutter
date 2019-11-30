@@ -17,7 +17,7 @@ class CategoriaCreatePage extends StatefulWidget {
 }
 
 class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
-  CategoriaController _bloc = BlocProvider.getBloc<CategoriaController>();
+  final _bloc = BlocProvider.getBloc<CategoriaController>();
   Categoria _categoria = Categoria();
   File file;
 
@@ -29,6 +29,7 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
 
   @override
   void dispose() {
+    _bloc.dispose();
     super.dispose();
   }
 
@@ -68,6 +69,7 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
       appBar: AppBar(
         title: Text("Categoria cadastros"),
         centerTitle: true,
+        elevation: 0.0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.file_upload),

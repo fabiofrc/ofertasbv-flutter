@@ -3,7 +3,6 @@ import 'dart:core';
 import 'dart:io';
 
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,8 +19,7 @@ class SubCategoriaCreatePage extends StatefulWidget {
 }
 
 class _SubCategoriaCreatePageState extends State<SubCategoriaCreatePage> {
-  SubCategoriaController _blocSubCategoria =
-      BlocProvider.getBloc<SubCategoriaController>();
+  final _blocSubCategoria = BlocProvider.getBloc<SubCategoriaController>();
 
   CategoriaController _blocCategoria =
       BlocProvider.getBloc<CategoriaController>();
@@ -41,6 +39,8 @@ class _SubCategoriaCreatePageState extends State<SubCategoriaCreatePage> {
 
   @override
   void dispose() {
+    _blocCategoria.dispose();
+    _blocSubCategoria.dispose();
     super.dispose();
   }
 
@@ -76,6 +76,7 @@ class _SubCategoriaCreatePageState extends State<SubCategoriaCreatePage> {
       appBar: AppBar(
         title: Text("SubCategoria cadastros"),
         centerTitle: true,
+        elevation: 0.0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.file_upload),

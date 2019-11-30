@@ -9,6 +9,7 @@ void main() => runApp(MaterialApp(
         ),
         primaryColor: Colors.deepOrange,
         accentColor: Colors.deepOrange,
+        primarySwatch: Colors.grey,
       ),
       debugShowCheckedModeBanner: false,
       home: SplashScreenOne(),
@@ -34,7 +35,7 @@ class _SplashScreenOneState extends State<SplashScreenOne> {
       body: SplashScreen(
         gradientBackground: LinearGradient(
           colors: [
-            Colors.deepOrange,
+            Colors.deepOrange[700],
             Colors.deepOrange[400],
           ],
           begin: Alignment.topLeft,
@@ -44,13 +45,13 @@ class _SplashScreenOneState extends State<SplashScreenOne> {
         navigateAfterSeconds: HomePage(),
         title: Text(
           'OFERTASBV',
-          style: TextStyle(fontSize: 30, color: Colors.white),
+          style: TextStyle(fontSize: 30, color: Colors.grey[700]),
         ),
         image: Image.asset(urlLogo),
-        backgroundColor: Color(0xff622F74),
+        //backgroundColor: Color(0xff622F74),
         styleTextUnderTheLoader: TextStyle(),
         photoSize: 100.0,
-        loaderColor: Colors.white,
+        loaderColor: Colors.grey[700],
       ),
     );
   }

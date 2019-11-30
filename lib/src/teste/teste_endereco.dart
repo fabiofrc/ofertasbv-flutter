@@ -24,6 +24,7 @@ class _TesteEnderecoState extends State<TesteEndereco> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Endereço"),
+        elevation: 0.0,
       ),
       body: ListView(
         children: <Widget>[

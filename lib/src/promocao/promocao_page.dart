@@ -1,17 +1,36 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/promocao/promocao_controller.dart';
 import 'package:ofertasbv/src/promocao/promocao_create_page.dart';
-import 'promocao_home.dart';
+import 'promocao_list.dart';
 
 
 class PromocaoPage extends StatelessWidget {
+  final _bloc = BlocProvider.getBloc<PromocaoController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Ofertas"),
+        elevation: 0.0,
+        actions: <Widget>[
+          StreamBuilder<Object>(
+            stream: _bloc.counter,
+            builder: (context, data) {
+              return Chip(
+                label: Text(
+                  (data.data ?? 0).toString(),
+                  style: TextStyle(color: Colors.white70),
+                ),
+              );
+
+            },
+          ),
+          SizedBox(width: 10,),
+        ],
       ),
 
-      body: PromocaoHome(),
+      body: PromocaoList(),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[

@@ -21,7 +21,7 @@ class PessoaCreatePage extends StatefulWidget {
 }
 
 class _PessoaCreatePageState extends State<PessoaCreatePage> {
-  PessoaController _bloc = BlocProvider.getBloc<PessoaController>();
+  final _bloc = BlocProvider.getBloc<PessoaController>();
   Pessoa _pessoa = Pessoa();
   Usuario _usuario = Usuario();
   Endereco _endereco = Endereco();
@@ -46,6 +46,7 @@ class _PessoaCreatePageState extends State<PessoaCreatePage> {
 
   @override
   void dispose() {
+    _bloc.dispose();
     super.dispose();
   }
 
@@ -157,6 +158,7 @@ class _PessoaCreatePageState extends State<PessoaCreatePage> {
       appBar: AppBar(
         title: Text("Cadastro pessoa"),
         centerTitle: true,
+        elevation: 0.0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.file_upload),

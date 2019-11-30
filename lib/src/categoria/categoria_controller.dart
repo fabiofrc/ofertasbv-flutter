@@ -8,8 +8,18 @@ import 'package:rxdart/rxdart.dart';
 class CategoriaController extends BlocBase {
   CategoriaApiProvider _categoriaApiProvider = CategoriaApiProvider();
 
+  /* ================= get count ================= */
+  // ignore: close_sinks
+  final StreamController<int> _counter = StreamController<int>();
+  Stream<int> get counter => _counter.stream;
+
+  Stream<List<Categoria>> get listView async*{
+    yield await _categoriaApiProvider.getAll();
+  }
+
   CategoriaController() {
     responseOut = categoria.switchMap(createCategoria);
+    listView.listen((list) => _counter.add(list.length));
   }
 
   /* ================= get categoria ================= */

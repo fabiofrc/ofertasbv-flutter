@@ -58,6 +58,9 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
 
   @override
   void dispose() {
+    _bloc.dispose();
+    _blocSubCategoria.dispose();
+    _blocPessoa.dispose();
     super.dispose();
   }
 
@@ -118,6 +121,7 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Produto cadastros"),
+        elevation: 0.0,
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -159,7 +163,7 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        /* ================ Pequisa endereço ================ */
+                        /* ================ Pequisa codigo de barra ================ */
                         Card(
                           child: Container(
                             color: Colors.grey[200],

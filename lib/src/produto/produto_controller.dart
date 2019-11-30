@@ -8,12 +8,23 @@ import 'package:rxdart/rxdart.dart';
 class ProdutoController extends BlocBase{
   ProdutoApiProvider _produtoApiProvider = ProdutoApiProvider();
 
-  ProdutoController(){
-    responseOut = produto.switchMap(createProduto);
+  /* ================= get count ================= */
+  // ignore: close_sinks
+  final StreamController<int> _counter = StreamController<int>.broadcast();
+  Stream<int> get counter => _counter.stream;
+
+  Stream<List<Produto>> get listView async*{
+    yield await _produtoApiProvider.getAll();
   }
 
+  ProdutoController(){
+    responseOut = produto.switchMap(createProduto);
+    listView.listen((list) => _counter.add(list.length));
+  }
+
+
   /* ================= get produto ================= */
-  var _streamController = StreamController<List<Produto>>.broadcast();
+  final _streamController = StreamController<List<Produto>>.broadcast();
   Stream<List<Produto>> get outController => _streamController.stream;
 
   Future<List<Produto>> getAll() async {
@@ -55,6 +66,7 @@ class ProdutoController extends BlocBase{
 
   @override
   void dispose() {
+    produto.close();
     _streamController.close();
     super.dispose();
   }

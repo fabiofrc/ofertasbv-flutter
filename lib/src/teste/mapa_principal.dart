@@ -36,6 +36,7 @@ class _MapaPageAppState extends State<MapaPageApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0.0,
         title: Text('Minha localização e lojas'),
       ),
       body: Container(

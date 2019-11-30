@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ofertasbv/src/categoria/categoria_page.dart';
+import 'package:ofertasbv/src/produto/produto_grid.dart';
 import 'package:ofertasbv/src/produto/produto_page.dart';
+import 'package:ofertasbv/src/produto/produto_tab.dart';
 import 'package:ofertasbv/src/promocao/promocao_page.dart';
 import 'package:ofertasbv/src/sobre/sobre_page.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_page.dart';
@@ -46,14 +48,14 @@ class DrawerList extends StatelessWidget {
           leading: Icon(Icons.add_shopping_cart, color: Colors.black),
           title: Text("Produtos", style: TextStyle(color: Colors.black)),
           trailing: Icon(Icons.arrow_forward),
+//          onTap: () {
+//            Navigator.pop(context);
+//          },
           onTap: () {
-            Navigator.pop(context);
-          },
-          onLongPress: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return ProdutoPage();
+                  return ProdutoTab();
                 },
               ),
             );
@@ -63,10 +65,10 @@ class DrawerList extends StatelessWidget {
           leading: Icon(Icons.apps, color: Colors.black),
           title: Text("Categorias", style: TextStyle(color: Colors.black)),
           trailing: Icon(Icons.arrow_forward),
+//          onTap: () {
+//            Navigator.pop(context);
+//          },
           onTap: () {
-            Navigator.pop(context);
-          },
-          onLongPress: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -80,10 +82,10 @@ class DrawerList extends StatelessWidget {
           leading: Icon(Icons.line_style, color: Colors.black),
           title: Text("SubCategorias", style: TextStyle(color: Colors.black)),
           trailing: Icon(Icons.arrow_forward),
+//          onTap: () {
+//            Navigator.pop(context);
+//          },
           onTap: () {
-            Navigator.pop(context);
-          },
-          onLongPress: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -97,10 +99,10 @@ class DrawerList extends StatelessWidget {
           leading: Icon(Icons.add_alert, color: Colors.black),
           title: Text("Promoções", style: TextStyle(color: Colors.black)),
           trailing: Icon(Icons.arrow_forward),
+//          onTap: () {
+//            Navigator.pop(context);
+//          },
           onTap: () {
-            Navigator.pop(context);
-          },
-          onLongPress: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -114,10 +116,10 @@ class DrawerList extends StatelessWidget {
           leading: Icon(Icons.error, color: Colors.black),
           title: Text("Sobre", style: TextStyle(color: Colors.black)),
           trailing: Icon(Icons.arrow_forward),
+//          onTap: () {
+//            Navigator.pop(context);
+//          },
           onTap: () {
-            Navigator.pop(context);
-          },
-          onLongPress: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {

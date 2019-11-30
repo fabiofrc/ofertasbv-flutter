@@ -130,9 +130,6 @@ class _PainelEnderecoState extends State<PainelEndereco> {
                     style: TextStyle(color: Colors.green),
                   ),
                   onPressed: () {
-                    //salvar requisicao
-                    //_salvarRequisicao();
-
                     Navigator.pop(contex);
                   },
                 )
@@ -155,6 +152,7 @@ class _PainelEnderecoState extends State<PainelEndereco> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0.0,
         title: Text("Painel de endereço"),
       ),
       body: Container(
@@ -243,10 +241,10 @@ class _PainelEnderecoState extends State<PainelEndereco> {
                     : EdgeInsets.all(10),
                 child: RaisedButton(
                     child: Text(
-                      "Chamar Uber",
+                      "Pesquisar endereço",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    color: Color(0xff1ebbd8),
+                    color: Colors.grey,
                     padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
                     onPressed: () {
                       _chamarEndereco();
