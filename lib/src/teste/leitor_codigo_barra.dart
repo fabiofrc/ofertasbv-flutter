@@ -2,11 +2,13 @@ import 'dart:async';
 import 'dart:io';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:ofertasbv/src/produto/produto_api_provider.dart';
+import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_detalhes.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
 
@@ -16,6 +18,9 @@ class LeitorCodigoBarra extends StatefulWidget {
 }
 
 class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
+
+  final _bloc = BlocProvider.getBloc<ProdutoController>();
+
   String barcode = "";
   var p = Produto();
   var codigoBarraController = TextEditingController();
@@ -33,6 +38,12 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
   initState() {
     super.initState();
     _audioCache.loadAll(["beep-07.mp3"]);
+  }
+
+  @override
+  void dispose() {
+    _bloc.dispose();
+    super.dispose();
   }
 
   File galleryFile;
@@ -74,6 +85,7 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
         elevation: 0.0,
       ),
       body: ListView(
+        padding: EdgeInsets.only(top: 0),
         children: <Widget>[
           Card(
             elevation: 0.0,
@@ -94,7 +106,7 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
                         hintText: "Digite o código de barra",
                         prefixIcon: Icon(Icons.scanner),
                       ),
-                      maxLength: 13,
+                      maxLength: 20,
                     ),
                     SizedBox(
                       height: 10,
@@ -102,8 +114,8 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
                     RaisedButton.icon(
                       autofocus: true,
                       color: Colors.grey,
-                      icon: Icon(Icons.search),
-                      label: Text("Pesquisar"),
+                      icon: Icon(Icons.search, color: Colors.white,),
+                      label: Text("Pesquisar", style: TextStyle(color: Colors.white),),
                       onPressed: () {
                         if (codigoBarraController.text.isNotEmpty &&
                             p != null) {

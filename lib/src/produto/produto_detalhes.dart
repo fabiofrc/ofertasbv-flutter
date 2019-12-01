@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
+import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 
 class ProdutoDetalhes extends StatefulWidget {

@@ -20,6 +20,19 @@ class SubcategoriaApiProvider {
     return null;
   }
 
+  Future<List<SubCategoria>> getAllByCategoriaById(int id) async {
+    try {
+      print("carregando subcategorias da categoria");
+      var response = await dio.client.get("/subcategorias/categoria/$id");
+      return (response.data as List)
+          .map((c) => SubCategoria.fromJson(c))
+          .toList();
+    } on DioError catch (e) {
+      print(e.message);
+    }
+    return null;
+  }
+
   Future<int> create(Map<String, dynamic> data) async {
     try {
       print("cadastrando subcategorias");
@@ -51,7 +64,6 @@ class SubcategoriaApiProvider {
       "file": await MultipartFile.fromFile(fileDir, filename: fileName)
     });
 
-
 //    var paramentros = {
 //      "filename": "upload",
 //      "file": await MultipartFile.fromFile(fileDir, filename: fileName)
@@ -59,7 +71,8 @@ class SubcategoriaApiProvider {
 
     //FormData formData = FormData.fromMap(paramentros);
 
-    var response = await dio.client.post("/subcategorias/upload", data: formData);
+    var response =
+        await dio.client.post("/subcategorias/upload", data: formData);
     print("RESPONSE: ${response}");
     print("fileDir: ${fileDir}");
     return formData;

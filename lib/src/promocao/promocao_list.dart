@@ -32,7 +32,7 @@ class _PromocaoListState extends State<PromocaoList>
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.only(top: 0),
       child: StreamBuilder(
         stream: _bloc.outController,
         builder: (context, snapshot) {

@@ -8,7 +8,7 @@ void main() => runApp(MaterialApp(
           disabledBorder: InputBorder.none,
         ),
         primaryColor: Colors.deepOrange,
-        accentColor: Colors.deepOrange,
+        accentColor: Colors.grey[700],
         primarySwatch: Colors.grey,
       ),
       debugShowCheckedModeBanner: false,
@@ -45,7 +45,11 @@ class _SplashScreenOneState extends State<SplashScreenOne> {
         navigateAfterSeconds: HomePage(),
         title: Text(
           'OFERTASBV',
-          style: TextStyle(fontSize: 30, color: Colors.grey[700]),
+          style: TextStyle(
+            fontSize: 30,
+            color: Colors.grey[700],
+            fontWeight: FontWeight.w500,
+          ),
         ),
         image: Image.asset(urlLogo),
         //backgroundColor: Color(0xff622F74),

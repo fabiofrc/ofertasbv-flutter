@@ -1,40 +1,37 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ofertasbv/src/produto/produto_list.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
+import 'package:ofertasbv/src/produto/produto_model.dart';
 import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
-import 'package:ofertasbv/src/promocao/promocao_controller.dart';
-import 'package:ofertasbv/src/promocao/promocao_model.dart';
 
-class PromocaoDetalhes extends StatefulWidget {
-  Promocao p;
+class PessoaDetalhes extends StatefulWidget {
+  Pessoa p;
 
-  PromocaoDetalhes(this.p);
+  PessoaDetalhes(this.p);
 
   @override
-  _PromocaoDetalhesState createState() => _PromocaoDetalhesState();
+  _PessoaDetalhesState createState() => _PessoaDetalhesState();
 }
 
-class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
-  var selectedCard = 'WEIGHT';
-  final _bloc = BlocProvider.getBloc<PromocaoController>();
-
-  final urlArquivo = "http://192.168.1.3:8080/promocoes/download/";
+class _PessoaDetalhesState extends State<PessoaDetalhes> {
+  final urlArquivo = "http://192.168.1.3:8080/produtos/download/";
+  final urlAsset = "assets/images/upload/default.jpg";
 
   @override
   void initState() {
     urlArquivo;
+    urlAsset;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Promocao p = widget.p;
+    Pessoa p = widget.p;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ofertas detalhes"),
+        title: Text("Pessoa detalhes"),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
@@ -52,17 +49,15 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
     );
   }
 
-  buildContainer(Promocao p) {
+  buildContainer(Pessoa p) {
     return ListView(
       children: <Widget>[
         AspectRatio(
           aspectRatio: 1,
-          child: Image.network(
-            urlArquivo + p.arquivo,
-            fit: BoxFit.fill,
-          ),
+          child: p.arquivo != null
+              ? Image.network(urlArquivo + p.arquivo, fit: BoxFit.fill)
+              : Image.network(urlAsset, fit: BoxFit.fill),
         ),
-
         Card(
           elevation: 0.5,
           child: Container(
@@ -70,22 +65,23 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+
                 Text(
-                  "Código: ${p.id}",
+                  "Cód. inscrição: ${p.id}",
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
-                  "Promoção: ${p.nome}",
+                  "Pessoa: ${p.nome}",
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
-                  "Descrição: ${p.descricao}",
+                  "Tipo: ${p.tipoPessoa}",
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(
@@ -93,24 +89,51 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
                 ),
 
                 Text(
-                  "Desconto: ${p.desconto} %",
+                  "Telefone Cel.: ${p.telefone}",
                   style: TextStyle(
-                    color: Colors.green[700],
+                    color: Colors.grey[700],
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
                   ),
                 ),
+
+                SizedBox(
+                  height: 10,
+                ),
+
+                Text(
+                  "Email: ${p.usuario.email}",
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                  ),
+                ),
+
+                SizedBox(
+                  height: 10,
+                ),
+
+                Text(
+                  "Endereço: ${p.endereco.logradouro + ", " + p.endereco.numero}",
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                  ),
+                ),
+
                 RaisedButton.icon(
                   label: Text("Ir para produtos", style: TextStyle(color: Colors.white),),
                   icon: Icon(Icons.search,color: Colors.white,),
                   onPressed: (){
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return ProdutoPage(p: p);
-                        },
-                      ),
-                    );
+//                    Navigator.of(context).push(
+//                      MaterialPageRoute(
+//                        builder: (BuildContext context) {
+//                          return ProdutoPage(p);
+//                        },
+//                      ),
+//                    );
                   },
                 )
               ],

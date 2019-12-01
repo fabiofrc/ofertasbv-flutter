@@ -16,7 +16,6 @@ class ProdutoTab extends StatefulWidget {
 class _ProdutoTabState extends State<ProdutoTab> {
   final _bloc = BlocProvider.getBloc<ProdutoController>();
 
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -71,7 +70,8 @@ class _ProdutoTabState extends State<ProdutoTab> {
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             ProdutoGrid(),
-            ProdutoList(),
+            ProdutoGrid(),
+            //ProdutoList(),
           ],
         ),
         floatingActionButton: FloatingActionButton(

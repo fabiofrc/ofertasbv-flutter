@@ -1,38 +1,51 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/categoria/categoria_model.dart';
 import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_controller.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_model.dart';
 
 class SubcategoriaList extends StatefulWidget {
+  Categoria c;
+
+  SubcategoriaList({Key key, this.c}) : super(key: key);
+
   @override
-  _SubcategoriaListState createState() => _SubcategoriaListState();
+  _SubcategoriaListState createState() => _SubcategoriaListState(c: this.c);
 }
 
 class _SubcategoriaListState extends State<SubcategoriaList>
     with AutomaticKeepAliveClientMixin<SubcategoriaList> {
   final _bloc = BlocProvider.getBloc<SubCategoriaController>();
 
+  Categoria c;
+  _SubcategoriaListState({this.c});
+
   final urlArquivo = "http://192.168.1.3:8080/subcategorias/download/";
   final urlAsset = "assets/images/upload/default.jpg";
 
   @override
   void initState() {
-    _bloc.carregaSubcategorias();
+    if (c != null) {
+      _bloc.getAllByCategoriaById(this.c.id);
+    } else {
+      _bloc.getAll();
+    }
+
     urlArquivo;
     urlAsset;
     super.initState();
   }
 
   Future<void> onRefresh() {
-    return _bloc.carregaSubcategorias();
+    return _bloc.getAll();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.only(top: 0),
       child: StreamBuilder(
         stream: _bloc.outController,
         builder: (context, snapshot) {
@@ -92,7 +105,7 @@ class _SubcategoriaListState extends State<SubcategoriaList>
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {
-                    return ProdutoPage();
+                    return ProdutoPage(s: s);
                   },
                 ),
               );

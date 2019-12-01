@@ -4,19 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_detalhes.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
-import 'package:ofertasbv/src/promocao/promocao_controller.dart';
-import 'package:ofertasbv/src/subcategoria/subcategoria_controller.dart';
+import 'package:ofertasbv/src/promocao/promocao_model.dart';
+import 'package:ofertasbv/src/subcategoria/subcategoria_model.dart';
 
 class ProdutoList extends StatefulWidget {
+  Promocao p;
+  SubCategoria s;
+  ProdutoList({Key key, this.p, this.s}) : super(key: key);
+
   @override
-  _ProdutoListState createState() => _ProdutoListState();
+  _ProdutoListState createState() => _ProdutoListState(p: this.p, s:this.s);
 }
 
 class _ProdutoListState extends State<ProdutoList>
     with AutomaticKeepAliveClientMixin<ProdutoList> {
+  Promocao p;
+  SubCategoria s;
+  _ProdutoListState({this.p, this.s});
+
   final _bloc = BlocProvider.getBloc<ProdutoController>();
-  final _blocSubCategoria = BlocProvider.getBloc<SubCategoriaController>();
-  final _blocPromocao = BlocProvider.getBloc<PromocaoController>();
 
   final urlArquivo = "http://192.168.1.3:8080/produtos/download/";
   final urlAsset = "assets/images/upload/default.jpg";
@@ -26,26 +32,27 @@ class _ProdutoListState extends State<ProdutoList>
 
   @override
   void initState() {
-    if (idSubCategoria != null) {
-      _bloc.getAllBySubCategoriaById(idSubCategoria);
-    } else if (idPromocao != null) {
-      _bloc.getAllByPromocaoById(idPromocao);
+    if (s != null) {
+      _bloc.getAllBySubCategoriaById(s.id);
+    } else if (p != null) {
+      _bloc.getAllByPromocaoById(p.id);
     } else {
       _bloc.getAll();
     }
+
     urlArquivo;
     urlAsset;
     super.initState();
   }
 
   Future<void> onRefresh() {
-    return _bloc.getAll();
+    return _bloc.getAllByPromocaoById(this.p.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.only(top: 0),
       child: StreamBuilder(
         stream: _bloc.outController,
         builder: (context, snapshot) {
@@ -72,8 +79,6 @@ class _ProdutoListState extends State<ProdutoList>
   }
 
   ListView builderList(List<Produto> produtos) {
-
-
     return ListView.builder(
       itemCount: produtos.length,
       itemBuilder: (context, index) {

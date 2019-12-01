@@ -22,12 +22,11 @@ class ProdutoCreatePage extends StatefulWidget {
 }
 
 class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
-  ProdutoController _bloc = BlocProvider.getBloc<ProdutoController>();
-  SubCategoriaController _blocSubCategoria =
-      BlocProvider.getBloc<SubCategoriaController>();
-  PessoaController _blocPessoa = BlocProvider.getBloc<PessoaController>();
+  final _bloc = BlocProvider.getBloc<ProdutoController>();
+  final _blocSubCategoria = BlocProvider.getBloc<SubCategoriaController>();
+  final _blocPessoa = BlocProvider.getBloc<PessoaController>();
 
-  Produto _produto = Produto();
+  final _produto = Produto();
   SubCategoria _subCategoriaSelecionada;
   Pessoa _pessoaSelecionada;
 
@@ -45,7 +44,7 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
   @override
   void initState() {
     _blocPessoa.getAll();
-    _blocSubCategoria.carregaSubcategorias();
+    _blocSubCategoria.getAll();
     _audioCache.loadAll(["beep-07.mp3"]);
     super.initState();
   }

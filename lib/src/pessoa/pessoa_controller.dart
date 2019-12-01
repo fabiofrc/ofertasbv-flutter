@@ -10,7 +10,7 @@ class PessoaController extends BlocBase {
 
   /* ================= get count ================= */
   // ignore: close_sinks
-  final StreamController<int> _counter = StreamController<int>();
+  final StreamController<int> _counter = StreamController<int>.broadcast();
   Stream<int> get counter => _counter.stream;
 
   Stream<List<Pessoa>> get listView async*{
@@ -62,6 +62,7 @@ class PessoaController extends BlocBase {
   void dispose() {
     _streamController.close();
     pessoa.close();
+    _counter.close();
     super.dispose();
   }
 }

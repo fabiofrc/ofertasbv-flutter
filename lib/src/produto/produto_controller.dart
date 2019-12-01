@@ -5,7 +5,7 @@ import 'package:ofertasbv/src/produto/produto_api_provider.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ProdutoController extends BlocBase{
+class ProdutoController extends BlocBase {
   ProdutoApiProvider _produtoApiProvider = ProdutoApiProvider();
 
   /* ================= get count ================= */
@@ -13,15 +13,14 @@ class ProdutoController extends BlocBase{
   final StreamController<int> _counter = StreamController<int>.broadcast();
   Stream<int> get counter => _counter.stream;
 
-  Stream<List<Produto>> get listView async*{
+  Stream<List<Produto>> get listView async* {
     yield await _produtoApiProvider.getAll();
   }
 
-  ProdutoController(){
+  ProdutoController() {
     responseOut = produto.switchMap(createProduto);
     listView.listen((list) => _counter.add(list.length));
   }
-
 
   /* ================= get produto ================= */
   final _streamController = StreamController<List<Produto>>.broadcast();
@@ -34,7 +33,8 @@ class ProdutoController extends BlocBase{
   }
 
   Future<List<Produto>> getAllBySubCategoriaById(int id) async {
-    List<Produto> produtos = await _produtoApiProvider.getAllBySubCategoriaById(id);
+    List<Produto> produtos =
+        await _produtoApiProvider.getAllBySubCategoriaById(id);
     _streamController.add(produtos);
     return produtos;
   }
@@ -43,6 +43,13 @@ class ProdutoController extends BlocBase{
     List<Produto> produtos = await _produtoApiProvider.getAllByPromocaoById(id);
     _streamController.add(produtos);
     return produtos;
+  }
+
+  /* ================= post codigo de barra  ================= */
+
+  Future<Produto> getCodigoBarra(String codigoBarra) async {
+    Produto produtoBar = await _produtoApiProvider.getByCodBarra(codigoBarra);
+    return produtoBar;
   }
 
   /* ================= post produto ================= */
@@ -68,6 +75,7 @@ class ProdutoController extends BlocBase{
   void dispose() {
     produto.close();
     _streamController.close();
+    _counter.close();
     super.dispose();
   }
 }

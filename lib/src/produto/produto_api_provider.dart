@@ -20,7 +20,7 @@ class ProdutoApiProvider {
 
   Future<List<Produto>> getAllBySubCategoriaById(int id) async {
     try {
-      print("carregando produtos");
+      print("carregando produtos da subcategoria");
       var response = await dio.client.get("/produtos/subcategoria/$id");
       return (response.data as List).map((c) => Produto.fromJson(c)).toList();
     } on DioError catch (e) {
@@ -31,9 +31,21 @@ class ProdutoApiProvider {
 
   Future<List<Produto>> getAllByPromocaoById(int id) async {
     try {
-      print("carregando produtos");
+      print("carregando produtos da promoção");
       var response = await dio.client.get("/produtos/promocao/$id");
       return (response.data as List).map((c) => Produto.fromJson(c)).toList();
+    } on DioError catch (e) {
+      print(e.message);
+    }
+    return null;
+  }
+
+   Future<Produto> getByCodBarra(String codigoBarra) async {
+    try {
+      print("carregando produtos by codigo de barra");
+      var response = await dio.client.get("/produtos/codigobarra/$codigoBarra");
+      print(response.data);
+      return Produto.fromJson(response.data);
     } on DioError catch (e) {
       print(e.message);
     }

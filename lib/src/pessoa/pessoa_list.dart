@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_detalhes.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
-import 'package:ofertasbv/src/subcategoria/subcategoria_page.dart';
 
 class PessoaList extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class PessoaList extends StatefulWidget {
 
 class _PessoaListState extends State<PessoaList>
     with AutomaticKeepAliveClientMixin<PessoaList> {
-  PessoaController _bloc = BlocProvider.getBloc<PessoaController>();
+  final _bloc = BlocProvider.getBloc<PessoaController>();
 
   var tipoPessoaFisica = "PESSOAFISICA";
   var tipoPessoaJuridica = "PESSOAJURIDICA";
@@ -35,7 +35,7 @@ class _PessoaListState extends State<PessoaList>
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.only(top: 0),
       child: StreamBuilder(
         stream: _bloc.outController,
         builder: (context, snapshot) {
@@ -62,9 +62,6 @@ class _PessoaListState extends State<PessoaList>
   }
 
   ListView builderList(List<Pessoa> pessoas) {
-    final urlArquivo = "http://192.168.1.3:8080/pessoas/download/";
-    final urlAsset = "assets/images/upload/default.jpg";
-
     return ListView.builder(
       itemCount: pessoas.length,
       itemBuilder: (context, index) {
@@ -89,14 +86,17 @@ class _PessoaListState extends State<PessoaList>
                       fit: BoxFit.fill,
                     ),
             ),
-            title: Text(p.nome, style: TextStyle(fontWeight: FontWeight.w600),),
-            subtitle: Text(p.usuario.email),
+            title: Text(
+              p.nome,
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+            subtitle: Text(p.endereco.logradouro + ", " + p.endereco.numero),
             trailing: Text("${p.id}"),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {
-                    return SubcategoriaPage();
+                    return PessoaDetalhes(p);
                   },
                 ),
               );

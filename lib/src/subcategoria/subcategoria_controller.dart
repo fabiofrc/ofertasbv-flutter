@@ -10,7 +10,7 @@ class SubCategoriaController extends BlocBase {
 
   /* ================= get count ================= */
   // ignore: close_sinks
-  final StreamController<int> _counter = StreamController<int>();
+  final StreamController<int> _counter = StreamController<int>.broadcast();
   Stream<int> get counter => _counter.stream;
 
   Stream<List<SubCategoria>> get listView async*{
@@ -29,9 +29,15 @@ class SubCategoriaController extends BlocBase {
 
   Stream<List<SubCategoria>> get outController => _streamController.stream;
 
-  Future<List<SubCategoria>> carregaSubcategorias() async {
+  Future<List<SubCategoria>> getAll() async {
     List<SubCategoria> subcategorias = await _subcategoriaApiProvider.getAll();
 
+    _streamController.add(subcategorias);
+    return subcategorias;
+  }
+
+  Future<List<SubCategoria>> getAllByCategoriaById(int id) async {
+    List<SubCategoria> subcategorias = await _subcategoriaApiProvider.getAllByCategoriaById(id);
     _streamController.add(subcategorias);
     return subcategorias;
   }
@@ -59,6 +65,7 @@ class SubCategoriaController extends BlocBase {
   void dispose() {
     _streamController.close();
     subCategoria.close();
+    _counter.close();
     super.dispose();
   }
 }
