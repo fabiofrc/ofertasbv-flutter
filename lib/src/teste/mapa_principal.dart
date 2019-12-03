@@ -7,7 +7,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:ofertasbv/src/categoria/categoria_create_page.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_detalhes.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 
 class MapaPageApp extends StatefulWidget {
@@ -87,7 +89,7 @@ class _MapaPageAppState extends State<MapaPageApp> {
                   allMarkers = pessoas.map((p) {
                     return Marker(
                       icon: BitmapDescriptor.defaultMarkerWithHue(
-                          BitmapDescriptor.hueBlue),
+                          BitmapDescriptor.hueRose),
                       infoWindow: InfoWindow(
                         title: p.nome,
                         snippet: p.endereco.logradouro,
@@ -95,6 +97,9 @@ class _MapaPageAppState extends State<MapaPageApp> {
                       markerId: MarkerId(p.nome),
                       position: LatLng(p.endereco.latitude ?? 0.0,
                           p.endereco.longitude ?? 0.0),
+                      onTap: (){
+                        showDialogAlert(context, p);
+                      }
                     );
                   }).toList();
 
@@ -162,7 +167,7 @@ class _MapaPageAppState extends State<MapaPageApp> {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey[300]),
                 color:
-                    p.nome == selectedCard ? Colors.grey[300] : Colors.white,
+                    p.nome == selectedCard ? Colors.indigo[300] : Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
               width: 200,
@@ -177,13 +182,13 @@ class _MapaPageAppState extends State<MapaPageApp> {
                         style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                       backgroundColor: Colors.grey[300],
-                      foregroundColor: Colors.deepOrange,
+                      foregroundColor: Colors.indigo[700],
                     ),
                     title: Text(
                       p.nome,
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.indigo[700],
+                        color: Colors.pink[700],
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -193,7 +198,7 @@ class _MapaPageAppState extends State<MapaPageApp> {
                         fontSize: 14,
                         color: p.endereco.numero == selectedCard
                             ? Colors.white
-                            : Colors.green.withOpacity(0.9),
+                            : Colors.grey.withOpacity(0.9),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -254,28 +259,33 @@ class _MapaPageAppState extends State<MapaPageApp> {
     return distanciaKilomentros;
   }
 
-  Future<ConfirmAction> showDialogAlert(
-      BuildContext context, String loja, String local) async {
-    return showDialog<ConfirmAction>(
+  showDialogAlert(BuildContext context, Pessoa p) async {
+    return showDialog(
       context: context,
       barrierDismissible: false, // user must tap button for close dialog!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Localização'),
-          content: Text(loja + " - " + local),
+          title: Text('Mercado'),
+          content: Text(p.nome),
           actions: <Widget>[
             FlatButton(
               child: const Text('CANCELAR'),
               onPressed: () {
-                Navigator.of(context).pop(ConfirmAction.CANCEL);
+                Navigator.of(context).pop();
               },
             ),
             FlatButton(
-              child: const Text('ACEITO'),
+              child: const Text('DETALHES'),
               onPressed: () {
-                Navigator.of(context).pop(ConfirmAction.ACCEPT);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return PessoaDetalhes(p);
+                    },
+                  ),
+                );
               },
-            )
+            ),
           ],
         );
       },

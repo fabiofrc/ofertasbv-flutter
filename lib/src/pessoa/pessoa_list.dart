@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_create_page.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_detalhes.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 
@@ -30,6 +31,51 @@ class _PessoaListState extends State<PessoaList>
 
   Future<void> onRefresh() {
     return _bloc.getAll();
+  }
+
+  showDialogAlert(BuildContext context, Pessoa p) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false, // user must tap button for close dialog!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Localização'),
+          content: Text(p.nome + " - " + p.endereco.logradouro),
+          actions: <Widget>[
+            FlatButton(
+              child: const Text('CANCELAR'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: const Text('EDITAR'),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return PessoaCreatePage();
+                    },
+                  ),
+                );
+              },
+            ),
+            FlatButton(
+              child: const Text('DETALHES'),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return PessoaDetalhes(p);
+                    },
+                  ),
+                );
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -93,13 +139,7 @@ class _PessoaListState extends State<PessoaList>
             subtitle: Text(p.endereco.logradouro + ", " + p.endereco.numero),
             trailing: Text("${p.id}"),
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return PessoaDetalhes(p);
-                  },
-                ),
-              );
+              showDialogAlert(context, p);
             },
           ),
         );

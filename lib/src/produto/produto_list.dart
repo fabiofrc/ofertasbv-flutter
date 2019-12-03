@@ -46,7 +46,7 @@ class _ProdutoListState extends State<ProdutoList>
   }
 
   Future<void> onRefresh() {
-    return _bloc.getAllByPromocaoById(this.p.id);
+    return _bloc.getAll();
   }
 
   @override

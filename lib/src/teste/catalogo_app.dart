@@ -52,7 +52,7 @@ class _CatalogoAppState extends State<CatalogoApp> {
               ),
               activeIcon: Icon(
                 Icons.dashboard,
-                color: Colors.deepOrange,
+                color: Colors.pink[900],
               ),
               title: Text("Dashboard")),
           BubbleBottomBarItem(
@@ -63,7 +63,7 @@ class _CatalogoAppState extends State<CatalogoApp> {
             ),
             activeIcon: Icon(
               Icons.scanner,
-              color: Colors.deepOrange,
+              color: Colors.pink[900],
             ),
             title: Text("Scanner"),
           ),

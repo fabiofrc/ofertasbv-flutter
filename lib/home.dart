@@ -2,18 +2,18 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ofertasbv/src/categoria/categoria_controller.dart';
-import 'package:ofertasbv/src/categoria/categoria_list.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_list.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_grid.dart';
-import 'package:ofertasbv/src/produto/produto_list.dart';
 import 'package:ofertasbv/src/promocao/promocao_controller.dart';
 import 'package:ofertasbv/src/promocao/promocao_list.dart';
 import 'package:ofertasbv/drawer_list.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_controller.dart';
 import 'package:ofertasbv/src/teste/catalogo_app.dart';
+
+import 'catalogo_home.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -53,28 +53,38 @@ class _HomePageState extends State<HomePage>
                     delegate: ProdutoSearchDelegate(),
                   );
                 },
-              )
+              ),
+
+              IconButton(
+                icon: Icon(Icons.apps),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CatalogoApp()));
+                },
+              ),
             ],
             bottom: TabBar(
-              labelColor: Colors.grey[700],
+              labelColor: Colors.pink[800],
               isScrollable: true,
-              unselectedLabelColor: Colors.black,
+              unselectedLabelColor: Colors.white,
               tabs: [
                 Tab(
-                  text: "Produto",
-                  icon: Icon(Icons.shopping_cart),
+                  text: "HOME",
+                  //icon: Icon(Icons.home),
+                ),
+
+                Tab(
+                  text: "PRODUTO",
+                  //icon: Icon(Icons.shopping_cart),
+                ),
+
+                Tab(
+                  text: "OFERTAS",
+                  //icon: Icon(Icons.add_alert),
                 ),
                 Tab(
-                  text: "Categoria",
-                  icon: Icon(Icons.line_style),
-                ),
-                Tab(
-                  text: "Oferta",
-                  icon: Icon(Icons.add_alert),
-                ),
-                Tab(
-                  text: "Mercado",
-                  icon: Icon(Icons.location_city),
+                  text: "LOJAS",
+                  //icon: Icon(Icons.location_city),
                 ),
               ],
             ),
@@ -82,8 +92,8 @@ class _HomePageState extends State<HomePage>
           body: TabBarView(
             physics: NeverScrollableScrollPhysics(),
             children: <Widget>[
+              CatalogoHome(),
               ProdutoGrid(),
-              CategoriaList(),
               PromocaoList(),
               PessoaList(),
             ],
@@ -94,15 +104,7 @@ class _HomePageState extends State<HomePage>
           drawer: DrawerList(),
 /* ======================= Botão Flutuante ======================= */
 
-          floatingActionButton: FloatingActionButton(
-            elevation: 10,
-            child: Icon(Icons.apps),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CatalogoApp()));
-            },
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+
         ),
       ),
     );

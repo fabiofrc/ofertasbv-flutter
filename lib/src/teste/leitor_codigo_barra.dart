@@ -138,9 +138,10 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         elevation: 10,
-        child: Icon(Icons.camera),
+        label: Text("Scanner"),
+        icon: Icon(Icons.camera_enhance),
         onPressed: () {
           barcodeScanning();
         },

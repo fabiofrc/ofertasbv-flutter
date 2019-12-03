@@ -10,7 +10,7 @@ class CategoriaController extends BlocBase {
 
   /* ================= get count ================= */
   // ignore: close_sinks
-  final StreamController<int> _counter = StreamController<int>.broadcast();
+  final StreamController<int> _counter = StreamController<int>();
   Stream<int> get counter => _counter.stream;
 
   Stream<List<Categoria>> get listView async*{
@@ -28,7 +28,7 @@ class CategoriaController extends BlocBase {
   Stream<List<Categoria>> get outController => _streamController.stream;
 
 
-  Future<List<Categoria>> carregaCategorias() async {
+  Future<List<Categoria>> getAll() async {
     List<Categoria> categorias = await _categoriaApiProvider.getAll();
     _streamController.add(categorias);
     return categorias;
@@ -65,7 +65,7 @@ class CategoriaController extends BlocBase {
   void dispose() {
     _streamController.close();
     categoria.close();
-    _counter.close();
+    //_counter.close();
     super.dispose();
   }
 }

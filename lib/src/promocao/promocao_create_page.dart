@@ -28,7 +28,7 @@ class _PromocaoCreatePageState extends State<PromocaoCreatePage> {
 
   @override
   void initState() {
-    _bloc.carregaPromocoes();
+    _bloc.getAll();
     super.initState();
   }
 

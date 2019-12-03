@@ -1,12 +1,26 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 import 'package:ofertasbv/src/promocao/promocao_controller.dart';
 import 'package:ofertasbv/src/promocao/promocao_create_page.dart';
 import 'promocao_list.dart';
 
 
-class PromocaoPage extends StatelessWidget {
+class PromocaoPage extends StatefulWidget {
+
+  Pessoa p;
+  PromocaoPage({Key key, this.p}) : super(key: key);
+
+  @override
+  _PromocaoPageState createState() => _PromocaoPageState(p: this.p);
+}
+
+class _PromocaoPageState extends State<PromocaoPage> {
   final _bloc = BlocProvider.getBloc<PromocaoController>();
+
+  Pessoa p;
+  _PromocaoPageState({this.p});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +44,7 @@ class PromocaoPage extends StatelessWidget {
         ],
       ),
 
-      body: PromocaoList(),
+      body: PromocaoList(p: p),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[

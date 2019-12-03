@@ -70,8 +70,7 @@ class _ProdutoTabState extends State<ProdutoTab> {
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             ProdutoGrid(),
-            ProdutoGrid(),
-            //ProdutoList(),
+            ProdutoList(),
           ],
         ),
         floatingActionButton: FloatingActionButton(

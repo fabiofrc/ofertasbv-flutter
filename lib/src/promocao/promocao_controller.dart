@@ -26,8 +26,14 @@ class PromocaoController extends BlocBase {
   var _streamController = StreamController<List<Promocao>>.broadcast();
   Stream<List<Promocao>> get outController => _streamController.stream;
 
-  Future<List<Promocao>> carregaPromocoes() async {
+  Future<List<Promocao>> getAll() async {
     List<Promocao> promocoes = await _promocaoApiProvider.getAll();
+    _streamController.add(promocoes);
+    return promocoes;
+  }
+
+  Future<List<Promocao>> getAllByPessoaById(int id) async {
+    List<Promocao> promocoes = await _promocaoApiProvider.getAllByPessoaById(id);
     _streamController.add(promocoes);
     return promocoes;
   }

@@ -46,18 +46,23 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.deepOrange,
-              Colors.deepOrange[200],
+              Colors.indigo[900],
+              Colors.indigo[500],
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
         ),
+        child: Image.asset(
+          "assets/images/categorias/fundo.PNG",
+          fit: BoxFit.cover,
+          width: double.infinity,
+        ),
       );
 
   GridView buildGridView(BuildContext context) {
     return GridView.count(
-      padding: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.only(top: 70),
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       crossAxisCount: 3,
@@ -82,12 +87,16 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.shopping_cart, color: Colors.grey[700], size: 30,),
+                child: Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                  size: 30,
+                ),
                 padding: EdgeInsets.all(30),
               ),
               Text(
                 "Produto",
-                style: TextStyle(color: Colors.grey[700]),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),
@@ -111,12 +120,16 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.apps, color: Colors.grey[700], size: 30,),
+                child: Icon(
+                  Icons.apps,
+                  color: Colors.white,
+                  size: 30,
+                ),
                 padding: EdgeInsets.all(30),
               ),
               Text(
                 "Categoria",
-                style: TextStyle(color: Colors.grey[700]),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),
@@ -139,12 +152,16 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.add_alert, color: Colors.grey[700], size: 30,),
+                child: Icon(
+                  Icons.add_alert,
+                  color: Colors.white,
+                  size: 30,
+                ),
                 padding: EdgeInsets.all(30),
               ),
               Text(
                 "Oferta",
-                style: TextStyle(color: Colors.grey[700]),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),
@@ -167,12 +184,16 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.location_city, color: Colors.grey[700], size: 30,),
+                child: Icon(
+                  Icons.location_city,
+                  color: Colors.white,
+                  size: 30,
+                ),
                 padding: EdgeInsets.all(30),
               ),
               Text(
                 "Mercado",
-                style: TextStyle(color: Colors.grey[700]),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),
@@ -195,12 +216,16 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.people, color: Colors.grey[700], size: 30,),
+                child: Icon(
+                  Icons.people,
+                  color: Colors.white,
+                  size: 30,
+                ),
                 padding: EdgeInsets.all(30),
               ),
               Text(
                 "Cliente",
-                style: TextStyle(color: Colors.grey[700]),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),
@@ -223,12 +248,16 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.line_style, color: Colors.grey[700], size: 30,),
+                child: Icon(
+                  Icons.line_style,
+                  color: Colors.white,
+                  size: 30,
+                ),
                 padding: EdgeInsets.all(30),
               ),
               Text(
                 "SubCategoria",
-                style: TextStyle(color: Colors.grey[700]),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),
@@ -251,12 +280,16 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.location_on, color: Colors.grey[700], size: 30,),
+                child: Icon(
+                  Icons.location_on,
+                  color: Colors.white,
+                  size: 30,
+                ),
                 padding: EdgeInsets.all(30),
               ),
               Text(
                 "Mapa",
-                style: TextStyle(color: Colors.grey[700]),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),
@@ -279,17 +312,20 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.add_location, color: Colors.grey[700], size: 30,),
+                child: Icon(
+                  Icons.add_location,
+                  color: Colors.white,
+                  size: 30,
+                ),
                 padding: EdgeInsets.all(30),
               ),
               Text(
                 "GeoCode",
-                style: TextStyle(color: Colors.grey[700]),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),
         ),
-
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(
@@ -308,12 +344,16 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.scanner, color: Colors.grey[700], size: 30,),
+                child: Icon(
+                  Icons.scanner,
+                  color: Colors.white,
+                  size: 30,
+                ),
                 padding: EdgeInsets.all(30),
               ),
               Text(
                 "Scanner",
-                style: TextStyle(color: Colors.grey[700]),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),

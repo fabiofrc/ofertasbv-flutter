@@ -1,3 +1,4 @@
+import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
 
 class Promocao {
@@ -10,6 +11,7 @@ class Promocao {
   String dataInicio;
   String dataFinal;
   List<Produto> produtos;
+  Pessoa pessoa;
 
   Promocao(
       {this.id,
@@ -20,7 +22,8 @@ class Promocao {
         this.dataRegistro,
         this.dataInicio,
         this.dataFinal,
-        this.produtos});
+        this.produtos,
+        this.pessoa});
 
   Promocao.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -37,6 +40,8 @@ class Promocao {
         produtos.add(new Produto.fromJson(v));
       });
     }
+    pessoa =
+    json['pessoa'] != null ? new Pessoa.fromJson(json['pessoa']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +56,9 @@ class Promocao {
     data['dataFinal'] = this.dataFinal;
     if (this.produtos != null) {
       data['produtos'] = this.produtos.map((v) => v.toJson()).toList();
+    }
+    if (this.pessoa != null) {
+      data['pessoa'] = this.pessoa.toJson();
     }
     return data;
   }

@@ -4,21 +4,39 @@ import 'package:flutter/material.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_detalhes.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
+import 'package:ofertasbv/src/promocao/promocao_model.dart';
+import 'package:ofertasbv/src/subcategoria/subcategoria_model.dart';
 
 class ProdutoGrid extends StatefulWidget {
+
+  Promocao p;
+  SubCategoria s;
+  ProdutoGrid({Key key, this.p, this.s}) : super(key: key);
+
   @override
-  _ProdutoGridState createState() => _ProdutoGridState();
+  _ProdutoGridState createState() => _ProdutoGridState(p: this.p, s:this.s);
 }
 
 class _ProdutoGridState extends State<ProdutoGrid> with AutomaticKeepAliveClientMixin<ProdutoGrid>{
   final _bloc = BlocProvider.getBloc<ProdutoController>();
+
+  Promocao p;
+  SubCategoria s;
+  _ProdutoGridState({this.p, this.s});
 
   final String urlArquivo = "http://192.168.1.3:8080/produtos/download/";
   final String urlAsset = "assets/images/upload/default.jpg";
 
   @override
   void initState() {
-    _bloc.getAll();
+    if (s != null) {
+      _bloc.getAllBySubCategoriaById(s.id);
+    } else if (p != null) {
+      _bloc.getAllByPromocaoById(p.id);
+    } else {
+      _bloc.getAll();
+    }
+
     urlArquivo;
     urlAsset;
     super.initState();

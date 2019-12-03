@@ -12,18 +12,27 @@ import 'categoria_model.dart';
 import 'package:intl/intl.dart';
 
 class CategoriaCreatePage extends StatefulWidget {
+  Categoria c;
+
+  CategoriaCreatePage({Key key, this.c}) : super(key: key);
+
   @override
-  _CategoriaCreatePageState createState() => _CategoriaCreatePageState();
+  _CategoriaCreatePageState createState() => _CategoriaCreatePageState(c: c);
 }
 
 class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
   final _bloc = BlocProvider.getBloc<CategoriaController>();
-  Categoria _categoria = Categoria();
+  Categoria c = Categoria();
   File file;
+
+  var controllerNome = TextEditingController();
+
+
+  _CategoriaCreatePageState({this.c});
 
   @override
   void initState() {
-    _bloc.carregaCategorias();
+    _bloc.getAll();
     super.initState();
   }
 
@@ -46,14 +55,14 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
 
     setState(() {
       this.file = f;
-      _categoria.arquivo = file.path.split('/').last;
-      print(" upload de arquivo : $_categoria.arquivo");
+      c.arquivo = file.path.split('/').last;
+      print(" upload de arquivo : $c.arquivo");
     });
   }
 
   void _onClickUpload() async {
     if (file != null) {
-      var url = await CategoriaApiProvider.upload(file, _categoria.arquivo);
+      var url = await CategoriaApiProvider.upload(file, c.arquivo);
     }
   }
 
@@ -64,6 +73,7 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
   @override
   Widget build(BuildContext context) {
     DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+    controllerNome.text = c.nome;
 
     return Scaffold(
       appBar: AppBar(
@@ -116,9 +126,9 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                             child: Column(
                               children: <Widget>[
                                 TextFormField(
-                                  onSaved: (value) => _categoria.nome = value,
+                                  onSaved: (value) => c.nome = value,
                                   validator: (value) =>
-                                  value.isEmpty ? "campo obrigário" : null,
+                                      value.isEmpty ? "campo obrigário" : null,
                                   decoration: InputDecoration(
                                     labelText: "Nome",
                                     hintText: "nome categoria",
@@ -127,7 +137,9 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                                   keyboardType: TextInputType.text,
                                   maxLength: 50,
                                   maxLines: 2,
+                                  initialValue: c.nome,
                                 ),
+
                               ],
                             ),
                           ),
@@ -150,15 +162,17 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                                 SizedBox(height: 15),
                                 file != null
                                     ? Image.file(file,
-                                    height: 100, width: 100, fit: BoxFit.fill)
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit.fill)
                                     : Image.asset(
-                                  "assets/images/upload/upload.jpg",
-                                  height: 100,
-                                  width: 100,
-                                ),
+                                        "assets/images/upload/upload.jpg",
+                                        height: 100,
+                                        width: 100,
+                                      ),
                                 SizedBox(height: 15),
-                                _categoria.arquivo != null
-                                    ? Text("${_categoria.arquivo}")
+                                c.arquivo != null
+                                    ? Text("${c.arquivo}")
                                     : Text("sem arquivo"),
                                 RaisedButton.icon(
                                   icon: Icon(Icons.file_upload),
@@ -173,7 +187,6 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   ),
@@ -188,8 +201,8 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                     onPressed: () {
                       if (controller.validate()) {
                         DateTime dataAgora = DateTime.now();
-                        _categoria.dataRegistro = dateFormat.format(dataAgora);
-                        _bloc.categoriaIn.add(_categoria);
+                        c.dataRegistro = dateFormat.format(dataAgora);
+                        _bloc.categoriaIn.add(c);
                       }
                     },
                   ),

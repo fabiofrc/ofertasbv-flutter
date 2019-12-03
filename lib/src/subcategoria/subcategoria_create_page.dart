@@ -33,7 +33,7 @@ class _SubCategoriaCreatePageState extends State<SubCategoriaCreatePage> {
 
   @override
   void initState() {
-    _blocCategoria.carregaCategorias();
+    _blocCategoria.getAll();
     super.initState();
   }
 

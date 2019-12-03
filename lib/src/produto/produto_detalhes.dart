@@ -1,9 +1,10 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
 import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
+import 'package:ofertasbv/src/produto/produto_tab.dart';
+import 'package:ofertasbv/src/promocao/promocao_page.dart';
 
 class ProdutoDetalhes extends StatefulWidget {
   Produto p;
@@ -15,7 +16,6 @@ class ProdutoDetalhes extends StatefulWidget {
 }
 
 class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
-
   final urlArquivo = "http://192.168.1.3:8080/produtos/download/";
 
   @override
@@ -58,7 +58,98 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
             fit: BoxFit.fill,
           ),
         ),
-
+        Card(
+          elevation: 0.5,
+          child: Container(
+            padding: EdgeInsets.all(5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    p.nome,
+                    style: TextStyle(fontSize: 20, color: Colors.grey[900]),
+                  ),
+                ),
+                ListTile(
+                  title: Text(
+                    p.unidade,
+                    style: TextStyle(fontSize: 20, color: Colors.grey[900]),
+                  ),
+                  trailing: Text(
+                    "R\$ ${p.valorUnitario}",
+                    style: TextStyle(
+                      color: Colors.green[700],
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Card(
+          elevation: 0.5,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    RaisedButton.icon(
+                      label: Text(
+                        "Ir para Produtos",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      icon: Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                      ),
+                      color: Colors.pink[900],
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return ProdutoTab();
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    RaisedButton.icon(
+                      label: Text(
+                        "Ir para Ofertas",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      icon: Icon(
+                        Icons.list,
+                        color: Colors.white,
+                      ),
+                      color: Colors.blue[900],
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return PromocaoPage();
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
         Card(
           elevation: 0.5,
           child: Container(
@@ -70,32 +161,12 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
                   "Código: ${p.id}",
                   style: TextStyle(fontSize: 20),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 Text(
-                  "Produto: ${p.nome}",
+                  "${p.descricao}",
                   style: TextStyle(fontSize: 20),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Descrição: ${p.descricao}",
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-
-                Text(
-                  "Valor: R\$ ${p.valorUnitario}",
-                  style: TextStyle(
-                    color: Colors.green[700],
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                  ),
-                ),
+                SizedBox(height: 10),
               ],
             ),
           ),

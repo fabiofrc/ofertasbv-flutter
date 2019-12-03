@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_list.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
+import 'package:ofertasbv/src/pessoa/pessoa_page.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
 import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
+import 'package:ofertasbv/src/promocao/promocao_page.dart';
 
 class PessoaDetalhes extends StatefulWidget {
   Pessoa p;
@@ -56,90 +59,141 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
           aspectRatio: 1,
           child: p.arquivo != null
               ? Image.network(urlArquivo + p.arquivo, fit: BoxFit.fill)
-              : Image.network(urlAsset, fit: BoxFit.fill),
+              : Image.asset(urlAsset, fit: BoxFit.fill),
+        ),
+
+        SizedBox(height: 0),
+
+
+        Card(
+          elevation: 0.5,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Text(p.nome,
+                      style: TextStyle(fontSize: 16, color: Colors.grey[900]),
+                    ),
+                    SizedBox(height: 10),
+                    Icon(Icons.location_city, color: Colors.indigo,),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(p.telefone,
+                      style: TextStyle(fontSize: 16, color: Colors.grey[900]),
+                    ),
+                    SizedBox(height: 10),
+                    Icon(Icons.phone_forwarded, color: Colors.indigo,),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
         Card(
           elevation: 0.5,
           child: Container(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    RaisedButton.icon(
+                      label: Text(
+                        "Ir para ofertas",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      color: Colors.pink[900],
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return PromocaoPage(p: p);
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    RaisedButton.icon(
+                      label: Text(
+                        "Ir para mercados",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      icon: Icon(
+                        Icons.list,
+                        color: Colors.white,
+                      ),
+                      color: Colors.blue[900],
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return PessoaPage();
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        Card(
+          elevation: 0.5,
+          child: Container(
             padding: EdgeInsets.all(20),
-            child: Column(
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-
-                Text(
-                  "Cód. inscrição: ${p.id}",
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Pessoa: ${p.nome}",
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Tipo: ${p.tipoPessoa}",
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-
-                Text(
-                  "Telefone Cel.: ${p.telefone}",
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                  ),
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-
-                Text(
-                  "Email: ${p.usuario.email}",
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                  ),
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-
-                Text(
-                  "Endereço: ${p.endereco.logradouro + ", " + p.endereco.numero}",
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                  ),
-                ),
-
-                RaisedButton.icon(
-                  label: Text("Ir para produtos", style: TextStyle(color: Colors.white),),
-                  icon: Icon(Icons.search,color: Colors.white,),
-                  onPressed: (){
-//                    Navigator.of(context).push(
-//                      MaterialPageRoute(
-//                        builder: (BuildContext context) {
-//                          return ProdutoPage(p);
-//                        },
-//                      ),
-//                    );
-                  },
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Inscrição: ${p.id}",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      p.tipoPessoa,
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    SizedBox(height: 10),
+                    Text(p.usuario.email,
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text("${p.endereco.logradouro + ", " + p.endereco.numero}",
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
