@@ -23,10 +23,11 @@ class _CatalogoHomeState extends State<CatalogoHome> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
-              "categorias",
+              "departamento",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w800,
+                color: Colors.grey,
               ),
             ),
             FlatButton(
@@ -49,53 +50,21 @@ class _CatalogoHomeState extends State<CatalogoHome> {
           ],
         ),
         Container(
-          color: Colors.transparent,
-          height: 100,
+          //color: Colors.transparent,
+          height: 110,
           child: CategoriaListHome(),
         ),
         SizedBox(height: 0),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
-              "produtos",
+              "ofertas",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w800,
-              ),
-            ),
-            FlatButton(
-              child: Text(
-                "veja mais",
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return ProdutoPage();
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-        Container(
-          height: 250,
-          child: ProdutoListHome(),
-        ),
-        SizedBox(height: 0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              "promoções",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
+                color: Colors.grey,
               ),
             ),
             FlatButton(
@@ -118,11 +87,45 @@ class _CatalogoHomeState extends State<CatalogoHome> {
           ],
         ),
         Container(
-          color: Colors.transparent,
-          height: 180,
+          //color: Colors.transparent,
+          height: 250,
           child: PromocaoListHome(),
         ),
-        SizedBox(height: 10),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              "novidades",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+                color: Colors.grey,
+              ),
+            ),
+            FlatButton(
+              child: Text(
+                "veja mais",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ProdutoPage();
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+        Container(
+          height: 130,
+          child: ProdutoListHome(),
+        ),
       ],
     );
   }

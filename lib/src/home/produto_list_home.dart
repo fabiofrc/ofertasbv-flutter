@@ -82,18 +82,17 @@ class _ProdutoListHomeState extends State<ProdutoListHome>
 
         return GestureDetector(
           child: Card(
-            color: Colors.transparent,
             margin: EdgeInsets.only(left: 5),
             elevation: 0.0,
             child: AnimatedContainer(
               duration: Duration(seconds: 4),
-              width: 160,
-              child: Column(
+              width: 300,
+              child: Row(
                 children: <Widget>[
                   AspectRatio(
-                    aspectRatio: 0.9,
+                    aspectRatio: 1.2,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(10),
                       child: Image.network(
                         ConstantApi.urlArquivoProduto + p.foto,
                         fit: BoxFit.fill,
@@ -105,16 +104,17 @@ class _ProdutoListHomeState extends State<ProdutoListHome>
                     child: Container(
                       padding: EdgeInsets.all(5),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(p.nome, style: TextStyle(fontWeight: FontWeight.w500),),
+                          Text("cód. ${p.id}", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),),
                           Text(
                             "R\$ ${p.valorUnitario}",
                             style: TextStyle(
                               color: Colors.green[700],
                               fontWeight: FontWeight.w600,
-                              fontSize: 18,
+                              fontSize: 20,
                             ),
                           ),
                         ],

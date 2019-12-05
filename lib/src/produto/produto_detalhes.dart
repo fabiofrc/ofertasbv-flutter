@@ -51,17 +51,18 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
       padding: EdgeInsets.all(0),
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1,
+          aspectRatio: 1.2,
           child: p.arquivos.isNotEmpty
               ? Carousel(
                   autoplay: false,
+
                   dotBgColor: Colors.transparent,
                   images: p.arquivos.map((a) {
                     return NetworkImage(ConstantApi.urlArquivoProduto + a.foto);
                   }).toList())
               : Image.network(
                   ConstantApi.urlArquivoProduto + p.foto,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
         ),
         Card(
@@ -163,7 +164,7 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
           elevation: 0.0,
           child: Container(
             color: Colors.transparent,
-            padding: EdgeInsets.all(0),
+            padding: EdgeInsets.all(15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

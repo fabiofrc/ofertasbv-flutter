@@ -32,7 +32,7 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Catalogo"),
+        title: Text("Catalogo app"),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(

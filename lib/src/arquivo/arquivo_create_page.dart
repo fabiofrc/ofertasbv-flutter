@@ -14,22 +14,17 @@ import 'package:ofertasbv/src/arquivo/arquivo_controller.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_model.dart';
 
 class ArquivoCreatePage extends StatefulWidget {
-  Arquivo a;
-
-  ArquivoCreatePage({Key key, this.a}) : super(key: key);
 
   @override
-  _ArquivoCreatePageState createState() => _ArquivoCreatePageState(a: a);
+  _ArquivoCreatePageState createState() => _ArquivoCreatePageState();
 }
 
 class _ArquivoCreatePageState extends State<ArquivoCreatePage> {
   final _bloc = BlocProvider.getBloc<ArquivoController>();
-  Arquivo a = Arquivo();
+  Arquivo arquivo = Arquivo();
   File file;
 
   var controllerNome = TextEditingController();
-
-  _ArquivoCreatePageState({this.a});
 
   @override
   void initState() {
@@ -56,14 +51,14 @@ class _ArquivoCreatePageState extends State<ArquivoCreatePage> {
 
     setState(() {
       this.file = f;
-      a.foto = file.path.split('/').last;
-      print(" upload de arquivo : $a.arquivo");
+      arquivo.foto = file.path.split('/').last;
+      print(" upload de arquivo : ${arquivo.foto}");
     });
   }
 
   void _onClickUpload() async {
     if (file != null) {
-      var url = await ArquivoApiProvider.upload(file, a.foto);
+      var url = await ArquivoApiProvider.upload(file, arquivo.foto);
     }
   }
 
@@ -127,7 +122,7 @@ class _ArquivoCreatePageState extends State<ArquivoCreatePage> {
                             child: Column(
                               children: <Widget>[
                                 TextFormField(
-                                  onSaved: (value) => a.nome = value,
+                                  onSaved: (value) => arquivo.nome = value,
                                   validator: (value) =>
                                       value.isEmpty ? "campo obrigário" : null,
                                   decoration: InputDecoration(
@@ -171,8 +166,8 @@ class _ArquivoCreatePageState extends State<ArquivoCreatePage> {
                                         width: 100,
                                       ),
                                 SizedBox(height: 15),
-                                a.foto != null
-                                    ? Text("${a.foto}")
+                                arquivo.foto != null
+                                    ? Text("${arquivo.foto}")
                                     : Text("sem arquivo"),
                                 RaisedButton.icon(
                                   icon: Icon(Icons.file_upload),
@@ -201,8 +196,8 @@ class _ArquivoCreatePageState extends State<ArquivoCreatePage> {
                     onPressed: () {
                       if (controller.validate()) {
                         DateTime dataAgora = DateTime.now();
-                        a.dataRegistro = dateFormat.format(dataAgora);
-                        _bloc.arquivoIn.add(a);
+                        arquivo.dataRegistro = dateFormat.format(dataAgora);
+                        _bloc.arquivoIn.add(arquivo);
                       }
                     },
                   ),

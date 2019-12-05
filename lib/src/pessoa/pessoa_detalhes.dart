@@ -28,7 +28,7 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pessoa detalhes"),
+        title: Text("Mercado detalhes"),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
@@ -50,12 +50,12 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
     return ListView(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 2,
+          aspectRatio: 1.2,
           child: p.foto != null
               ? Image.network(ConstantApi.urlArquivoPessoa + p.foto, fit: BoxFit.fill)
               : Image.asset(
                   ConstantApi.urlAsset,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
         ),
         SizedBox(height: 0),

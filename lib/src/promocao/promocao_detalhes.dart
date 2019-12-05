@@ -54,10 +54,10 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
     return ListView(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 2,
+          aspectRatio: 1.2,
           child: Image.network(
             ConstantApi.urlArquivoPromocao + p.foto,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
 

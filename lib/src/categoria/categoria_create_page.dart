@@ -13,22 +13,17 @@ import 'categoria_model.dart';
 import 'package:intl/intl.dart';
 
 class CategoriaCreatePage extends StatefulWidget {
-  Categoria c;
-
-  CategoriaCreatePage({Key key, this.c}) : super(key: key);
 
   @override
-  _CategoriaCreatePageState createState() => _CategoriaCreatePageState(c: c);
+  _CategoriaCreatePageState createState() => _CategoriaCreatePageState();
 }
 
 class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
   final _bloc = BlocProvider.getBloc<CategoriaController>();
-  Categoria c = Categoria();
+  Categoria categoria = Categoria();
   File file;
 
   var controllerNome = TextEditingController();
-
-  _CategoriaCreatePageState({this.c});
 
   @override
   void initState() {
@@ -55,14 +50,14 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
 
     setState(() {
       this.file = f;
-      c.foto = file.path.split('/').last;
-      print(" upload de arquivo : $c.arquivo");
+      categoria.foto = file.path.split('/').last;
+      print(" upload de arquivo : ${categoria.foto}");
     });
   }
 
   void _onClickUpload() async {
     if (file != null) {
-      var url = await CategoriaApiProvider.upload(file, c.foto);
+      var url = await CategoriaApiProvider.upload(file, categoria.foto);
     }
   }
 
@@ -126,7 +121,7 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                             child: Column(
                               children: <Widget>[
                                 TextFormField(
-                                  onSaved: (value) => c.nome = value,
+                                  onSaved: (value) => categoria.nome = value,
                                   validator: (value) =>
                                       value.isEmpty ? "campo obrigário" : null,
                                   decoration: InputDecoration(
@@ -170,8 +165,8 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                                         width: 100,
                                       ),
                                 SizedBox(height: 15),
-                                c.foto != null
-                                    ? Text("${c.foto}")
+                                categoria.foto != null
+                                    ? Text("${categoria.foto}")
                                     : Text("sem arquivo"),
                                 RaisedButton.icon(
                                   icon: Icon(Icons.file_upload),
@@ -200,8 +195,8 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                     onPressed: () {
                       if (controller.validate()) {
                         DateTime dataAgora = DateTime.now();
-                        c.dataRegistro = dateFormat.format(dataAgora);
-                        _bloc.categoriaIn.add(c);
+                        categoria.dataRegistro = dateFormat.format(dataAgora);
+                        _bloc.categoriaIn.add(categoria);
                       }
                     },
                   ),

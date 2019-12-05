@@ -103,27 +103,26 @@ class _CategoriaListHomeState extends State<CategoriaListHome>
 
         return GestureDetector(
           child: Card(
-            color: Colors.transparent,
             margin: EdgeInsets.only(left: 5),
             elevation: 0.0,
             child: AnimatedContainer(
               duration: Duration(seconds: 4),
-              width: 80,
+              width: 90,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   AspectRatio(
-                    aspectRatio: 1.2,
+                    aspectRatio: 1.1,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: Image.network(
                         urlArquivo + c.foto,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
-                  Text(c.nome),
+                  Text(c.nome.toLowerCase(), style: TextStyle(fontSize: 12),),
                 ],
               ),
             ),

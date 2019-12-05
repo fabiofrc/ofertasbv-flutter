@@ -45,15 +45,18 @@ class ArquivoApiProvider {
     var fileDir = file.path;
 
     var paramentros = {
-      "filename": "upload",
+      "filenme": "upload",
       "file": await MultipartFile.fromFile(fileDir, filename: fileName)
     };
 
-    FormData formData = FormData.fromMap(paramentros);
+    var headers = {"Content-type" : "Multipart/form-data"};
 
-    var response = await dio.client.post("/arquivos/upload", data: formData);
+    print("paramentros: $paramentros" );
+    FormData formData = FormData.fromMap(paramentros);
+    var response = await dio.client.post("/arquivos/upload", data: formData, options: Options(headers: headers));
     print("RESPONSE: $response");
     print("fileDir: $fileDir");
+    print("formData: $formData");
     return formData;
   }
 }

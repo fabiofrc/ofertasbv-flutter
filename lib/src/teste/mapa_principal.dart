@@ -20,13 +20,12 @@ class _MapaPageAppState extends State<MapaPageApp> {
   final _bloc = BlocProvider.getBloc<PessoaController>();
   final pessoa = Pessoa();
 
-  final urlArquivo = "http://192.168.1.3:8080/pessoas/download/";
-  final urlAsset = "assets/images/upload/default.jpg";
-
   var selectedCard = 'WEIGHT';
+  double distanciaKilomentros = 0;
 
   Geolocator geolocator;
   Position position;
+
   Completer<GoogleMapController> completer = Completer<GoogleMapController>();
   var formatadorNumber = NumberFormat("##0.0##", "pt_BR");
 
@@ -87,19 +86,20 @@ class _MapaPageAppState extends State<MapaPageApp> {
 
                   allMarkers = pessoas.map((p) {
                     return Marker(
-                      icon: BitmapDescriptor.defaultMarkerWithHue(
-                          BitmapDescriptor.hueRose),
-                      infoWindow: InfoWindow(
-                        title: p.nome,
-                        snippet: p.endereco.logradouro,
-                      ),
-                      markerId: MarkerId(p.nome),
-                      position: LatLng(p.endereco.latitude ?? 0.0,
-                          p.endereco.longitude ?? 0.0),
-                      onTap: (){
-                        showDialogAlert(context, p);
-                      }
-                    );
+                        icon: BitmapDescriptor.defaultMarkerWithHue(
+                            BitmapDescriptor.hueOrange),
+                        infoWindow: InfoWindow(
+                          title: p.nome,
+                          snippet: p.endereco.logradouro,
+                        ),
+                        markerId: MarkerId(p.nome),
+                        position: LatLng(p.endereco.latitude ?? 0.0,
+                            p.endereco.longitude ?? 0.0),
+                        onTap: () {
+                          calcularDistancia(
+                              p.endereco.latitude, p.endereco.longitude);
+                          showDialogAlert(context, p);
+                        });
                   }).toList();
 
                   return GoogleMap(
@@ -165,8 +165,7 @@ class _MapaPageAppState extends State<MapaPageApp> {
               duration: Duration(seconds: 1),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey[300]),
-                color:
-                    p.nome == selectedCard ? Colors.blue[900] : Colors.white,
+                color: p.nome == selectedCard ? Colors.blue[900] : Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
               width: 200,
@@ -207,9 +206,10 @@ class _MapaPageAppState extends State<MapaPageApp> {
             ),
           ),
           onTap: () {
-            movimentarCamera(p.endereco.latitude, p.endereco.longitude);
-            showToast(p.nome, p.endereco.numero);
             selectCard(p.nome);
+            movimentarCamera(p.endereco.latitude, p.endereco.longitude);
+            calcularDistancia(p.endereco.latitude, p.endereco.longitude);
+            showToast(p.nome, p.endereco.numero);
           },
         );
       },
@@ -243,18 +243,14 @@ class _MapaPageAppState extends State<MapaPageApp> {
     );
   }
 
-  // ignore: missing_return
-  Future<double> calcularDistancia(
-      double latMercado, double longMercado) async {
+  calcularDistancia(double latMercado, double longMercado) async {
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
 
     double distanciaMetros = await Geolocator().distanceBetween(
         position.latitude, position.longitude, latMercado, longMercado);
-    double distanciaKilomentros = distanciaMetros / 1000;
-
+    distanciaKilomentros = distanciaMetros / 1000;
     print(" distancia : ${formatadorNumber.format(distanciaKilomentros)}");
-    // ignore: unnecessary_statements
     return distanciaKilomentros;
   }
 
@@ -264,8 +260,17 @@ class _MapaPageAppState extends State<MapaPageApp> {
       barrierDismissible: false, // user must tap button for close dialog!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Mercado'),
-          content: Text(p.nome),
+          title: Text('Localização'),
+          content: Container(
+            height: 200,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("${p.nome}"),
+                Text("Endereço : ${p.endereco.logradouro}"),
+              ],
+            ),
+          ),
           actions: <Widget>[
             FlatButton(
               child: const Text('CANCELAR'),
@@ -293,7 +298,7 @@ class _MapaPageAppState extends State<MapaPageApp> {
 
   void showToast(String cardTitle, String unit) {
     Fluttertoast.showToast(
-      msg: "Loja: $cardTitle - $unit",
+      msg: "Loja: $cardTitle - $unit $distanciaKilomentros",
       gravity: ToastGravity.CENTER,
       timeInSecForIos: 1,
       backgroundColor: Colors.indigo,

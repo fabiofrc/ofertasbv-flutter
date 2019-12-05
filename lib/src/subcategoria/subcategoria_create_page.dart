@@ -63,8 +63,7 @@ class _SubCategoriaCreatePageState extends State<SubCategoriaCreatePage> {
 
   void _onClickUpload() async {
     if (file != null) {
-      var url =
-          await SubcategoriaApiProvider.upload(file, _subCategoria.foto);
+      var url = await SubcategoriaApiProvider.upload(file, _subCategoria.foto);
     }
   }
 
