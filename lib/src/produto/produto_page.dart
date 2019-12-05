@@ -1,5 +1,7 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_create_page.dart';
 import 'package:ofertasbv/src/produto/produto_list.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
@@ -16,6 +18,7 @@ class ProdutoPage extends StatefulWidget {
 }
 
 class _ProdutoPageState extends State<ProdutoPage> {
+  final _bloc = BlocProvider.getBloc<ProdutoController>();
 
   Promocao p;
   SubCategoria s;
@@ -28,8 +31,23 @@ class _ProdutoPageState extends State<ProdutoPage> {
         title: Text("Produtos"),
         elevation: 0.0,
         actions: <Widget>[
+          StreamBuilder<Object>(
+            stream: _bloc.counter,
+            builder: (context, data) {
+              return Chip(
+                label: Text(
+                  (data.data ?? 0).toString(),
+                  style: TextStyle(color: Colors.pink[900]),
+                ),
+              );
+            },
+          ),
+          SizedBox(width: 20),
           IconButton(
-            icon: Icon(Icons.search, color: Colors.white),
+            icon: Icon(
+              Icons.search,
+              size: 30,
+            ),
             onPressed: () {
               showSearch(context: context, delegate: ProdutoSearchDelegate());
             },

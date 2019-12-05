@@ -10,7 +10,7 @@ class ProdutoController extends BlocBase {
 
   /* ================= get count ================= */
   // ignore: close_sinks
-  final StreamController<int> _counter = StreamController<int>.broadcast();
+  final BehaviorSubject<int> _counter = BehaviorSubject<int>();
   Stream<int> get counter => _counter.stream;
 
   Stream<List<Produto>> get listView async* {
@@ -18,12 +18,16 @@ class ProdutoController extends BlocBase {
   }
 
   ProdutoController() {
-    responseOut = produto.switchMap(createProduto);
-    listView.listen((list) => _counter.add(list.length));
+    try {
+      responseOut = produto.switchMap(createProduto);
+      listView.listen((list) => _counter.add(list.length));
+    } catch (e) {
+      throw e;
+    }
   }
 
   /* ================= get produto ================= */
-  final _streamController = StreamController<List<Produto>>.broadcast();
+  final _streamController = BehaviorSubject<List<Produto>>();
   Stream<List<Produto>> get outController => _streamController.stream;
 
   Future<List<Produto>> getAll() async {

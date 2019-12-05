@@ -9,6 +9,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:masked_text_input_formatter/masked_text_input_formatter.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/endereco/endereco_model.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
@@ -63,14 +64,14 @@ class _PessoaCreatePageState extends State<PessoaCreatePage> {
 
     setState(() {
       this.file = f;
-      _pessoa.arquivo = file.path.split('/').last;
+      _pessoa.foto = file.path.split('/').last;
       print(" upload de arquivo : $_pessoa.arquivo");
     });
   }
 
   void _onClickUpload() async {
     if (file != null) {
-      var url = await PessoaApiProvider.upload(file, _pessoa.arquivo);
+      var url = await PessoaApiProvider.upload(file, _pessoa.foto);
     }
   }
 
@@ -269,13 +270,13 @@ class _PessoaCreatePageState extends State<PessoaCreatePage> {
                                         width: 100,
                                         fit: BoxFit.fill)
                                     : Image.asset(
-                                        "assets/images/upload/upload.jpg",
+                                        ConstantApi.urlAsset,
                                         height: 100,
                                         width: 100,
                                       ),
                                 SizedBox(height: 15),
-                                _pessoa.arquivo != null
-                                    ? Text("${_pessoa.arquivo}")
+                                _pessoa.foto != null
+                                    ? Text("${_pessoa.foto}")
                                     : Text("sem arquivo"),
                                 RaisedButton.icon(
                                   icon: Icon(Icons.file_upload),
@@ -378,18 +379,21 @@ class _PessoaCreatePageState extends State<PessoaCreatePage> {
                                 ),
                                 TextFormField(
                                   controller: _controllerDestino,
-                                  onSaved: (value) => _endereco.logradouro = value,
+                                  onSaved: (value) =>
+                                      _endereco.logradouro = value,
                                   validator: (value) =>
-                                  value.isEmpty ? "campo obrigário" : null,
+                                      value.isEmpty ? "campo obrigário" : null,
                                   decoration: InputDecoration(
                                     labelText: "Pesquisa endereço",
                                     hintText: "Rua/Avenida, número",
-                                    prefixIcon: Icon(Icons.search, color: Colors.green,),
+                                    prefixIcon: Icon(
+                                      Icons.search,
+                                      color: Colors.green,
+                                    ),
                                   ),
                                   keyboardType: TextInputType.text,
                                   maxLength: 50,
                                 ),
-
                                 RaisedButton.icon(
                                   icon: Icon(Icons.search),
                                   label: Text("Pesquisar"),
@@ -413,7 +417,6 @@ class _PessoaCreatePageState extends State<PessoaCreatePage> {
                                   "Endereco Pessoal",
                                   style: TextStyle(fontSize: 18),
                                 ),
-
                                 TextFormField(
                                   controller: _controllerLogradouro,
                                   onSaved: (value) =>
@@ -458,7 +461,7 @@ class _PessoaCreatePageState extends State<PessoaCreatePage> {
                                   controller: _controllerBairro,
                                   onSaved: (value) => _endereco.bairro = value,
                                   validator: (value) =>
-                                  value.isEmpty ? "campo obrigário" : null,
+                                      value.isEmpty ? "campo obrigário" : null,
                                   decoration: InputDecoration(
                                     labelText: "Bairro",
                                     hintText: "Bairro",

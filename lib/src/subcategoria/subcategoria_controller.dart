@@ -10,7 +10,7 @@ class SubCategoriaController extends BlocBase {
 
   /* ================= get count ================= */
   // ignore: close_sinks
-  final StreamController<int> _counter = StreamController<int>.broadcast();
+  final StreamController<int> _counter = BehaviorSubject<int>();
   Stream<int> get counter => _counter.stream;
 
   Stream<List<SubCategoria>> get listView async*{
@@ -18,14 +18,18 @@ class SubCategoriaController extends BlocBase {
   }
 
   SubCategoriaController() {
-    responseOut = subCategoria.switchMap(createSubCategoria);
-    listView.listen((list) => _counter.add(list.length));
+    try {
+      responseOut = subCategoria.switchMap(createSubCategoria);
+      listView.listen((list) => _counter.add(list.length));
+    } catch (e) {
+      throw e;
+    }
   }
 
   /* ================= get metodo ================= */
   List<SubCategoria> subcategoriaCache;
 
-  var _streamController = StreamController<List<SubCategoria>>.broadcast();
+  var _streamController = BehaviorSubject<List<SubCategoria>>();
 
   Stream<List<SubCategoria>> get outController => _streamController.stream;
 

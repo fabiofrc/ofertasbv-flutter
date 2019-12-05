@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ofertasbv/home.dart';
+import 'package:ofertasbv/const.dart';
+import 'package:ofertasbv/src/home/home.dart';
 import 'package:splashscreen/splashscreen.dart';
 
+bool isDark = false;
+
 void main() => runApp(MaterialApp(
-      theme: ThemeData(
-        inputDecorationTheme: InputDecorationTheme(
-          disabledBorder: InputBorder.none,
-        ),
-        primaryColor: Colors.blue[900],
-        accentColor: Colors.pink[900],
-        primarySwatch: Colors.pink,
-      ),
       debugShowCheckedModeBanner: false,
       home: SplashScreenOne(),
+      theme: isDark ? Constants.darkTheme : Constants.blueTheme,
     ));
 
 class SplashScreenOne extends StatefulWidget {
@@ -55,7 +51,7 @@ class _SplashScreenOneState extends State<SplashScreenOne> {
         //backgroundColor: Color(0xff622F74),
         styleTextUnderTheLoader: TextStyle(),
         photoSize: 100.0,
-        loaderColor: Colors.pink[900],
+        loaderColor: Colors.orangeAccent,
       ),
     );
   }

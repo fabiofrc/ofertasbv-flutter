@@ -51,15 +51,15 @@ dependencies:
   barcode_scan: ^1.0.0
   toast: ^0.1.5
   link: ^1.1.0
-  #async: ^2.4.0
-  #audioplayers: ^0.13.3
+
   audioplayers: 0.13.2
   bubble_bottom_bar: ^1.2.0
+  carousel_pro: ^1.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  #json_model:
+
   build_runner: ^1.0.0
   json_serializable: ^2.0.0
 

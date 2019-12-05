@@ -5,7 +5,7 @@ class Promocao {
   int id;
   String nome;
   String descricao;
-  String arquivo;
+  String foto;
   double desconto;
   String dataRegistro;
   String dataInicio;
@@ -17,7 +17,7 @@ class Promocao {
       {this.id,
         this.nome,
         this.descricao,
-        this.arquivo,
+        this.foto,
         this.desconto,
         this.dataRegistro,
         this.dataInicio,
@@ -29,7 +29,7 @@ class Promocao {
     id = json['id'];
     nome = json['nome'];
     descricao = json['descricao'];
-    arquivo = json['arquivo'];
+    foto = json['foto'];
     desconto = json['desconto'];
     dataRegistro = json['dataRegistro'];
     dataInicio = json['dataInicio'];
@@ -49,7 +49,7 @@ class Promocao {
     data['id'] = this.id;
     data['nome'] = this.nome;
     data['descricao'] = this.descricao;
-    data['arquivo'] = this.arquivo;
+    data['arquivo'] = this.foto;
     data['desconto'] = this.desconto;
     data['dataRegistro'] = this.dataRegistro;
     data['dataInicio'] = this.dataInicio;

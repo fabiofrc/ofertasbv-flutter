@@ -1,7 +1,7 @@
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ofertasbv/home.dart';
+import 'package:ofertasbv/src/home/home.dart';
 import 'package:ofertasbv/src/teste/leitor_codigo_barra.dart';
 import 'package:ofertasbv/src/teste/mapa_principal.dart';
 
@@ -23,16 +23,7 @@ class _CatalogoAppState extends State<CatalogoApp> {
         LeitorCodigoBarra(),
         MapaPageApp(),
       ].elementAt(elementIndex),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.home),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomePage()),
-          );
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+
       bottomNavigationBar: BubbleBottomBar(
         backgroundColor: Colors.grey[200],
         opacity: 0.2,
@@ -52,7 +43,7 @@ class _CatalogoAppState extends State<CatalogoApp> {
               ),
               activeIcon: Icon(
                 Icons.dashboard,
-                color: Colors.pink[900],
+                color: Colors.orangeAccent,
               ),
               title: Text("Dashboard")),
           BubbleBottomBarItem(
@@ -63,7 +54,7 @@ class _CatalogoAppState extends State<CatalogoApp> {
             ),
             activeIcon: Icon(
               Icons.scanner,
-              color: Colors.pink[900],
+              color: Colors.orangeAccent,
             ),
             title: Text("Scanner"),
           ),

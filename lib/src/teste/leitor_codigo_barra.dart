@@ -18,7 +18,6 @@ class LeitorCodigoBarra extends StatefulWidget {
 }
 
 class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
-
   final _bloc = BlocProvider.getBloc<ProdutoController>();
 
   String barcode = "";
@@ -83,60 +82,54 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
       appBar: AppBar(
         title: Text('Leitor código de barra'),
         elevation: 0.0,
-      ),
-      body: ListView(
-        padding: EdgeInsets.only(top: 0),
-        children: <Widget>[
-          Card(
-            elevation: 0.0,
-            child: Container(
-              padding: EdgeInsets.all(20),
-              child: Form(
-                autovalidate: true,
-                key: formkey,
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
-                      autofocus: true,
-                      controller: codigoBarraController,
-                      validator: (value) =>
-                          value.isEmpty ? "campo obrigário" : null,
-                      decoration: InputDecoration(
-                        labelText: "Codigo de barra",
-                        hintText: "Digite o código de barra",
-                        prefixIcon: Icon(Icons.scanner),
-                      ),
-                      maxLength: 20,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    RaisedButton.icon(
-                      autofocus: true,
-                      color: Colors.grey,
-                      icon: Icon(Icons.search, color: Colors.white,),
-                      label: Text("Pesquisar", style: TextStyle(color: Colors.white),),
-                      onPressed: () {
-                        if (codigoBarraController.text.isNotEmpty &&
-                            p != null) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (BuildContext context) {
-                                return ProdutoDetalhes(p);
-                              },
-                            ),
-                          );
-                        } else {
-                          print("nada");
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.check),
+            onPressed: () {
+              if (codigoBarraController.text.isNotEmpty &&
+                  p != null) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ProdutoDetalhes(p);
+                    },
+                  ),
+                );
+              } else {
+                print("nada");
+              }
+            },
           ),
         ],
+      ),
+      body: ListView(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(20),
+                child: Form(
+                  autovalidate: true,
+                  key: formkey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      TextFormField(
+                        autofocus: false,
+                        controller: codigoBarraController,
+                        validator: (value) =>
+                            value.isEmpty ? "campo obrigário" : null,
+                        decoration: InputDecoration(
+                          labelText: "Codigo de barra",
+                          hintText: "Digite o código de barra",
+                        ),
+                        maxLength: 20,
+
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         elevation: 10,

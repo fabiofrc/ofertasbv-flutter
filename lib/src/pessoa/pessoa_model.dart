@@ -15,7 +15,7 @@ class Pessoa {
   List<Contato> contatos;
   bool novo;
   bool existente;
-  String arquivo;
+  String foto;
 
 
   Pessoa(
@@ -30,7 +30,7 @@ class Pessoa {
         this.endereco,
         this.contatos,
         this.novo,
-        this.existente, this.arquivo});
+        this.existente, this.foto});
 
   Pessoa.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -53,7 +53,7 @@ class Pessoa {
     }
     novo = json['novo'];
     existente = json['existente'];
-    arquivo = json['arquivo'];
+    foto = json['foto'];
   }
 
   Map<String, dynamic> toJson() {
@@ -76,7 +76,7 @@ class Pessoa {
     }
     data['novo'] = this.novo;
     data['existente'] = this.existente;
-    data['arquivo'] = this.arquivo;
+    data['foto'] = this.foto;
     return data;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_detalhes.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
@@ -10,25 +11,21 @@ import 'package:ofertasbv/src/subcategoria/subcategoria_model.dart';
 class ProdutoList extends StatefulWidget {
   Promocao p;
   SubCategoria s;
+
   ProdutoList({Key key, this.p, this.s}) : super(key: key);
 
   @override
-  _ProdutoListState createState() => _ProdutoListState(p: this.p, s:this.s);
+  _ProdutoListState createState() => _ProdutoListState(p: this.p, s: this.s);
 }
 
 class _ProdutoListState extends State<ProdutoList>
     with AutomaticKeepAliveClientMixin<ProdutoList> {
   Promocao p;
   SubCategoria s;
+
   _ProdutoListState({this.p, this.s});
 
   final _bloc = BlocProvider.getBloc<ProdutoController>();
-
-  final urlArquivo = "http://192.168.1.3:8080/produtos/download/";
-  final urlAsset = "assets/images/upload/default.jpg";
-
-  int idSubCategoria;
-  int idPromocao;
 
   @override
   void initState() {
@@ -39,9 +36,6 @@ class _ProdutoListState extends State<ProdutoList>
     } else {
       _bloc.getAll();
     }
-
-    urlArquivo;
-    urlAsset;
     super.initState();
   }
 
@@ -93,15 +87,15 @@ class _ProdutoListState extends State<ProdutoList>
               isThreeLine: true,
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: p.arquivo != null
+                child: p.foto != null
                     ? Image.network(
-                        urlArquivo + p.arquivo,
+                        ConstantApi.urlArquivoProduto + p.foto,
                         height: 200,
                         width: 80,
                         fit: BoxFit.cover,
                       )
                     : Image.asset(
-                        urlAsset,
+                        ConstantApi.urlAsset,
                         height: 200,
                         width: 80,
                         fit: BoxFit.fill,

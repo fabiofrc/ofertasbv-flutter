@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ofertasbv/src/pessoa/pessoa_list.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_page.dart';
-import 'package:ofertasbv/src/produto/produto_model.dart';
-import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/promocao/promocao_page.dart';
 
@@ -18,13 +16,9 @@ class PessoaDetalhes extends StatefulWidget {
 }
 
 class _PessoaDetalhesState extends State<PessoaDetalhes> {
-  final urlArquivo = "http://192.168.1.3:8080/produtos/download/";
-  final urlAsset = "assets/images/upload/default.jpg";
 
   @override
   void initState() {
-    urlArquivo;
-    urlAsset;
     super.initState();
   }
 
@@ -56,17 +50,17 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
     return ListView(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1,
-          child: p.arquivo != null
-              ? Image.network(urlArquivo + p.arquivo, fit: BoxFit.fill)
-              : Image.asset(urlAsset, fit: BoxFit.fill),
+          aspectRatio: 2,
+          child: p.foto != null
+              ? Image.network(ConstantApi.urlArquivoPessoa + p.foto, fit: BoxFit.fill)
+              : Image.asset(
+                  ConstantApi.urlAsset,
+                  fit: BoxFit.cover,
+                ),
         ),
-
         SizedBox(height: 0),
-
-
         Card(
-          elevation: 0.5,
+          elevation: 0.0,
           child: Container(
             padding: EdgeInsets.all(10),
             child: Row(
@@ -75,20 +69,28 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    Text(p.nome,
+                    Text(
+                      p.nome,
                       style: TextStyle(fontSize: 16, color: Colors.grey[900]),
                     ),
                     SizedBox(height: 10),
-                    Icon(Icons.location_city, color: Colors.indigo,),
+                    Icon(
+                      Icons.location_city,
+                      color: Colors.indigo,
+                    ),
                   ],
                 ),
                 Column(
                   children: <Widget>[
-                    Text(p.telefone,
+                    Text(
+                      p.telefone,
                       style: TextStyle(fontSize: 16, color: Colors.grey[900]),
                     ),
                     SizedBox(height: 10),
-                    Icon(Icons.phone_forwarded, color: Colors.indigo,),
+                    Icon(
+                      Icons.phone_forwarded,
+                      color: Colors.indigo,
+                    ),
                   ],
                 ),
               ],
@@ -96,7 +98,7 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
           ),
         ),
         Card(
-          elevation: 0.5,
+          elevation: 0.0,
           child: Container(
             padding: EdgeInsets.all(10),
             child: Row(
@@ -114,7 +116,7 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
                         Icons.search,
                         color: Colors.white,
                       ),
-                      color: Colors.pink[900],
+                      color: Colors.orangeAccent,
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -155,9 +157,8 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
             ),
           ),
         ),
-
         Card(
-          elevation: 0.5,
+          elevation: 0.0,
           child: Container(
             padding: EdgeInsets.all(20),
             child: Row(
@@ -166,7 +167,8 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("Inscrição: ${p.id}",
+                    Text(
+                      "Inscrição: ${p.id}",
                       style: TextStyle(fontSize: 20),
                     ),
                     SizedBox(height: 10),
@@ -175,14 +177,16 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
                       style: TextStyle(fontSize: 14),
                     ),
                     SizedBox(height: 10),
-                    Text(p.usuario.email,
+                    Text(
+                      p.usuario.email,
                       style: TextStyle(
                         color: Colors.grey[700],
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     SizedBox(height: 10),
-                    Text("${p.endereco.logradouro + ", " + p.endereco.numero}",
+                    Text(
+                      "${p.endereco.logradouro + ", " + p.endereco.numero}",
                       style: TextStyle(
                         color: Colors.grey[700],
                         fontWeight: FontWeight.w600,

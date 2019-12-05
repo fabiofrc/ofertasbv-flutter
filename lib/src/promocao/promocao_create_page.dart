@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/promocao/promocao_api_provider.dart';
 import 'package:ofertasbv/src/promocao/promocao_controller.dart';
 import 'package:ofertasbv/src/promocao/promocao_model.dart';
@@ -50,14 +51,14 @@ class _PromocaoCreatePageState extends State<PromocaoCreatePage> {
 
     setState(() {
       this.file = f;
-      _promocao.arquivo = file.path.split('/').last;
+      _promocao.foto = file.path.split('/').last;
       print(" upload de arquivo : $_promocao.arquivo");
     });
   }
 
   void _onClickUpload() async {
     if (file != null) {
-      var url = await PromocaoApiProvider.upload(file, _promocao.arquivo);
+      var url = await PromocaoApiProvider.upload(file, _promocao.foto);
     }
   }
 
@@ -217,13 +218,13 @@ class _PromocaoCreatePageState extends State<PromocaoCreatePage> {
                                         width: 100,
                                         fit: BoxFit.fill)
                                     : Image.asset(
-                                        "assets/images/upload/upload.jpg",
+                                  ConstantApi.urlAsset,
                                         height: 100,
                                         width: 100,
                                       ),
                                 SizedBox(height: 15),
-                                _promocao.arquivo != null
-                                    ? Text("${_promocao.arquivo}")
+                                _promocao.foto != null
+                                    ? Text("${_promocao.foto}")
                                     : Text("sem arquivo"),
                                 RaisedButton.icon(
                                   icon: Icon(Icons.file_upload),

@@ -10,7 +10,7 @@ class PessoaController extends BlocBase {
 
   /* ================= get count ================= */
   // ignore: close_sinks
-  final StreamController<int> _counter = StreamController<int>.broadcast();
+  final StreamController<int> _counter = BehaviorSubject<int>();
   Stream<int> get counter => _counter.stream;
 
   Stream<List<Pessoa>> get listView async*{
@@ -18,13 +18,17 @@ class PessoaController extends BlocBase {
   }
 
   PessoaController() {
-    responseOut = pessoa.switchMap(create);
-    listView.listen((list) => _counter.add(list.length));
+    try {
+      responseOut = pessoa.switchMap(create);
+      listView.listen((list) => _counter.add(list.length));
+    } catch (e) {
+      throw e;
+    }
   }
 
   /* ================= get pessoa ================= */
 
-  var _streamController = StreamController<List<Pessoa>>.broadcast();
+  var _streamController = BehaviorSubject<List<Pessoa>>();
   Stream<List<Pessoa>> get outController => _streamController.stream;
 
   Future<List<Pessoa>> getAll() async {

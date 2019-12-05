@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/categoria/categoria_model.dart';
 import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_controller.dart';
@@ -20,10 +21,8 @@ class _SubcategoriaListState extends State<SubcategoriaList>
   final _bloc = BlocProvider.getBloc<SubCategoriaController>();
 
   Categoria c;
-  _SubcategoriaListState({this.c});
 
-  final urlArquivo = "http://192.168.1.3:8080/subcategorias/download/";
-  final urlAsset = "assets/images/upload/default.jpg";
+  _SubcategoriaListState({this.c});
 
   @override
   void initState() {
@@ -33,8 +32,6 @@ class _SubcategoriaListState extends State<SubcategoriaList>
       _bloc.getAll();
     }
 
-    urlArquivo;
-    urlAsset;
     super.initState();
   }
 
@@ -72,7 +69,6 @@ class _SubcategoriaListState extends State<SubcategoriaList>
   }
 
   ListView builderList(List<SubCategoria> subcategorias) {
-
     return ListView.builder(
       itemCount: subcategorias.length,
       itemBuilder: (context, index) {
@@ -84,21 +80,24 @@ class _SubcategoriaListState extends State<SubcategoriaList>
             isThreeLine: true,
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: s.arquivo != null
+              child: s.foto != null
                   ? Image.network(
-                      urlArquivo + s.arquivo,
+                      ConstantApi.urlArquivoCategoria + s.foto,
                       height: 200,
                       width: 80,
                       fit: BoxFit.cover,
                     )
                   : Image.asset(
-                      urlAsset,
+                      ConstantApi.urlAsset,
                       height: 200,
                       width: 80,
                       fit: BoxFit.fill,
                     ),
             ),
-            title: Text(s.nome, style: TextStyle(fontWeight: FontWeight.w600),),
+            title: Text(
+              s.nome,
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
             subtitle: Text(s.categoria.nome),
             trailing: Text("${s.id}"),
             onTap: () {

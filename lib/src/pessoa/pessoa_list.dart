@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_create_page.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_detalhes.dart';
@@ -18,14 +19,9 @@ class _PessoaListState extends State<PessoaList>
   var tipoPessoaFisica = "PESSOAFISICA";
   var tipoPessoaJuridica = "PESSOAJURIDICA";
 
-  final urlArquivo = "http://192.168.1.3:8080/pessoas/download/";
-  final urlAsset = "assets/images/upload/default.jpg";
-
   @override
   void initState() {
     _bloc.getAll();
-    urlArquivo;
-    urlAsset;
     super.initState();
   }
 
@@ -118,15 +114,15 @@ class _PessoaListState extends State<PessoaList>
           child: ListTile(
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: p.arquivo != null
+              child: p.foto != null
                   ? Image.network(
-                      urlArquivo + p.arquivo,
+                      ConstantApi.urlArquivoPessoa + p.foto,
                       height: 200,
                       width: 80,
                       fit: BoxFit.cover,
                     )
                   : Image.asset(
-                      urlAsset,
+                      ConstantApi.urlAsset,
                       height: 200,
                       width: 80,
                       fit: BoxFit.fill,

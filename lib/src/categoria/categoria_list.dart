@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/categoria/categoria_controller.dart';
 import 'package:ofertasbv/src/categoria/categoria_create_page.dart';
 import 'package:ofertasbv/src/categoria/categoria_model.dart';
@@ -15,14 +16,10 @@ class CategoriaList extends StatefulWidget {
 class _CategoriaListState extends State<CategoriaList>
     with AutomaticKeepAliveClientMixin<CategoriaList> {
   final _bloc = BlocProvider.getBloc<CategoriaController>();
-  final urlArquivo = "http://192.168.1.3:8080/categorias/download/";
-  final urlAsset = "assets/images/upload/default.jpg";
 
   @override
   void initState() {
     _bloc.getAll();
-    urlArquivo;
-    urlAsset;
     super.initState();
   }
 
@@ -107,28 +104,33 @@ class _CategoriaListState extends State<CategoriaList>
             isThreeLine: true,
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: c.arquivo != null
+              child: c.foto != null
                   ? Image.network(
-                      urlArquivo + c.arquivo,
+                      ConstantApi.urlArquivoCategoria + c.foto,
                       height: 200,
                       width: 80,
                       fit: BoxFit.cover,
                     )
                   : Image.asset(
-                      urlAsset,
+                      ConstantApi.urlAsset,
                       height: 200,
                       width: 80,
                       fit: BoxFit.fill,
                     ),
             ),
-            title: Text(c.nome, style: TextStyle(fontWeight: FontWeight.w600),),
+            title: Text(
+              c.nome,
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
             subtitle: Text("${c.dataRegistro}"),
             trailing: Text("${c.id}"),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {
-                    return SubcategoriaPage(c: c,);
+                    return SubcategoriaPage(
+                      c: c,
+                    );
                   },
                 ),
               );

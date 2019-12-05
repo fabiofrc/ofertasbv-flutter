@@ -31,7 +31,7 @@ class _ProdutoTabState extends State<ProdutoTab> {
                 return Chip(
                   label: Text(
                     (data.data ?? 0).toString(),
-                    style: TextStyle(color: Colors.white70),
+                    style: TextStyle(color: Colors.pink[900]),
                   ),
                 );
               },
@@ -53,14 +53,14 @@ class _ProdutoTabState extends State<ProdutoTab> {
                 icon: Icon(
                   Icons.dashboard,
                   size: 30,
-                  color: Colors.grey[700],
+                  color: Colors.grey[400],
                 ),
               ),
               Tab(
                 icon: Icon(
                   Icons.list,
                   size: 40,
-                  color: Colors.grey[700],
+                  color: Colors.grey[400],
                 ),
               ),
             ],

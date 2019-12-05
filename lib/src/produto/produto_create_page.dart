@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 import 'package:ofertasbv/src/produto/produto_api_provider.dart';
@@ -68,14 +69,14 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
 
     setState(() {
       this.file = f;
-      _produto.arquivo = file.path.split('/').last;
-      print(" upload de arquivo : ${_produto.arquivo}");
+      _produto.foto = file.path.split('/').last;
+      print(" upload de arquivo : ${_produto.foto}");
     });
   }
 
   void _onClickUpload() async {
     if (file != null) {
-      var url = await ProdutoApiProvider.upload(file, _produto.arquivo);
+      var url = await ProdutoApiProvider.upload(file, _produto.foto);
     }
   }
 
@@ -166,15 +167,11 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
                         Card(
                           child: Container(
                             color: Colors.grey[200],
-                            width: double.infinity,
+                            width: double.maxFinite,
                             padding: EdgeInsets.all(10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                Text(
-                                  "Pesquisa código de barra",
-                                  style: TextStyle(fontSize: 18),
-                                ),
                                 TextFormField(
                                   controller: _controllerCodigoBarra,
                                   onSaved: (value) =>
@@ -182,19 +179,19 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
                                   validator: (value) =>
                                       value.isEmpty ? "campo obrigário" : null,
                                   decoration: InputDecoration(
-                                    labelText: "Pesquisa código de barra",
+                                    labelText:
+                                        "Entre com código de barra ou clique (scanner)",
                                     hintText: "Código de barra",
-                                    prefixIcon: Icon(
-                                      Icons.scanner,
-                                      color: Colors.green,
-                                    ),
                                   ),
                                   keyboardType: TextInputType.text,
                                   maxLength: 50,
                                 ),
                                 RaisedButton.icon(
+                                  elevation: 0.0,
+                                  textColor: Colors.grey[200],
+                                  color: Colors.orangeAccent,
                                   icon: Icon(Icons.camera_enhance),
-                                  label: Text("Scannear"),
+                                  label: Text("Scanner"),
                                   onPressed: () {
                                     barcodeScanning();
                                   },
@@ -236,20 +233,6 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
                                   keyboardType: TextInputType.text,
                                   maxLength: 100,
                                   maxLines: 2,
-                                ),
-                                TextFormField(
-                                  controller: _controllerCodigoBarra,
-                                  onSaved: (value) =>
-                                      _produto.codigoBarra = value,
-                                  validator: (value) =>
-                                      value.isEmpty ? "campo obrigário" : null,
-                                  decoration: InputDecoration(
-                                    labelText: "Cód. de barra",
-                                    hintText: "código de barra produto",
-                                    prefixIcon: Icon(Icons.space_bar),
-                                  ),
-                                  maxLength: 13,
-                                  keyboardType: TextInputType.text,
                                 ),
                                 TextFormField(
                                   onSaved: (value) {
@@ -477,13 +460,13 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
                                         width: 100,
                                         fit: BoxFit.fill)
                                     : Image.asset(
-                                        "assets/images/upload/upload.jpg",
+                                        ConstantApi.urlAsset,
                                         height: 100,
                                         width: 100,
                                       ),
                                 SizedBox(height: 15),
-                                _produto.arquivo != null
-                                    ? Text("${_produto.arquivo}")
+                                _produto.foto != null
+                                    ? Text("${_produto.foto}")
                                     : Text("sem arquivo"),
                                 RaisedButton.icon(
                                   icon: Icon(Icons.file_upload),

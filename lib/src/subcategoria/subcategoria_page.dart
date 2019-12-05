@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:ofertasbv/src/categoria/categoria_model.dart';
+import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_controller.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_create_page.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_list.dart';
@@ -33,13 +34,20 @@ class _SubcategoriaPageState extends State<SubcategoriaPage> {
               return Chip(
                 label: Text(
                   (data.data ?? 0).toString(),
-                  style: TextStyle(color: Colors.white70),
+                  style: TextStyle(color: Colors.pink[900]),
                 ),
               );
             },
           ),
-          SizedBox(
-            width: 10,
+          SizedBox(width: 20),
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              size: 30,
+            ),
+            onPressed: () {
+              showSearch(context: context, delegate: ProdutoSearchDelegate());
+            },
           ),
         ],
       ),

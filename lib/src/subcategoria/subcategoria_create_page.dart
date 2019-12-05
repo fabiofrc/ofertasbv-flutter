@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/categoria/categoria_controller.dart';
 import 'package:ofertasbv/src/categoria/categoria_model.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_api_provider.dart';
@@ -55,15 +56,15 @@ class _SubCategoriaCreatePageState extends State<SubCategoriaCreatePage> {
 
     setState(() {
       this.file = f;
-      _subCategoria.arquivo = file.path.split('/').last;
-      print(" upload de arquivo : ${_subCategoria.arquivo}");
+      _subCategoria.foto = file.path.split('/').last;
+      print(" upload de arquivo : ${_subCategoria.foto}");
     });
   }
 
   void _onClickUpload() async {
     if (file != null) {
       var url =
-          await SubcategoriaApiProvider.upload(file, _subCategoria.arquivo);
+          await SubcategoriaApiProvider.upload(file, _subCategoria.foto);
     }
   }
 
@@ -200,13 +201,13 @@ class _SubCategoriaCreatePageState extends State<SubCategoriaCreatePage> {
                                         width: 100,
                                         fit: BoxFit.fill)
                                     : Image.asset(
-                                        "assets/images/upload/upload.jpg",
+                                        ConstantApi.urlAsset,
                                         height: 100,
                                         width: 100,
                                       ),
                                 SizedBox(height: 15),
-                                _subCategoria.arquivo != null
-                                    ? Text("${_subCategoria.arquivo}")
+                                _subCategoria.foto != null
+                                    ? Text("${_subCategoria.foto}")
                                     : Text("sem arquivo"),
                                 RaisedButton.icon(
                                   icon: Icon(Icons.file_upload),

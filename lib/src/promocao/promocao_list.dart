@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 import 'package:ofertasbv/src/promocao/promocao_controller.dart';
 import 'package:ofertasbv/src/promocao/promocao_detalhes.dart';
@@ -8,6 +9,7 @@ import 'package:ofertasbv/src/promocao/promocao_model.dart';
 
 class PromocaoList extends StatefulWidget {
   Pessoa p;
+
   PromocaoList({Key key, this.p}) : super(key: key);
 
   @override
@@ -19,10 +21,8 @@ class _PromocaoListState extends State<PromocaoList>
   final _bloc = BlocProvider.getBloc<PromocaoController>();
 
   Pessoa p;
-  _PromocaoListState({this.p});
 
-  final urlArquivo = "http://192.168.1.3:8080/promocoes/download/";
-  final urlAsset = "assets/images/upload/default.jpg";
+  _PromocaoListState({this.p});
 
   @override
   void initState() {
@@ -31,9 +31,6 @@ class _PromocaoListState extends State<PromocaoList>
     } else {
       _bloc.getAll();
     }
-
-    urlArquivo;
-    urlAsset;
     super.initState();
   }
 
@@ -82,15 +79,15 @@ class _PromocaoListState extends State<PromocaoList>
             isThreeLine: true,
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: p.arquivo != null
+              child: p.foto != null
                   ? Image.network(
-                      urlArquivo + p.arquivo,
+                      ConstantApi.urlArquivoPromocao + p.foto,
                       height: 200,
                       width: 80,
                       fit: BoxFit.cover,
                     )
                   : Image.asset(
-                      urlAsset,
+                      ConstantApi.urlAsset,
                       height: 200,
                       width: 80,
                       fit: BoxFit.fill,
@@ -101,10 +98,6 @@ class _PromocaoListState extends State<PromocaoList>
               style: TextStyle(fontWeight: FontWeight.w600),
             ),
             subtitle: Text(p.pessoa.nome),
-            trailing: Text(
-              "${p.desconto} %",
-              style: TextStyle(color: Colors.green[700], fontSize: 18),
-            ),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(

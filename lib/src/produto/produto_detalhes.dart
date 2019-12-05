@@ -1,7 +1,8 @@
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
-import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/produto/produto_tab.dart';
 import 'package:ofertasbv/src/promocao/promocao_page.dart';
@@ -16,11 +17,8 @@ class ProdutoDetalhes extends StatefulWidget {
 }
 
 class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
-  final urlArquivo = "http://192.168.1.3:8080/produtos/download/";
-
   @override
   void initState() {
-    urlArquivo;
     super.initState();
   }
 
@@ -50,18 +48,27 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
 
   buildContainer(Produto p) {
     return ListView(
+      padding: EdgeInsets.all(0),
       children: <Widget>[
         AspectRatio(
           aspectRatio: 1,
-          child: Image.network(
-            urlArquivo + p.arquivo,
-            fit: BoxFit.fill,
-          ),
+          child: p.arquivos.isNotEmpty
+              ? Carousel(
+                  autoplay: false,
+                  dotBgColor: Colors.transparent,
+                  images: p.arquivos.map((a) {
+                    return NetworkImage(ConstantApi.urlArquivoProduto + a.foto);
+                  }).toList())
+              : Image.network(
+                  ConstantApi.urlArquivoProduto + p.foto,
+                  fit: BoxFit.cover,
+                ),
         ),
         Card(
-          elevation: 0.5,
+          elevation: 0.0,
           child: Container(
-            padding: EdgeInsets.all(5),
+            color: Colors.transparent,
+            padding: EdgeInsets.all(0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,9 +98,10 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
           ),
         ),
         Card(
-          elevation: 0.5,
+          elevation: 0.0,
           child: Container(
-            padding: EdgeInsets.all(10),
+            color: Colors.transparent,
+            padding: EdgeInsets.all(0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,7 +117,7 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
                         Icons.shopping_cart,
                         color: Colors.white,
                       ),
-                      color: Colors.pink[900],
+                      color: Colors.orangeAccent,
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -134,6 +142,7 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
                         color: Colors.white,
                       ),
                       color: Colors.blue[900],
+                      elevation: 0.0,
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -151,9 +160,10 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
           ),
         ),
         Card(
-          elevation: 0.5,
+          elevation: 0.0,
           child: Container(
-            padding: EdgeInsets.all(20),
+            color: Colors.transparent,
+            padding: EdgeInsets.all(0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

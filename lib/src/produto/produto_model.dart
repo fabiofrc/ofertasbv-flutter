@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:ofertasbv/src/arquivo/arquivo_model.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_model.dart';
 
@@ -6,7 +6,7 @@ class Produto {
   int id;
   String nome;
   String descricao;
-  String arquivo;
+  String foto;
   double valorUnitario;
   int quantidade;
   bool isFavorito;
@@ -16,12 +16,13 @@ class Produto {
   String unidade;
   SubCategoria subCategoria;
   Pessoa pessoa;
+  List<Arquivo> arquivos;
 
   Produto(
       {this.id,
       this.nome,
       this.descricao,
-      this.arquivo,
+      this.foto,
       this.valorUnitario,
       this.quantidade,
       this.isFavorito,
@@ -30,13 +31,13 @@ class Produto {
       this.status,
       this.unidade,
       this.subCategoria,
-      this.pessoa});
+      this.pessoa, this.arquivos});
 
   Produto.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     nome = json['nome'];
     descricao = json['descricao'];
-    arquivo = json['arquivo'];
+    foto = json['foto'];
     valorUnitario = json['valorUnitario'];
     quantidade = json['quantidade'];
     isFavorito = json['isFavorito'];
@@ -49,6 +50,13 @@ class Produto {
         : null;
     pessoa =
         json['pessoa'] != null ? new Pessoa.fromJson(json['pessoa']) : null;
+
+    if (json['arquivos'] != null) {
+      arquivos = new List<Arquivo>();
+      json['arquivos'].forEach((v) {
+        arquivos.add(new Arquivo.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -56,7 +64,7 @@ class Produto {
     data['id'] = this.id;
     data['nome'] = this.nome;
     data['descricao'] = this.descricao;
-    data['arquivo'] = this.arquivo;
+    data['foto'] = this.foto;
     data['valorUnitario'] = this.valorUnitario;
     data['quantidade'] = this.quantidade;
     data['isFavorito'] = this.isFavorito;
@@ -70,6 +78,11 @@ class Produto {
     if (this.pessoa != null) {
       data['pessoa'] = this.pessoa.toJson();
     }
+
+    if (this.arquivos != null) {
+      data['arquivos'] = this.arquivos.map((v) => v.toJson()).toList();
+    }
+
     return data;
   }
 }

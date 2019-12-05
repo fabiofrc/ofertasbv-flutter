@@ -8,21 +8,21 @@ import 'package:ofertasbv/src/util/date_converter.dart';
 class Categoria {
   int id;
   String nome;
-  String arquivo;
+  String foto;
   String dataRegistro;
   List<SubCategoria> subCategorias;
 
   Categoria(
       {this.id,
       this.nome,
-      this.arquivo,
+      this.foto,
       this.dataRegistro,
       this.subCategorias});
 
   Categoria.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     nome = json['nome'];
-    arquivo = json['arquivo'];
+    foto = json['foto'];
     dataRegistro = json["dataRegistro"];
     if (json['subCategorias'] != null) {
       subCategorias = new List<SubCategoria>();
@@ -36,7 +36,7 @@ class Categoria {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['nome'] = this.nome;
-    data['arquivo'] = this.arquivo;
+    data['foto'] = this.foto;
     data['dataRegistro'] = this.dataRegistro;
     if (this.subCategorias != null) {
       data['subCategorias'] =

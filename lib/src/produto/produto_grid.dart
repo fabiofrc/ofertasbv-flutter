@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_detalhes.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
@@ -24,9 +25,6 @@ class _ProdutoGridState extends State<ProdutoGrid> with AutomaticKeepAliveClient
   SubCategoria s;
   _ProdutoGridState({this.p, this.s});
 
-  final String urlArquivo = "http://192.168.1.3:8080/produtos/download/";
-  final String urlAsset = "assets/images/upload/default.jpg";
-
   @override
   void initState() {
     if (s != null) {
@@ -36,9 +34,6 @@ class _ProdutoGridState extends State<ProdutoGrid> with AutomaticKeepAliveClient
     } else {
       _bloc.getAll();
     }
-
-    urlArquivo;
-    urlAsset;
     super.initState();
   }
 
@@ -103,7 +98,7 @@ class _ProdutoGridState extends State<ProdutoGrid> with AutomaticKeepAliveClient
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(4),
                       child: Image.network(
-                        urlArquivo + p.arquivo,
+                        ConstantApi.urlArquivoProduto + p.foto,
                         fit: BoxFit.fill,
 
                       ),

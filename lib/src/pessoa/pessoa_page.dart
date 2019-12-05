@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_create_page.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_list.dart';
+import 'package:ofertasbv/src/produto/produto_search.dart';
 
 
 
 class PessoaPage extends StatelessWidget {
 
   final _bloc = BlocProvider.getBloc<PessoaController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +25,19 @@ class PessoaPage extends StatelessWidget {
               return Chip(
                 label: Text(
                   (data.data ?? 0).toString(),
-                  style: TextStyle(color: Colors.white70),
+                  style: TextStyle(color: Colors.pink[900]),
                 ),
               );
+            },
+          ),
+          SizedBox(width: 20),
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              size: 30,
+            ),
+            onPressed: () {
+              showSearch(context: context, delegate: ProdutoSearchDelegate());
             },
           ),
           SizedBox(width: 10,),

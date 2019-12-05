@@ -7,7 +7,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:ofertasbv/src/categoria/categoria_create_page.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_detalhes.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
@@ -167,7 +166,7 @@ class _MapaPageAppState extends State<MapaPageApp> {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey[300]),
                 color:
-                    p.nome == selectedCard ? Colors.indigo[300] : Colors.white,
+                    p.nome == selectedCard ? Colors.blue[900] : Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
               width: 200,
@@ -182,14 +181,14 @@ class _MapaPageAppState extends State<MapaPageApp> {
                         style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                       backgroundColor: Colors.grey[300],
-                      foregroundColor: Colors.indigo[700],
+                      foregroundColor: Colors.orangeAccent,
                     ),
                     title: Text(
                       p.nome,
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.pink[700],
-                        fontWeight: FontWeight.w600,
+                        color: Colors.orangeAccent,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     subtitle: Text(

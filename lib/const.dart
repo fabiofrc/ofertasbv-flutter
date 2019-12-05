@@ -49,4 +49,23 @@ class Constants{
   );
 
 
+
+  static ThemeData blueTheme = ThemeData(
+    brightness: Brightness.light,
+    backgroundColor: Colors.grey[200],
+    primaryColor: Colors.blue[900],
+    accentColor: Colors.orangeAccent,
+    scaffoldBackgroundColor: Colors.grey[200],
+    cursorColor: Colors.orangeAccent,
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      textTheme: TextTheme(
+        title: TextStyle(
+          color: Colors.white,
+          fontSize: 18.0,
+          fontWeight: FontWeight.w800,
+        ),
+      ),
+    ),
+  );
 }

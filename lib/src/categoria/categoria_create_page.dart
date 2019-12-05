@@ -6,6 +6,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'categoria_api_provider.dart';
 import 'categoria_controller.dart';
 import 'categoria_model.dart';
@@ -26,7 +27,6 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
   File file;
 
   var controllerNome = TextEditingController();
-
 
   _CategoriaCreatePageState({this.c});
 
@@ -55,14 +55,14 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
 
     setState(() {
       this.file = f;
-      c.arquivo = file.path.split('/').last;
+      c.foto = file.path.split('/').last;
       print(" upload de arquivo : $c.arquivo");
     });
   }
 
   void _onClickUpload() async {
     if (file != null) {
-      var url = await CategoriaApiProvider.upload(file, c.arquivo);
+      var url = await CategoriaApiProvider.upload(file, c.foto);
     }
   }
 
@@ -73,7 +73,7 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
   @override
   Widget build(BuildContext context) {
     DateFormat dateFormat = DateFormat('yyyy-MM-dd');
-    controllerNome.text = c.nome;
+    //controllerNome.text = c.nome;
 
     return Scaffold(
       appBar: AppBar(
@@ -137,9 +137,8 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                                   keyboardType: TextInputType.text,
                                   maxLength: 50,
                                   maxLines: 2,
-                                  initialValue: c.nome,
+                                  //initialValue: c.nome,
                                 ),
-
                               ],
                             ),
                           ),
@@ -166,13 +165,13 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
                                         width: 100,
                                         fit: BoxFit.fill)
                                     : Image.asset(
-                                        "assets/images/upload/upload.jpg",
+                                        ConstantApi.urlAsset,
                                         height: 100,
                                         width: 100,
                                       ),
                                 SizedBox(height: 15),
-                                c.arquivo != null
-                                    ? Text("${c.arquivo}")
+                                c.foto != null
+                                    ? Text("${c.foto}")
                                     : Text("sem arquivo"),
                                 RaisedButton.icon(
                                   icon: Icon(Icons.file_upload),

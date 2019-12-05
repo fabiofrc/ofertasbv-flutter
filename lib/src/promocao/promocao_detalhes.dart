@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/promocao/promocao_controller.dart';
@@ -20,11 +21,8 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
   var selectedCard = 'WEIGHT';
   final _bloc = BlocProvider.getBloc<PromocaoController>();
 
-  final urlArquivo = "http://192.168.1.3:8080/promocoes/download/";
-
   @override
   void initState() {
-    urlArquivo;
     super.initState();
   }
 
@@ -56,15 +54,15 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
     return ListView(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1,
+          aspectRatio: 2,
           child: Image.network(
-            urlArquivo + p.arquivo,
-            fit: BoxFit.fill,
+            ConstantApi.urlArquivoPromocao + p.foto,
+            fit: BoxFit.cover,
           ),
         ),
 
         Card(
-          elevation: 0.5,
+          elevation: 0.0,
           child: Container(
             padding: EdgeInsets.all(10),
             child: Column(
@@ -80,7 +78,7 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
         ),
 
         Card(
-          elevation: 0.5,
+          elevation: 0.0,
           child: Container(
             padding: EdgeInsets.all(10),
             child: Row(
@@ -98,7 +96,7 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
                         Icons.shopping_cart,
                         color: Colors.white,
                       ),
-                      color: Colors.pink[900],
+                      color: Colors.orangeAccent,
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -123,6 +121,7 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
                         color: Colors.white,
                       ),
                       color: Colors.blue[900],
+                      elevation: 0.0,
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -141,7 +140,7 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
         ),
 
         Card(
-          elevation: 0.5,
+          elevation: 0.0,
           child: Container(
             padding: EdgeInsets.all(20),
             child: Column(

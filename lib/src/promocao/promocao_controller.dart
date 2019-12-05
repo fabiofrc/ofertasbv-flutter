@@ -10,7 +10,7 @@ class PromocaoController extends BlocBase {
 
   /* ================= get count ================= */
   // ignore: close_sinks
-  final StreamController<int> _counter = StreamController<int>.broadcast();
+  final StreamController<int> _counter = BehaviorSubject<int>();
   Stream<int> get counter => _counter.stream;
 
   Stream<List<Promocao>> get listView async*{
@@ -18,12 +18,16 @@ class PromocaoController extends BlocBase {
   }
 
   PromocaoController() {
-    responseOut = promocao.switchMap(create);
-    listView.listen((list) => _counter.add(list.length));
+    try {
+      responseOut = promocao.switchMap(create);
+      listView.listen((list) => _counter.add(list.length));
+    } catch (e) {
+      throw e;
+    }
   }
 
   /* ================= get promocao ================= */
-  var _streamController = StreamController<List<Promocao>>.broadcast();
+  var _streamController = BehaviorSubject<List<Promocao>>();
   Stream<List<Promocao>> get outController => _streamController.stream;
 
   Future<List<Promocao>> getAll() async {
@@ -61,7 +65,7 @@ class PromocaoController extends BlocBase {
   void dispose() {
     _streamController.close();
     promocao.close();
-    _counter.close();
+    //_counter.close();
     super.dispose();
   }
 }
