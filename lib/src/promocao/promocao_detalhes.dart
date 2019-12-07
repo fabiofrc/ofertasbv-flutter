@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/produto/produto_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
@@ -32,11 +33,17 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ofertas detalhes"),
+        title: Text(
+          "Ofertas detalhes",
+          style: Constants.textoAppTitulo,
+        ),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(
+              CupertinoIcons.search,
+              color: Constants.colorIconsAppMenu,
+            ),
             onPressed: () {
               showSearch(
                 context: context,
@@ -60,7 +67,6 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
             fit: BoxFit.fill,
           ),
         ),
-
         Card(
           elevation: 0.0,
           child: Container(
@@ -69,14 +75,14 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(p.nome,
+                Text(
+                  p.nome,
                   style: TextStyle(fontSize: 20, color: Colors.grey[900]),
                 ),
               ],
             ),
           ),
         ),
-
         Card(
           elevation: 0.0,
           child: Container(
@@ -138,7 +144,6 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
             ),
           ),
         ),
-
         Card(
           elevation: 0.0,
           child: Container(
@@ -167,7 +172,6 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
                 SizedBox(
                   height: 10,
                 ),
-
                 Text(
                   "Mercado: ${p.pessoa.nome}",
                   style: TextStyle(fontSize: 20),
@@ -175,7 +179,6 @@ class _PromocaoDetalhesState extends State<PromocaoDetalhes> {
                 SizedBox(
                   height: 10,
                 ),
-
                 Text(
                   "Desconto: ${p.desconto} %",
                   style: TextStyle(

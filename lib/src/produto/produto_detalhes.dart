@@ -1,6 +1,7 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
@@ -28,11 +29,11 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Produto detalhes"),
+        title: Text("Produto detalhes", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(CupertinoIcons.search, color: Constants.colorIconsAppMenu,),
             onPressed: () {
               showSearch(
                 context: context,

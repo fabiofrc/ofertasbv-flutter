@@ -1,11 +1,10 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_controller.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_create_page.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_list.dart';
-import 'package:ofertasbv/src/categoria/categoria_create_page.dart';
-import 'package:ofertasbv/src/categoria/categoria_list.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 
 
@@ -16,7 +15,7 @@ class ArquivoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Arquivos"),
+        title: Text("Arquivos", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           StreamBuilder<Object>(
@@ -33,7 +32,8 @@ class ArquivoPage extends StatelessWidget {
           SizedBox(width: 20),
           IconButton(
             icon: Icon(
-              Icons.search,
+              CupertinoIcons.search,
+              color: Constants.colorIconsAppMenu,
               size: 30,
             ),
             onPressed: () {

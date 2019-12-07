@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_create_page.dart';
 import 'package:ofertasbv/src/produto/produto_list.dart';
@@ -28,7 +29,7 @@ class _ProdutoPageState extends State<ProdutoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Produtos"),
+        title: Text("Produtos", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           StreamBuilder<Object>(
@@ -37,7 +38,7 @@ class _ProdutoPageState extends State<ProdutoPage> {
               return Chip(
                 label: Text(
                   (data.data ?? 0).toString(),
-                  style: TextStyle(color: Colors.pink[900]),
+                  style: TextStyle(color: Colors.deepOrangeAccent),
                 ),
               );
             },
@@ -45,7 +46,8 @@ class _ProdutoPageState extends State<ProdutoPage> {
           SizedBox(width: 20),
           IconButton(
             icon: Icon(
-              Icons.search,
+              CupertinoIcons.search,
+              color: Constants.colorIconsAppMenu,
               size: 30,
             ),
             onPressed: () {

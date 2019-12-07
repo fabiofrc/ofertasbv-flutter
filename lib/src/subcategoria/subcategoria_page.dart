@@ -1,5 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/categoria/categoria_model.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_controller.dart';
@@ -25,7 +27,7 @@ class _SubcategoriaPageState extends State<SubcategoriaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Subcategorias"),
+        title: Text("Subcategorias", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           StreamBuilder<Object>(
@@ -42,7 +44,7 @@ class _SubcategoriaPageState extends State<SubcategoriaPage> {
           SizedBox(width: 20),
           IconButton(
             icon: Icon(
-              Icons.search,
+              CupertinoIcons.search,
               size: 30,
             ),
             onPressed: () {

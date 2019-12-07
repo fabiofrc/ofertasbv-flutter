@@ -1,5 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/promocao/promocao_controller.dart';
@@ -26,7 +28,7 @@ class _PromocaoPageState extends State<PromocaoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ofertas"),
+        title: Text("Ofertas", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           StreamBuilder<Object>(
@@ -35,7 +37,7 @@ class _PromocaoPageState extends State<PromocaoPage> {
               return Chip(
                 label: Text(
                   (data.data ?? 0).toString(),
-                  style: TextStyle(color: Colors.pink[900]),
+                  style: TextStyle(color: Colors.deepOrangeAccent),
                 ),
               );
             },
@@ -43,7 +45,8 @@ class _PromocaoPageState extends State<PromocaoPage> {
           SizedBox(width: 20),
           IconButton(
             icon: Icon(
-              Icons.search,
+              CupertinoIcons.search,
+              color: Constants.colorIconsAppMenu,
               size: 30,
             ),
             onPressed: () {

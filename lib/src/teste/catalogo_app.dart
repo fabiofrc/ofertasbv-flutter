@@ -1,9 +1,10 @@
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ofertasbv/src/home/home.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ofertasbv/const.dart';
+import 'package:ofertasbv/src/sobre/sobre_page.dart';
 import 'package:ofertasbv/src/teste/leitor_codigo_barra.dart';
-import 'package:ofertasbv/src/teste/mapa_principal.dart';
 
 import 'catalogo_menu.dart';
 
@@ -21,14 +22,14 @@ class _CatalogoAppState extends State<CatalogoApp> {
       body: [
         CatalogoMenu(),
         LeitorCodigoBarra(),
-        MapaPageApp(),
+        SobrePage(),
       ].elementAt(elementIndex),
 
       bottomNavigationBar: BubbleBottomBar(
         backgroundColor: Colors.grey[200],
-        opacity: 0.2,
+        opacity: 0.1,
         currentIndex: elementIndex,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
         elevation: 0.0,
         fabLocation: BubbleBottomBarFabLocation.end,
         hasNotch: true,
@@ -43,20 +44,33 @@ class _CatalogoAppState extends State<CatalogoApp> {
               ),
               activeIcon: Icon(
                 Icons.dashboard,
-                color: Colors.orangeAccent,
+                color: Colors.deepOrangeAccent,
               ),
-              title: Text("Dashboard")),
+              title: Text("Dashboard", style: Constants.textoHomeTitulo,)),
           BubbleBottomBarItem(
             backgroundColor: Colors.grey[700],
             icon: Icon(
-              Icons.scanner,
+              FontAwesomeIcons.barcode,
               color: Colors.black,
             ),
             activeIcon: Icon(
-              Icons.scanner,
-              color: Colors.orangeAccent,
+              FontAwesomeIcons.barcode,
+              color: Colors.deepOrangeAccent,
             ),
-            title: Text("Scanner"),
+            title: Text("Scanner", style: Constants.textoHomeTitulo,),
+          ),
+
+          BubbleBottomBarItem(
+            backgroundColor: Colors.grey[700],
+            icon: Icon(
+              CupertinoIcons.info,
+              color: Colors.black,
+            ),
+            activeIcon: Icon(
+              CupertinoIcons.info,
+              color: Colors.deepOrangeAccent,
+            ),
+            title: Text("Sobre", style: Constants.textoHomeTitulo,),
           ),
         ],
         onTap: onBarTapItem,

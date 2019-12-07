@@ -77,8 +77,8 @@ class _PromocaoListHomeState extends State<PromocaoListHome>
 
         return GestureDetector(
           child: Card(
-            margin: EdgeInsets.only(left: 5),
-            elevation: 0.0,
+            margin: EdgeInsets.only(left: 10),
+            elevation: 1,
             child: AnimatedContainer(
               duration: Duration(seconds: 4),
               width: 300,
@@ -87,7 +87,7 @@ class _PromocaoListHomeState extends State<PromocaoListHome>
                   AspectRatio(
                     aspectRatio: 1.5,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(0),
                       child: Image.network(
                         ConstantApi.urlArquivoPromocao + p.foto,
                         fit: BoxFit.fill,

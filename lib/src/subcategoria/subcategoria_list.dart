@@ -31,7 +31,6 @@ class _SubcategoriaListState extends State<SubcategoriaList>
     } else {
       _bloc.getAll();
     }
-
     super.initState();
   }
 

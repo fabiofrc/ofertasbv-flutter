@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:evil_icons_flutter/evil_icons_flutter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/categoria/categoria_page.dart';
 import 'package:ofertasbv/src/home/home.dart';
+import 'package:ofertasbv/src/home/subcategoria_home.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/produto/produto_tab.dart';
 import 'package:ofertasbv/src/promocao/promocao_page.dart';
+import 'package:ofertasbv/src/sobre/sobre_page.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_page.dart';
 import 'package:ofertasbv/src/teste/mapa_principal.dart';
 
@@ -32,11 +37,11 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Catalogo app"),
+        title: Text("Catalogo app", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(CupertinoIcons.search, color: Constants.colorIconsAppMenu,),
             onPressed: () {
               showSearch(
                 context: context,
@@ -46,7 +51,7 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
           ),
 
           IconButton(
-            icon: Icon(Icons.home),
+            icon: new Icon(CupertinoIcons.home, color: Constants.colorIconsAppMenu,),
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => HomePage()));
@@ -68,7 +73,7 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
           gradient: LinearGradient(
             colors: [
               Colors.grey[100],
-              Colors.grey[200],
+              Colors.grey[100],
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -78,10 +83,12 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
 
   GridView buildGridView(BuildContext context) {
     return GridView.count(
-      padding: EdgeInsets.only(top: 40),
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 30,
+      padding: EdgeInsets.all(10),
+      crossAxisSpacing: 2,
+      mainAxisSpacing: 2,
       crossAxisCount: 3,
+
+
       //childAspectRatio: MediaQuery.of(context).size.aspectRatio * 2,
       scrollDirection: Axis.vertical,
       children: <Widget>[
@@ -99,16 +106,10 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.grey[300]),
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.blue[900],
-                  size: 30,
-                ),
-                padding: EdgeInsets.all(30),
+                child: Icon(CupertinoIcons.shopping_cart, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
               ),
               Text(
                 "Produto",
@@ -132,16 +133,10 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.grey[300]),
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.apps,
-                  color: Colors.blue[900],
-                  size: 30,
-                ),
-                padding: EdgeInsets.all(30),
+                child: Icon(CupertinoIcons.create_solid, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
               ),
               Text(
                 "Categoria",
@@ -164,16 +159,10 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.grey[300]),
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.add_alert,
-                  color: Colors.blue[900],
-                  size: 30,
-                ),
-                padding: EdgeInsets.all(30),
+                child: Icon(CupertinoIcons.game_controller, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
               ),
               Text(
                 "Oferta",
@@ -196,16 +185,10 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.grey[300]),
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.location_city,
-                  color: Colors.blue[900],
-                  size: 30,
-                ),
-                padding: EdgeInsets.all(30),
+                child: Icon(CupertinoIcons.shopping_cart, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
               ),
               Text(
                 "Mercado",
@@ -228,16 +211,10 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.grey[300]),
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.people,
-                  color: Colors.blue[900],
-                  size: 30,
-                ),
-                padding: EdgeInsets.all(30),
+                child: Icon(CupertinoIcons.person, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
               ),
               Text(
                 "Cliente",
@@ -260,16 +237,10 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.grey[300]),
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.line_style,
-                  color: Colors.blue[900],
-                  size: 30,
-                ),
-                padding: EdgeInsets.all(30),
+                child:Icon(EvilIcons.pencil, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
               ),
               Text(
                 "SubCategoria",
@@ -292,16 +263,10 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.grey[300]),
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.location_on,
-                  color: Colors.blue[900],
-                  size: 30,
-                ),
-                padding: EdgeInsets.all(30),
+                child: Icon(EvilIcons.location, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
               ),
               Text(
                 "Mapa",
@@ -324,16 +289,10 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.grey[300]),
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.add_location,
-                  color: Colors.blue[900],
-                  size: 30,
-                ),
-                padding: EdgeInsets.all(30),
+                child: Icon(EvilIcons.location, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
               ),
               Text(
                 "GeoCode",
@@ -356,19 +315,95 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.grey[300]),
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.scanner,
-                  color: Colors.blue[900],
-                  size: 30,
-                ),
-                padding: EdgeInsets.all(30),
+                child: Icon(FontAwesomeIcons.barcode, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
               ),
               Text(
                 "Scanner",
+                style: TextStyle(color: Colors.blue[900]),
+              ),
+            ],
+          ),
+        ),
+
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return SubCategoriaHome();
+                },
+              ),
+            );
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(CupertinoIcons.collections, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
+              ),
+              Text(
+                "SubCategoria & produto",
+                style: TextStyle(color: Colors.blue[900],),
+              ),
+            ],
+          ),
+        ),
+
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return SobrePage();
+                },
+              ),
+            );
+          },
+          child: Column(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(CupertinoIcons.phone, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
+              ),
+              Text(
+                "Central de atendimento",
+                style: TextStyle(color: Colors.blue[900]),
+              ),
+            ],
+          ),
+        ),
+
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return SobrePage();
+                },
+              ),
+            );
+          },
+          child: Column(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(CupertinoIcons.info, color: Constants.colorIconsMenu, size: 40,),
+                padding: EdgeInsets.all(20),
+              ),
+              Text(
+                "Sobre",
                 style: TextStyle(color: Colors.blue[900]),
               ),
             ],

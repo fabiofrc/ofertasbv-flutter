@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/api/constant_api.dart';
 
 class SobrePage extends StatelessWidget {
@@ -7,7 +8,7 @@ class SobrePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sobre"),
+        title: Text("Sobre", style: Constants.textoAppTitulo,),
         elevation: 0.0,
       ),
       body: Container(
@@ -31,7 +32,7 @@ class SobrePage extends StatelessWidget {
                     "OFERTASBV",
                     style: TextStyle(
                       fontSize: 25,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                   Text(

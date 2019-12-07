@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/produto/produto_api_provider.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_detalhes.dart';
@@ -80,7 +81,7 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
     print("construindo tela: " + p.codigoBarra);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Leitor código de barra'),
+        title: Text('Leitor código de barra', style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(

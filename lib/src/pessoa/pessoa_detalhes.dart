@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_page.dart';
@@ -28,11 +29,11 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Mercado detalhes"),
+        title: Text("Loja detalhes", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(CupertinoIcons.search, color: Constants.colorIconsAppMenu,),
             onPressed: () {
               showSearch(
                 context: context,

@@ -9,15 +9,16 @@ import 'package:path/path.dart' as path;
 
 class UploadService {
   static Future<String> upload(File file) async {
-    String url = "http://192.168.1.3:8080/categorias/upload";
+    String url = "http://192.168.1.4:8080/arquivos/upload";
 
     List<int> imageBytes = file.readAsBytesSync();
     String base64Image = convert.base64Encode(imageBytes);
 
     String fileName = path.basename(file.path);
 
-    var headers = {"Content-Type": "application/json"};
-    //var headers = {"Content-Type": "multipart/form-data"};
+    //var headers = {"Content-Type": "application/json"};
+    var headers = {"Accept": "application/json",
+      "Content-Type": "multipart/form-data"};
 
     var params = {
       "file": fileName,
@@ -49,7 +50,7 @@ class UploadService {
   }
 
   static Future<String> saveImage(File file) async {
-    String url = "http://192.168.1.3:8080/categorias/upload";
+    String url = "http://192.168.1.4:8080/arquivos/upload";
     var stream = new http.ByteStream(DelegatingStream.typed(file.openRead()));
     var length = await file.length();
     //String token = "blah"; //token for authentication
@@ -58,7 +59,8 @@ class UploadService {
 
     Map<String, String> headers = {
       "Accept": "application/json",
-      "Content-Type": "multipart/mixed;boundary=YourBoundaryOfChoiceHere"// "multipart/form-data"
+      "Content-Type":
+          "multipart/mixed;boundary=YourBoundaryOfChoiceHere" // "multipart/form-data"
     };
     //Map<String, String> headers = {"content-type": "multipart/form-data" };
 
@@ -79,27 +81,28 @@ class UploadService {
   }
 
   static Future<String> uploadImage(File image) async {
-    String url = "http://192.168.1.3:8080/categorias/upload";
+    String url = "http://192.168.1.4:8080/arquivos/upload";
     var bytes = image.readAsBytesSync();
 
-    var response = await http.post(Uri.parse(url),
-        headers: {
+       var headers = {
           "Accept": "application/json",
-          "Content-Type": "multipart/mixed;boundary=YourBoundaryOfChoiceHere"// "multipart/form-data"
+          "Content-Type":
+          //"multipart/mixed;boundary=YourBoundaryOfChoiceHere"
+         "multipart/form-data"
+        };
 
-        },
-        body: json.encode(bytes),
-        encoding: Encoding.getByName("utf-8"));
+    //var headers = {"Content-Type": "multipart/form-data"};
 
-//    var response = await http.post(url,
-//        headers: {"Content-Type": "multipart/form-data"},
-//        body: {"file": bytes}, encoding: convert.Encoding.getByName("utf-8"));
+    var response = await http.post(url,
+        headers: headers,
+        body: {"file": bytes},
+        encoding: convert.Encoding.getByName("utf-8"));
 
     return response.body;
   }
 
   static Future getUploadimg(File file) async {
-    String url = "http://192.168.1.3:8080/categorias/upload";
+    String url = "http://192.168.1.4:8080/arquivos/upload";
     http.Response response = await http.post(url, headers: {
       "Accept": "application/json",
       "Content-Type": "multipart/form-data"

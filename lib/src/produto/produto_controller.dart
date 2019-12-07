@@ -9,6 +9,7 @@ class ProdutoController extends BlocBase {
   ProdutoApiProvider _produtoApiProvider = ProdutoApiProvider();
 
   /* ================= get count ================= */
+  List<Produto> _produtos;
   // ignore: close_sinks
   final BehaviorSubject<int> _counter = BehaviorSubject<int>();
   Stream<int> get counter => _counter.stream;
@@ -31,9 +32,9 @@ class ProdutoController extends BlocBase {
   Stream<List<Produto>> get outController => _streamController.stream;
 
   Future<List<Produto>> getAll() async {
-    List<Produto> produtos = await _produtoApiProvider.getAll();
-    _streamController.add(produtos);
-    return produtos;
+    _produtos = await _produtoApiProvider.getAll();
+    _streamController.add(_produtos);
+    return _produtos;
   }
 
   Future<List<Produto>> getAllBySubCategoriaById(int id) async {

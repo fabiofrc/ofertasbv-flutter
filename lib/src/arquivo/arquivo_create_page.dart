@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_api_provider.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_controller.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_model.dart';
+import 'package:ofertasbv/src/arquivo/upload_service.dart';
 
 class ArquivoCreatePage extends StatefulWidget {
 
@@ -59,6 +60,7 @@ class _ArquivoCreatePageState extends State<ArquivoCreatePage> {
   void _onClickUpload() async {
     if (file != null) {
       var url = await ArquivoApiProvider.upload(file, arquivo.foto);
+      print(" upload de arquivo : $url");
     }
   }
 

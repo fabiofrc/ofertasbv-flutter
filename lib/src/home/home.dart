@@ -1,6 +1,9 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:evil_icons_flutter/evil_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_controller.dart';
 import 'package:ofertasbv/src/categoria/categoria_controller.dart';
 import 'package:ofertasbv/src/home/catalogo_home.dart';
@@ -44,12 +47,12 @@ class _HomePageState extends State<HomePage>
           appBar: AppBar(
             primary: true,
             bottomOpacity: 1.0,
-            title: Text("OFERTASBV"),
+            title: Text("OFERTASBV", style: Constants.textoAppTitulo,),
             elevation: 0.0,
             centerTitle: false,
             actions: <Widget>[
               IconButton(
-                icon: Icon(Icons.search),
+                icon: Icon(CupertinoIcons.search, color: Constants.colorIconsAppMenu,),
                 onPressed: () {
                   showSearch(
                     context: context,
@@ -59,7 +62,7 @@ class _HomePageState extends State<HomePage>
               ),
 
               IconButton(
-                icon: Icon(Icons.apps),
+                icon: Icon(Icons.apps, color: Constants.colorIconsAppMenu,),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => CatalogoApp()));
@@ -67,26 +70,26 @@ class _HomePageState extends State<HomePage>
               ),
             ],
             bottom: TabBar(
-              labelColor: Colors.orangeAccent,
+              labelColor: Colors.deepOrangeAccent,
               isScrollable: true,
               unselectedLabelColor: Colors.white,
               tabs: [
                 Tab(
-                  text: "HOME",
+                  child: Text("HOME", style: Constants.textoAppHomeTitulo,),
                   //icon: Icon(Icons.home),
                 ),
 
                 Tab(
-                  text: "PRODUTO",
+                  child: Text("PRODUTOS", style: Constants.textoAppHomeTitulo,),
                   //icon: Icon(Icons.shopping_cart),
                 ),
 
                 Tab(
-                  text: "OFERTAS",
+                  child: Text("OFERTAS", style: Constants.textoAppHomeTitulo,),
                   //icon: Icon(Icons.add_alert),
                 ),
                 Tab(
-                  text: "LOJAS",
+                  child: Text("LOJAS", style: Constants.textoAppHomeTitulo,),
                   //icon: Icon(Icons.location_city),
                 ),
               ],
@@ -105,6 +108,7 @@ class _HomePageState extends State<HomePage>
 
 /* ======================= Menu lateral ======================= */
           drawer: DrawerList(),
+          backgroundColor: Colors.grey[100],
 /* ======================= Botão Flutuante ======================= */
 
 

@@ -2,6 +2,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_create_page.dart';
 import 'package:ofertasbv/src/produto/produto_grid.dart';
@@ -22,7 +23,7 @@ class _ProdutoTabState extends State<ProdutoTab> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Produtos"),
+          title: Text("Produtos", style: Constants.textoAppTitulo,),
           elevation: 0.0,
           actions: <Widget>[
             StreamBuilder<Object>(
@@ -31,7 +32,7 @@ class _ProdutoTabState extends State<ProdutoTab> {
                 return Chip(
                   label: Text(
                     (data.data ?? 0).toString(),
-                    style: TextStyle(color: Colors.pink[900]),
+                    style: TextStyle(color: Colors.deepOrangeAccent),
                   ),
                 );
               },
@@ -39,7 +40,8 @@ class _ProdutoTabState extends State<ProdutoTab> {
             SizedBox(width: 20),
             IconButton(
               icon: Icon(
-                Icons.search,
+                CupertinoIcons.search,
+                color: Constants.colorIconsAppMenu,
                 size: 30,
               ),
               onPressed: () {
@@ -53,14 +55,14 @@ class _ProdutoTabState extends State<ProdutoTab> {
                 icon: Icon(
                   Icons.dashboard,
                   size: 30,
-                  color: Colors.grey[400],
+                  color: Constants.colorIconsAppMenu,
                 ),
               ),
               Tab(
                 icon: Icon(
                   Icons.list,
                   size: 40,
-                  color: Colors.grey[400],
+                  color: Constants.colorIconsAppMenu,
                 ),
               ),
             ],

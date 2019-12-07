@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/categoria/categoria_controller.dart';
 import 'package:ofertasbv/src/categoria/categoria_create_page.dart';
 import 'package:ofertasbv/src/categoria/categoria_model.dart';
@@ -15,14 +16,10 @@ class CategoriaListHome extends StatefulWidget {
 class _CategoriaListHomeState extends State<CategoriaListHome>
     with AutomaticKeepAliveClientMixin<CategoriaListHome> {
   final _bloc = BlocProvider.getBloc<CategoriaController>();
-  final urlArquivo = "http://192.168.1.4:8080/categorias/download/";
-  final urlAsset = "assets/images/upload/default.jpg";
 
   @override
   void initState() {
     _bloc.getAll();
-    urlArquivo;
-    urlAsset;
     super.initState();
   }
 
@@ -103,8 +100,8 @@ class _CategoriaListHomeState extends State<CategoriaListHome>
 
         return GestureDetector(
           child: Card(
-            margin: EdgeInsets.only(left: 5),
-            elevation: 0.0,
+            margin: EdgeInsets.only(left: 10),
+            elevation: 1,
             child: AnimatedContainer(
               duration: Duration(seconds: 4),
               width: 90,
@@ -115,9 +112,9 @@ class _CategoriaListHomeState extends State<CategoriaListHome>
                   AspectRatio(
                     aspectRatio: 1.1,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(0),
                       child: Image.network(
-                        urlArquivo + c.foto,
+                        ConstantApi.urlArquivoCategoria + c.foto,
                         fit: BoxFit.fill,
                       ),
                     ),

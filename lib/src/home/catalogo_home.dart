@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/categoria/categoria_page.dart';
 import 'package:ofertasbv/src/home/categoria_list_home.dart';
 import 'package:ofertasbv/src/home/produto_list_home.dart';
@@ -24,17 +25,13 @@ class _CatalogoHomeState extends State<CatalogoHome> {
           children: <Widget>[
             Text(
               "departamento",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
-                color: Colors.grey,
-              ),
+              style: Constants.textoHomeTitulo,
             ),
             FlatButton(
               child: Text(
                 "veja mais",
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.deepOrangeAccent,
                 ),
               ),
               onPressed: () {
@@ -50,28 +47,23 @@ class _CatalogoHomeState extends State<CatalogoHome> {
           ],
         ),
         Container(
-          //color: Colors.transparent,
+          color: Colors.transparent,
           height: 110,
           child: CategoriaListHome(),
         ),
         SizedBox(height: 0),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
               "ofertas",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
-                color: Colors.grey,
-              ),
+              style: Constants.textoHomeTitulo,
             ),
             FlatButton(
               child: Text(
                 "veja mais",
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.deepOrangeAccent,
                 ),
               ),
               onPressed: () {
@@ -87,27 +79,22 @@ class _CatalogoHomeState extends State<CatalogoHome> {
           ],
         ),
         Container(
-          //color: Colors.transparent,
+          color: Colors.transparent,
           height: 250,
           child: PromocaoListHome(),
         ),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
               "novidades",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
-                color: Colors.grey,
-              ),
+              style: Constants.textoHomeTitulo,
             ),
             FlatButton(
               child: Text(
                 "veja mais",
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.deepOrangeAccent,
                 ),
               ),
               onPressed: () {
@@ -126,6 +113,7 @@ class _CatalogoHomeState extends State<CatalogoHome> {
           height: 130,
           child: ProdutoListHome(),
         ),
+        SizedBox(height: 20),
       ],
     );
   }

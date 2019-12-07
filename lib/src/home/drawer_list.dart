@@ -1,4 +1,8 @@
+import 'package:evil_icons_flutter/evil_icons_flutter.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_page.dart';
 import 'package:ofertasbv/src/categoria/categoria_page.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_page.dart';
@@ -50,18 +54,15 @@ class DrawerList extends StatelessWidget {
               children: <Widget>[
                 Text(
                   "OFERTASBV",
-                  style: TextStyle(
-                    color: Colors.blue[900],
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(color: Colors.blue[900]),
                 ),
                 Text("ofertasbv.com.br"),
               ],
             )),
         ListTile(
           selected: true,
-          leading: Icon(Icons.add_shopping_cart, color: Colors.black),
-          title: Text("Produtos", style: TextStyle(color: Colors.black)),
+          leading: Icon(CupertinoIcons.shopping_cart, color: Colors.black),
+          title: Text("Produtos", style: Constants.textoDrawerTitulo,),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).push(
@@ -75,8 +76,8 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(Icons.apps, color: Colors.black),
-          title: Text("Categorias", style: TextStyle(color: Colors.black)),
+          leading: Icon(CupertinoIcons.create, color: Colors.black),
+          title: Text("Categorias", style: Constants.textoDrawerTitulo,),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).push(
@@ -90,8 +91,8 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(Icons.line_style, color: Colors.black),
-          title: Text("SubCategorias", style: TextStyle(color: Colors.black)),
+          leading: Icon(CupertinoIcons.create_solid, color: Colors.black),
+          title: Text("SubCategorias", style: Constants.textoDrawerTitulo,),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).push(
@@ -105,8 +106,8 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(Icons.add_alert, color: Colors.black),
-          title: Text("Promoções", style: TextStyle(color: Colors.black)),
+          leading: Icon(CupertinoIcons.game_controller, color: Colors.black),
+          title: Text("Ofertas", style: Constants.textoDrawerTitulo,),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).push(
@@ -120,8 +121,8 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(Icons.local_convenience_store, color: Colors.black),
-          title: Text("Mercados", style: TextStyle(color: Colors.black)),
+          leading: Icon(CupertinoIcons.home, color: Colors.black),
+          title: Text("Lojas", style: Constants.textoDrawerTitulo,),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).push(
@@ -135,9 +136,9 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(Icons.scanner, color: Colors.black),
+          leading: Icon(FontAwesomeIcons.barcode, color: Colors.black),
           title: Text("Leitor códido de barra",
-              style: TextStyle(color: Colors.black)),
+            style: Constants.textoDrawerTitulo,),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).push(
@@ -151,8 +152,8 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(Icons.map, color: Colors.black),
-          title: Text("Locais", style: TextStyle(color: Colors.black)),
+          leading: Icon(CupertinoIcons.location, color: Colors.black),
+          title: Text("Locais",  style: Constants.textoDrawerTitulo,),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).push(
@@ -166,8 +167,8 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(Icons.filter, color: Colors.black),
-          title: Text("Arquivos", style: TextStyle(color: Colors.black)),
+          leading: Icon(CupertinoIcons.photo_camera, color: Colors.black),
+          title: Text("Arquivos",  style: Constants.textoDrawerTitulo,),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).push(
@@ -181,8 +182,8 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(Icons.error, color: Colors.black),
-          title: Text("Sobre", style: TextStyle(color: Colors.black)),
+          leading: Icon(CupertinoIcons.info, color: Colors.black),
+          title: Text("Sobre",  style: Constants.textoDrawerTitulo,),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             Navigator.of(context).push(

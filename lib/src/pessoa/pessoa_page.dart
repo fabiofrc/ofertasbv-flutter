@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_create_page.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_list.dart';
@@ -16,7 +17,7 @@ class PessoaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Mercados"),
+        title: Text("Lojas", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           StreamBuilder<Object>(
@@ -25,7 +26,7 @@ class PessoaPage extends StatelessWidget {
               return Chip(
                 label: Text(
                   (data.data ?? 0).toString(),
-                  style: TextStyle(color: Colors.pink[900]),
+                  style: TextStyle(color: Colors.deepOrangeAccent),
                 ),
               );
             },
@@ -33,7 +34,8 @@ class PessoaPage extends StatelessWidget {
           SizedBox(width: 20),
           IconButton(
             icon: Icon(
-              Icons.search,
+              CupertinoIcons.search,
+              color: Constants.colorIconsAppMenu,
               size: 30,
             ),
             onPressed: () {

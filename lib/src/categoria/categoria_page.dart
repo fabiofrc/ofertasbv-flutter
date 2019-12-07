@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/categoria/categoria_list.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 
@@ -13,7 +14,7 @@ class CategoriaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Categorias"),
+        title: Text("Categorias", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         actions: <Widget>[
           StreamBuilder<Object>(
@@ -22,7 +23,7 @@ class CategoriaPage extends StatelessWidget {
               return Chip(
                 label: Text(
                   (data.data ?? 0).toString(),
-                  style: TextStyle(color: Colors.pink[900]),
+                  style: TextStyle(color: Colors.deepOrangeAccent),
                 ),
               );
             },
@@ -30,7 +31,8 @@ class CategoriaPage extends StatelessWidget {
           SizedBox(width: 20),
           IconButton(
             icon: Icon(
-              Icons.search,
+              CupertinoIcons.search,
+              color: Constants.colorIconsAppMenu,
               size: 30,
             ),
             onPressed: () {

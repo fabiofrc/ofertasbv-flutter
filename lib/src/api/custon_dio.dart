@@ -10,7 +10,7 @@ class CustonDio {
 
     client.interceptors.add(CustonInterceptions());
     client.options.connectTimeout = 5000;
-    client.options.contentType= Headers.formUrlEncodedContentType;
+    //client.options.contentType= Headers.formUrlEncodedContentType;
 
   }
 }

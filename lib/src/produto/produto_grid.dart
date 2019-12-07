@@ -73,11 +73,11 @@ class _ProdutoGridState extends State<ProdutoGrid> with AutomaticKeepAliveClient
   builderGrid(List<Produto> produtos) {
 
     return GridView.builder(
-      padding: EdgeInsets.all(4),
+      padding: EdgeInsets.all(1),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 4.0,
-        crossAxisSpacing: 4.0,
+        mainAxisSpacing: 1.0,
+        crossAxisSpacing: 1.0,
         childAspectRatio: 0.65,
       ),
       itemCount: produtos.length,

@@ -9,6 +9,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:masked_text_input_formatter/masked_text_input_formatter.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/endereco/endereco_model.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
@@ -157,12 +158,12 @@ class _PessoaCreatePageState extends State<PessoaCreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastro pessoa"),
+        title: Text("Cadastro pessoa", style: Constants.textoAppTitulo,),
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.file_upload),
+            icon: Icon(Icons.file_upload, color: Constants.colorIconsAppMenu,),
             onPressed: _onClickUpload,
           )
         ],

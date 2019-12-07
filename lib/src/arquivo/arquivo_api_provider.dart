@@ -38,25 +38,34 @@ class ArquivoApiProvider {
     }
   }
 
-  static Future<FormData> upload(File file, String fileName) async {
+  static upload(File file, String fileName) async {
     CustonDio dio = CustonDio();
 
-    var arquivo = file.path;
     var fileDir = file.path;
 
-    var paramentros = {
-      "filenme": "upload",
+//    var paramentros = {
+//      "filename": fileName,
+//      "upload": await MultipartFile.fromFile(fileDir, filename: fileName)
+//    };
+//
+//    var headers = {
+//      "Accept": "application/json",
+//      "Content-Type": "multipart/form-data"
+//    };
+
+    //print("paramentros: $paramentros");
+    FormData formData = FormData.fromMap({
+      "filename": fileName,
       "file": await MultipartFile.fromFile(fileDir, filename: fileName)
-    };
+    });
+    var response = await dio.client.post("/arquivos/upload",
+        data: formData);
+        //, options: Options(responseType: ResponseType.json, headers: headers));
+        //options: Options(headers: headers));
 
-    var headers = {"Content-type" : "Multipart/form-data"};
-
-    print("paramentros: $paramentros" );
-    FormData formData = FormData.fromMap(paramentros);
-    var response = await dio.client.post("/arquivos/upload", data: formData, options: Options(headers: headers));
     print("RESPONSE: $response");
     print("fileDir: $fileDir");
     print("formData: $formData");
-    return formData;
+
   }
 }

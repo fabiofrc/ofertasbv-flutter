@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_detalhes.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
@@ -58,7 +59,7 @@ class _MapaPageAppState extends State<MapaPageApp> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        title: Text('Minha localização e lojas'),
+        title: Text('Minha localização e lojas', style: Constants.textoAppTitulo,),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,

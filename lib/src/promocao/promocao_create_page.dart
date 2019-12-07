@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/promocao/promocao_api_provider.dart';
 import 'package:ofertasbv/src/promocao/promocao_controller.dart';
@@ -74,12 +75,12 @@ class _PromocaoCreatePageState extends State<PromocaoCreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Promoção cadastro"),
+        title: Text("Promoção cadastro", style: Constants.textoAppTitulo,),
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.file_upload),
+            icon: Icon(Icons.file_upload, color: Constants.colorIconsAppMenu,),
             onPressed: _onClickUpload,
           )
         ],

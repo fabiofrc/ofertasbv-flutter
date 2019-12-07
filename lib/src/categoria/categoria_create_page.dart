@@ -6,6 +6,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/api/constant_api.dart';
 import 'categoria_api_provider.dart';
 import 'categoria_controller.dart';
@@ -72,12 +73,12 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Categoria cadastros"),
+        title: Text("Categoria cadastros", style: Constants.textoAppTitulo,),
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.file_upload),
+            icon: Icon(Icons.file_upload, color: Constants.colorIconsAppMenu,),
             onPressed: _onClickUpload,
           )
         ],

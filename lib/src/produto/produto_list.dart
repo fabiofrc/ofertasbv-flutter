@@ -77,54 +77,64 @@ class _ProdutoListState extends State<ProdutoList>
       itemCount: produtos.length,
       itemBuilder: (context, index) {
         Produto p = produtos[index];
-        return AnimatedContainer(
-          duration: Duration(seconds: 2),
-          curve: Curves.bounceIn,
+
+        return GestureDetector(
           child: Card(
-            margin: EdgeInsets.all(1),
-            elevation: 0.0,
-            child: ListTile(
-              isThreeLine: true,
-              leading: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: p.foto != null
-                    ? Image.network(
+            margin: EdgeInsets.only(bottom: 1),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                verticalDirection: VerticalDirection.up,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    color: Colors.red,
+                    width: 100,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(0),
+                      child: Image.network(
                         ConstantApi.urlArquivoProduto + p.foto,
-                        height: 200,
-                        width: 80,
-                        fit: BoxFit.cover,
-                      )
-                    : Image.asset(
-                        ConstantApi.urlAsset,
-                        height: 200,
-                        width: 80,
                         fit: BoxFit.fill,
                       ),
-              ),
-              title: Text(
-                p.nome,
-                style: TextStyle(fontWeight: FontWeight.w500),
-              ),
-              subtitle: Text(p.descricao),
-              trailing: Text(
-                "R\$ ${p.valorUnitario}",
-                style: TextStyle(
-                  color: Colors.green[700],
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return ProdutoDetalhes(p);
-                    },
+                    ),
                   ),
-                );
-              },
+
+                  Container(
+                    width: 180,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(p.nome, style: TextStyle(fontWeight: FontWeight.w500),),
+                        Text("cód. ${p.id}", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),),
+                        Text(
+                          "R\$ ${p.valorUnitario}",
+                          style: TextStyle(
+                            color: Colors.green[700],
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    )
+                  ),
+                  Container(
+                    width: 50,
+                    child: Icon(Icons.favorite_border),
+                  ),
+                ],
+              ),
             ),
           ),
+          onTap: (){
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return ProdutoDetalhes(p);
+                },
+              ),
+            );
+          },
         );
       },
     );

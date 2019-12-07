@@ -8,7 +8,7 @@ bool isDark = false;
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreenOne(),
-      theme: isDark ? Constants.darkTheme : Constants.blueTheme,
+      theme: isDark ? Constants.blueTheme : Constants.blueTheme,
     ));
 
 class SplashScreenOne extends StatefulWidget {
@@ -41,11 +41,7 @@ class _SplashScreenOneState extends State<SplashScreenOne> {
         navigateAfterSeconds: HomePage(),
         title: Text(
           'OFERTASBV',
-          style: TextStyle(
-            fontSize: 30,
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
+          style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         image: Image.asset(urlLogo),
         //backgroundColor: Color(0xff622F74),

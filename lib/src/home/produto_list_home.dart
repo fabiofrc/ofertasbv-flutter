@@ -82,8 +82,8 @@ class _ProdutoListHomeState extends State<ProdutoListHome>
 
         return GestureDetector(
           child: Card(
-            margin: EdgeInsets.only(left: 5),
-            elevation: 0.0,
+            margin: EdgeInsets.only(left: 10),
+            elevation: 1,
             child: AnimatedContainer(
               duration: Duration(seconds: 4),
               width: 300,
@@ -92,7 +92,7 @@ class _ProdutoListHomeState extends State<ProdutoListHome>
                   AspectRatio(
                     aspectRatio: 1.2,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(0),
                       child: Image.network(
                         ConstantApi.urlArquivoProduto + p.foto,
                         fit: BoxFit.fill,

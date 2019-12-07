@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-class Constants{
 
+class Constants {
   static String appName = "Furniture App";
 
   //Colors for theme
@@ -14,7 +14,7 @@ class Constants{
   static ThemeData lightTheme = ThemeData(
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
-    accentColor:  lightAccent,
+    accentColor: lightAccent,
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
@@ -48,24 +48,51 @@ class Constants{
     ),
   );
 
-
-
   static ThemeData blueTheme = ThemeData(
     brightness: Brightness.light,
-    backgroundColor: Colors.grey[200],
-    primaryColor: Colors.blue[900],
-    accentColor: Colors.orangeAccent,
-    scaffoldBackgroundColor: Colors.grey[200],
-    cursorColor: Colors.orangeAccent,
+    backgroundColor: Colors.grey[300],
+    primaryColor: Colors.white,
+    accentColor: Colors.deepOrangeAccent,
+    scaffoldBackgroundColor: Colors.grey[300],
+    cursorColor: Colors.deepOrangeAccent,
     appBarTheme: AppBarTheme(
       elevation: 0,
       textTheme: TextTheme(
         title: TextStyle(
-          color: Colors.white,
+          color: Colors.deepOrangeAccent,
           fontSize: 18.0,
-          fontWeight: FontWeight.w800,
+          fontWeight: FontWeight.w400,
         ),
       ),
     ),
   );
+
+  static TextStyle textoAppTitulo = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.blue[900],
+    fontSize: 18,
+    fontFamily: "Raleway",
+  );
+
+  static TextStyle textoAppHomeTitulo = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.blue[900],
+    fontSize: 14,
+  );
+
+  static TextStyle textoDrawerTitulo = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.blue[900],
+    fontSize: 14,
+  );
+
+  static TextStyle textoHomeTitulo = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: Colors.blue[800],
+    fontSize: 16,
+    fontFamily: "Raleway",
+  );
+
+  static Color colorIconsMenu = Colors.deepOrangeAccent;
+  static Color colorIconsAppMenu = Colors.blue[900];
 }

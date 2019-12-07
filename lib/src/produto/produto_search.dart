@@ -1,5 +1,6 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_detalhes.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
@@ -11,7 +12,7 @@ class ProdutoSearchDelegate extends SearchDelegate<Produto> {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: Icon(Icons.clear, color: Constants.colorIconsAppMenu,),
         onPressed: () {
           query = "";
         },
@@ -24,6 +25,7 @@ class ProdutoSearchDelegate extends SearchDelegate<Produto> {
     return IconButton(
       icon: AnimatedIcon(
         icon: AnimatedIcons.menu_arrow,
+        color: Constants.colorIconsAppMenu,
         progress: transitionAnimation,
       ),
       onPressed: () {

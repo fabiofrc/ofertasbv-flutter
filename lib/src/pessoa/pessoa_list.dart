@@ -112,6 +112,7 @@ class _PessoaListState extends State<PessoaList>
           margin: EdgeInsets.all(1),
           elevation: 0.0,
           child: ListTile(
+            isThreeLine: true,
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: p.foto != null

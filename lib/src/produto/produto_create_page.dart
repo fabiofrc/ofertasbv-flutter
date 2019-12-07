@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/api/constant_api.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_controller.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_model.dart';
@@ -120,12 +121,12 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Produto cadastros"),
+        title: Text("Produto cadastros", style: Constants.textoAppTitulo,),
         elevation: 0.0,
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.file_upload),
+            icon: Icon(Icons.file_upload, color: Constants.colorIconsAppMenu,),
             onPressed: _onClickUpload,
           )
         ],
