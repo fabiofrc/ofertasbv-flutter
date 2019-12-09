@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:evil_icons_flutter/evil_icons_flutter.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/categoria/categoria_page.dart';
 import 'package:ofertasbv/src/home/home.dart';
@@ -9,13 +8,13 @@ import 'package:ofertasbv/src/home/subcategoria_home.dart';
 import 'package:ofertasbv/src/pessoa/pessoa_page.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/produto/produto_tab.dart';
+import 'package:ofertasbv/src/produto/teste_lista_produto.dart';
 import 'package:ofertasbv/src/promocao/promocao_page.dart';
 import 'package:ofertasbv/src/sobre/sobre_page.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_page.dart';
+import 'package:ofertasbv/src/teste/leitor_codigo_barra.dart';
+import 'package:ofertasbv/src/teste/leitor_qr_code.dart';
 import 'package:ofertasbv/src/teste/mapa_principal.dart';
-
-import 'leitor_codigo_barra.dart';
-import 'mapa_localization.dart';
 
 class CatalogoMenu extends StatefulWidget {
   @override
@@ -37,11 +36,17 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Catalogo app", style: Constants.textoAppTitulo,),
+        title: Text(
+          "Catalogo app",
+          style: Constants.textoAppTitulo,
+        ),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(CupertinoIcons.search, color: Constants.colorIconsAppMenu,),
+            icon: Icon(
+              CupertinoIcons.search,
+              color: Constants.colorIconsAppMenu,
+            ),
             onPressed: () {
               showSearch(
                 context: context,
@@ -49,12 +54,14 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
               );
             },
           ),
-
           IconButton(
-            icon: new Icon(CupertinoIcons.home, color: Constants.colorIconsAppMenu,),
+            icon: new Icon(
+              CupertinoIcons.home,
+              color: Constants.colorIconsAppMenu,
+            ),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
         ],
@@ -84,12 +91,11 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
   GridView buildGridView(BuildContext context) {
     return GridView.count(
       padding: EdgeInsets.all(10),
-      crossAxisSpacing: 2,
-      mainAxisSpacing: 2,
+      crossAxisSpacing: 0,
+      mainAxisSpacing: 0,
       crossAxisCount: 3,
 
-
-      //childAspectRatio: MediaQuery.of(context).size.aspectRatio * 2,
+      //childAspectRatio: MediaQuery.of(context).size.aspectRatio * 1.9,
       scrollDirection: Axis.vertical,
       children: <Widget>[
         GestureDetector(
@@ -108,7 +114,11 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(CupertinoIcons.shopping_cart, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.cartArrowDown,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
@@ -135,11 +145,15 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(CupertinoIcons.create_solid, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.cardSearchOutline,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
-                "Categoria",
+                "Departamento",
                 style: TextStyle(color: Colors.blue[900]),
               ),
             ],
@@ -161,7 +175,11 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(CupertinoIcons.game_controller, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.bellOutline,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
@@ -187,11 +205,15 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(CupertinoIcons.shopping_cart, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.shoppingSearch,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
-                "Mercado",
+                "Loja",
                 style: TextStyle(color: Colors.blue[900]),
               ),
             ],
@@ -213,7 +235,11 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(CupertinoIcons.person, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.accountOutline,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
@@ -239,7 +265,11 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child:Icon(EvilIcons.pencil, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.shopping,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
@@ -265,63 +295,15 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(EvilIcons.location, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.mapSearch,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
                 "Mapa",
-                style: TextStyle(color: Colors.blue[900]),
-              ),
-            ],
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return PainelEndereco();
-                },
-              ),
-            );
-          },
-          child: Column(
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Icon(EvilIcons.location, color: Constants.colorIconsMenu, size: 40,),
-                padding: EdgeInsets.all(20),
-              ),
-              Text(
-                "GeoCode",
-                style: TextStyle(color: Colors.blue[900]),
-              ),
-            ],
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return LeitorCodigoBarra();
-                },
-              ),
-            );
-          },
-          child: Column(
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Icon(FontAwesomeIcons.barcode, color: Constants.colorIconsMenu, size: 40,),
-                padding: EdgeInsets.all(20),
-              ),
-              Text(
-                "Scanner",
                 style: TextStyle(color: Colors.blue[900]),
               ),
             ],
@@ -345,17 +327,22 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(CupertinoIcons.collections, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.shopify,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
                 "SubCategoria & produto",
-                style: TextStyle(color: Colors.blue[900],),
+                style: TextStyle(
+                  color: Colors.blue[900],
+                ),
               ),
             ],
           ),
         ),
-
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(
@@ -372,11 +359,77 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(CupertinoIcons.phone, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.phone,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
                 "Central de atendimento",
+                style: TextStyle(color: Colors.blue[900]),
+              ),
+            ],
+          ),
+        ),
+
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return LeitorQRCode();
+                },
+              ),
+            );
+          },
+          child: Column(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(
+                  MdiIcons.qrcodeScan,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
+                padding: EdgeInsets.all(20),
+              ),
+              Text(
+                "QR code",
+                style: TextStyle(color: Colors.blue[900]),
+              ),
+            ],
+          ),
+        ),
+
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return LeitorCodigoBarra();
+                },
+              ),
+            );
+          },
+          child: Column(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(
+                  MdiIcons.barcode,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
+                padding: EdgeInsets.all(20),
+              ),
+              Text(
+                "Cod de barra",
                 style: TextStyle(color: Colors.blue[900]),
               ),
             ],
@@ -399,11 +452,46 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(CupertinoIcons.info, color: Constants.colorIconsMenu, size: 40,),
+                child: Icon(
+                  MdiIcons.informationOutline,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
                 padding: EdgeInsets.all(20),
               ),
               Text(
                 "Sobre",
+                style: TextStyle(color: Colors.blue[900]),
+              ),
+            ],
+          ),
+        ),
+
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return TesteListProduto();
+                },
+              ),
+            );
+          },
+          child: Column(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(
+                  MdiIcons.viewList,
+                  color: Constants.colorIconsMenu,
+                  size: 40,
+                ),
+                padding: EdgeInsets.all(20),
+              ),
+              Text(
+                "Paginação",
                 style: TextStyle(color: Colors.blue[900]),
               ),
             ],

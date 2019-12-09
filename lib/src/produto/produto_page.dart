@@ -21,6 +21,13 @@ class ProdutoPage extends StatefulWidget {
 class _ProdutoPageState extends State<ProdutoPage> {
   final _bloc = BlocProvider.getBloc<ProdutoController>();
 
+
+//  @override
+//  void dispose() {
+//    _bloc.dispose();
+//    super.dispose();
+//  }
+
   Promocao p;
   SubCategoria s;
   _ProdutoPageState({this.p, this.s});

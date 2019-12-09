@@ -39,6 +39,12 @@ class _ProdutoListState extends State<ProdutoList>
     super.initState();
   }
 
+//  @override
+//  void dispose() {
+//    _bloc.dispose();
+//    super.dispose();
+//  }
+
   Future<void> onRefresh() {
     return _bloc.getAll();
   }

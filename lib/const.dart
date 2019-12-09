@@ -50,10 +50,10 @@ class Constants {
 
   static ThemeData blueTheme = ThemeData(
     brightness: Brightness.light,
-    backgroundColor: Colors.grey[300],
+    backgroundColor: Colors.grey[200],
     primaryColor: Colors.white,
     accentColor: Colors.deepOrangeAccent,
-    scaffoldBackgroundColor: Colors.grey[300],
+    scaffoldBackgroundColor: Colors.grey[200],
     cursorColor: Colors.deepOrangeAccent,
     appBarTheme: AppBarTheme(
       elevation: 0,

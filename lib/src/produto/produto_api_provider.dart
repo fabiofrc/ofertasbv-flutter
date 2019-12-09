@@ -3,14 +3,49 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:ofertasbv/src/api/custon_dio.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
+import 'package:ofertasbv/src/produto/teste_paginacao.dart';
 
 class ProdutoApiProvider {
   CustonDio dio = CustonDio();
+
+  Future<List<Paginacao>> getAllPageable() async {
+    try {
+      print("carregando paginação");
+      var response = await dio.client.get("/produtos/paginacao");
+      return (response.data as List).map((c) => Paginacao.fromJson(c)).toList();
+    } on DioError catch (e) {
+      print(e.message);
+    }
+    return null;
+  }
+
+
+  Future<List<Produto>> getAllById(int id) async {
+    try {
+      print("carregando produtos by id");
+      var response = await dio.client.get("/produtos/teste?id=$id");
+      return (response.data as List).map((c) => Produto.fromJson(c)).toList();
+    } on DioError catch (e) {
+      print(e.message);
+    }
+    return null;
+  }
 
   Future<List<Produto>> getAll() async {
     try {
       print("carregando produtos");
       var response = await dio.client.get("/produtos");
+      return (response.data as List).map((c) => Produto.fromJson(c)).toList();
+    } on DioError catch (e) {
+      print(e.message);
+    }
+    return null;
+  }
+
+  Future<List<Produto>> getAllNext() async {
+    try {
+      print("carregando produtos");
+      var response = await dio.client.get("/produtos/pag?size=0&page=5");
       return (response.data as List).map((c) => Produto.fromJson(c)).toList();
     } on DioError catch (e) {
       print(e.message);

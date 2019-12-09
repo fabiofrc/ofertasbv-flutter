@@ -53,10 +53,13 @@ dependencies:
   barcode_scan: ^1.0.0
   toast: ^0.1.5
   link: ^1.1.0
+  webview_flutter: ^0.3.15
 
   audioplayers: 0.13.2
   bubble_bottom_bar: ^1.2.0
   carousel_pro: ^1.0.0
+
+  flutter_cupertino_localizations: ^1.0.1
 
 dev_dependencies:
   flutter_test:

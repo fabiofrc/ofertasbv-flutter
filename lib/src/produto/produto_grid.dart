@@ -37,6 +37,13 @@ class _ProdutoGridState extends State<ProdutoGrid> with AutomaticKeepAliveClient
     super.initState();
   }
 
+
+//  @override
+//  void dispose() {
+//    _bloc.dispose();
+//    super.dispose();
+//  }
+
   Future<void> onRefresh() {
     return _bloc.getAll();
   }

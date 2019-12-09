@@ -17,6 +17,12 @@ class ProdutoTab extends StatefulWidget {
 class _ProdutoTabState extends State<ProdutoTab> {
   final _bloc = BlocProvider.getBloc<ProdutoController>();
 
+//  @override
+//  void dispose() {
+//    _bloc.dispose();
+//    super.dispose();
+//  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

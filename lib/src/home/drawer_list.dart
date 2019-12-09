@@ -2,6 +2,7 @@ import 'package:evil_icons_flutter/evil_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/arquivo/arquivo_page.dart';
 import 'package:ofertasbv/src/categoria/categoria_page.dart';
@@ -61,10 +62,17 @@ class DrawerList extends StatelessWidget {
             )),
         ListTile(
           selected: true,
-          leading: Icon(CupertinoIcons.shopping_cart, color: Colors.black),
-          title: Text("Produtos", style: Constants.textoDrawerTitulo,),
+          leading: Icon(
+            MdiIcons.cartArrowDown,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "Produtos",
+            style: Constants.textoDrawerTitulo,
+          ),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -76,10 +84,17 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(CupertinoIcons.create, color: Colors.black),
-          title: Text("Categorias", style: Constants.textoDrawerTitulo,),
+          leading: Icon(
+            MdiIcons.cardSearchOutline,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "Departamento",
+            style: Constants.textoDrawerTitulo,
+          ),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -91,10 +106,17 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(CupertinoIcons.create_solid, color: Colors.black),
-          title: Text("SubCategorias", style: Constants.textoDrawerTitulo,),
+          leading: Icon(
+            MdiIcons.shopping,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "SubCategorias",
+            style: Constants.textoDrawerTitulo,
+          ),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -106,10 +128,17 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(CupertinoIcons.game_controller, color: Colors.black),
-          title: Text("Ofertas", style: Constants.textoDrawerTitulo,),
+          leading: Icon(
+            MdiIcons.bellOutline,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "Ofertas",
+            style: Constants.textoDrawerTitulo,
+          ),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -121,10 +150,17 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(CupertinoIcons.home, color: Colors.black),
-          title: Text("Lojas", style: Constants.textoDrawerTitulo,),
+          leading: Icon(
+            MdiIcons.shoppingSearch,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "Lojas",
+            style: Constants.textoDrawerTitulo,
+          ),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -136,11 +172,17 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(FontAwesomeIcons.barcode, color: Colors.black),
-          title: Text("Leitor códido de barra",
-            style: Constants.textoDrawerTitulo,),
+          leading: Icon(
+            MdiIcons.barcode,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "Leitor códido de barra",
+            style: Constants.textoDrawerTitulo,
+          ),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -152,10 +194,39 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(CupertinoIcons.location, color: Colors.black),
-          title: Text("Locais",  style: Constants.textoDrawerTitulo,),
+          leading: Icon(
+            MdiIcons.qrcodeScan,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "Leitor qr code",
+            style: Constants.textoDrawerTitulo,
+          ),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
+            Navigator.pop(context);
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return LeitorCodigoBarra();
+                },
+              ),
+            );
+          },
+        ),
+        ListTile(
+          selected: true,
+          leading: Icon(
+            MdiIcons.mapSearch,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "Locais",
+            style: Constants.textoDrawerTitulo,
+          ),
+          trailing: Icon(Icons.arrow_forward),
+          onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -167,10 +238,17 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(CupertinoIcons.photo_camera, color: Colors.black),
-          title: Text("Arquivos",  style: Constants.textoDrawerTitulo,),
+          leading: Icon(
+            MdiIcons.file,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "Arquivos",
+            style: Constants.textoDrawerTitulo,
+          ),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
@@ -182,10 +260,17 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           selected: true,
-          leading: Icon(CupertinoIcons.info, color: Colors.black),
-          title: Text("Sobre",  style: Constants.textoDrawerTitulo,),
+          leading: Icon(
+            MdiIcons.informationOutline,
+            color: Constants.colorIconsMenu,
+          ),
+          title: Text(
+            "Sobre",
+            style: Constants.textoDrawerTitulo,
+          ),
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
