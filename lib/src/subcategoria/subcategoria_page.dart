@@ -27,8 +27,7 @@ class _SubcategoriaPageState extends State<SubcategoriaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Subcategorias", style: Constants.textoAppTitulo,),
-        elevation: 0.0,
+        title: Text("Subcategorias"),
         actions: <Widget>[
           StreamBuilder<Object>(
             stream: _bloc.counter,
@@ -36,7 +35,7 @@ class _SubcategoriaPageState extends State<SubcategoriaPage> {
               return Chip(
                 label: Text(
                   (data.data ?? 0).toString(),
-                  style: TextStyle(color: Colors.pink[900]),
+                  style: TextStyle(color: Colors.deepOrangeAccent),
                 ),
               );
             },
@@ -45,6 +44,7 @@ class _SubcategoriaPageState extends State<SubcategoriaPage> {
           IconButton(
             icon: Icon(
               CupertinoIcons.search,
+              color: Constants.colorIconsAppMenu,
               size: 30,
             ),
             onPressed: () {

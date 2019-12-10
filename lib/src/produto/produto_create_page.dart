@@ -121,9 +121,7 @@ class _ProdutoCreatePageState extends State<ProdutoCreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Produto cadastros", style: Constants.textoAppTitulo,),
-        elevation: 0.0,
-        centerTitle: true,
+        title: Text("Produto cadastros"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.file_upload, color: Constants.colorIconsAppMenu,),

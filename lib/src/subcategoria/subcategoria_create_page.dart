@@ -75,8 +75,6 @@ class _SubCategoriaCreatePageState extends State<SubCategoriaCreatePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("SubCategoria cadastros"),
-        centerTitle: true,
-        elevation: 0.0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.file_upload),

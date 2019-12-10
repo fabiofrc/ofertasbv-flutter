@@ -37,7 +37,7 @@ class Constants {
     scaffoldBackgroundColor: darkBG,
     cursorColor: darkAccent,
     appBarTheme: AppBarTheme(
-      elevation: 0,
+      elevation: 1,
       textTheme: TextTheme(
         title: TextStyle(
           color: lightBG,
@@ -51,12 +51,12 @@ class Constants {
   static ThemeData blueTheme = ThemeData(
     brightness: Brightness.light,
     backgroundColor: Colors.grey[200],
-    primaryColor: Colors.white,
+    primaryColor: Colors.grey[200],
     accentColor: Colors.deepOrangeAccent,
     scaffoldBackgroundColor: Colors.grey[200],
     cursorColor: Colors.deepOrangeAccent,
     appBarTheme: AppBarTheme(
-      elevation: 0,
+      elevation: 1,
       textTheme: TextTheme(
         title: TextStyle(
           color: Colors.deepOrangeAccent,

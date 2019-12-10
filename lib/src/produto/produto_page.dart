@@ -5,6 +5,7 @@ import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
 import 'package:ofertasbv/src/produto/produto_create_page.dart';
 import 'package:ofertasbv/src/produto/produto_list.dart';
+import 'package:ofertasbv/src/produto/produto_model.dart';
 import 'package:ofertasbv/src/produto/produto_search.dart';
 import 'package:ofertasbv/src/promocao/promocao_model.dart';
 import 'package:ofertasbv/src/subcategoria/subcategoria_model.dart';
@@ -12,10 +13,11 @@ import 'package:ofertasbv/src/subcategoria/subcategoria_model.dart';
 class ProdutoPage extends StatefulWidget {
   Promocao p;
   SubCategoria s;
-  ProdutoPage({Key key, this.p, this.s}) : super(key: key);
+  Produto pd;
+  ProdutoPage({Key key, this.p, this.s, this.pd}) : super(key: key);
 
   @override
-  _ProdutoPageState createState() => _ProdutoPageState(p: this.p, s:this.s);
+  _ProdutoPageState createState() => _ProdutoPageState(p: this.p, s:this.s, pd: this.pd);
 }
 
 class _ProdutoPageState extends State<ProdutoPage> {
@@ -30,14 +32,14 @@ class _ProdutoPageState extends State<ProdutoPage> {
 
   Promocao p;
   SubCategoria s;
-  _ProdutoPageState({this.p, this.s});
+  Produto pd;
+  _ProdutoPageState({this.p, this.s, this.pd});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Produtos", style: Constants.textoAppTitulo,),
-        elevation: 0.0,
+        title: Text("Produtos"),
         actions: <Widget>[
           StreamBuilder<Object>(
             stream: _bloc.counter,
@@ -63,7 +65,7 @@ class _ProdutoPageState extends State<ProdutoPage> {
           )
         ],
       ),
-      body: ProdutoList(p: p, s: s,),
+      body: ProdutoList(p: p, s: s, pd: pd,),
       floatingActionButton: FloatingActionButton(
         elevation: 10,
         child: Icon(Icons.add),

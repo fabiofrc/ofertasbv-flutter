@@ -2,8 +2,8 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:ofertasbv/const.dart';
 import 'package:ofertasbv/src/produto/produto_controller.dart';
-import 'package:ofertasbv/src/produto/produto_detalhes.dart';
 import 'package:ofertasbv/src/produto/produto_model.dart';
+import 'package:ofertasbv/src/produto/produto_page.dart';
 
 class ProdutoSearchDelegate extends SearchDelegate<Produto> {
   final _bloc = BlocProvider.getBloc<ProdutoController>();
@@ -12,7 +12,10 @@ class ProdutoSearchDelegate extends SearchDelegate<Produto> {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear, color: Constants.colorIconsAppMenu,),
+        icon: Icon(
+          Icons.clear,
+          color: Constants.colorIconsAppMenu,
+        ),
         onPressed: () {
           query = "";
         },
@@ -59,12 +62,9 @@ class ProdutoSearchDelegate extends SearchDelegate<Produto> {
 
         List<Produto> produtos = snapshot.data;
 
-        final resultados = query.isEmpty
-            ? produtos
-            : produtos
-                .where(
-                    (p) => p.nome.toLowerCase().startsWith(query.toLowerCase()))
-                .toList();
+        final resultados = query.isEmpty ? [] : produtos
+            .where((p) => p.nome.toLowerCase().startsWith(query.toLowerCase()))
+            .toList();
 
         return ListView.builder(
           itemBuilder: (context, index) {
@@ -89,7 +89,7 @@ class ProdutoSearchDelegate extends SearchDelegate<Produto> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) {
-                      return ProdutoDetalhes(p);
+                      return ProdutoPage(pd: p);
                     },
                   ),
                 );

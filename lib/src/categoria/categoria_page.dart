@@ -14,8 +14,7 @@ class CategoriaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Categorias", style: Constants.textoAppTitulo,),
-        elevation: 0.0,
+        title: Text("Categorias"),
         actions: <Widget>[
           StreamBuilder<Object>(
             stream: _bloc.counter,

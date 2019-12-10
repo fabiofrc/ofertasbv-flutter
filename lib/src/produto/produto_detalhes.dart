@@ -29,8 +29,7 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Produto detalhes", style: Constants.textoAppTitulo,),
-        elevation: 0.0,
+        title: Text(p.nome),
         actions: <Widget>[
           IconButton(
             icon: Icon(CupertinoIcons.search, color: Constants.colorIconsAppMenu,),
@@ -56,7 +55,6 @@ class _ProdutoDetalhesState extends State<ProdutoDetalhes> {
           child: p.arquivos.isNotEmpty
               ? Carousel(
                   autoplay: false,
-
                   dotBgColor: Colors.transparent,
                   images: p.arquivos.map((a) {
                     return NetworkImage(ConstantApi.urlArquivoProduto + a.foto);

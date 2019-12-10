@@ -28,8 +28,7 @@ class _PromocaoPageState extends State<PromocaoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ofertas", style: Constants.textoAppTitulo,),
-        elevation: 0.0,
+        title: Text(p.nome),
         actions: <Widget>[
           StreamBuilder<Object>(
             stream: _bloc.counter,

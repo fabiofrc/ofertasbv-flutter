@@ -5,6 +5,7 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:ofertasbv/const.dart';
@@ -97,6 +98,7 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
                   ),
                 );
               } else {
+                showToast("Insira o código de barra!");
                 print("nada");
               }
             },
@@ -147,6 +149,17 @@ class _LeitorCodigoBarraState extends State<LeitorCodigoBarra> {
   pesquisarCodigo(String codbar) async {
     p = await ProdutoApiProvider.getProdutoByCodBarra(codbar);
     print(p.descricao);
+  }
+
+  void showToast(String cardTitle) {
+    Fluttertoast.showToast(
+      msg: "Atenção: $cardTitle",
+      gravity: ToastGravity.CENTER,
+      timeInSecForIos: 1,
+      backgroundColor: Colors.indigo,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
   }
 
   Widget displayImage() {

@@ -75,9 +75,7 @@ class _PromocaoCreatePageState extends State<PromocaoCreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Promoção cadastro", style: Constants.textoAppTitulo,),
-        centerTitle: true,
-        elevation: 0.0,
+        title: Text("Promoção cadastro"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.file_upload, color: Constants.colorIconsAppMenu,),

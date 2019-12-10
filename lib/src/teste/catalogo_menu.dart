@@ -36,11 +36,7 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Catalogo app",
-          style: Constants.textoAppTitulo,
-        ),
-        elevation: 0.0,
+        title: Text("Catalogo app"),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -79,8 +75,8 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.grey[100],
-              Colors.grey[100],
+              Colors.grey[200],
+              Colors.grey[200],
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -309,7 +305,6 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             ],
           ),
         ),
-
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(
@@ -373,7 +368,6 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             ],
           ),
         ),
-
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(
@@ -404,7 +398,6 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             ],
           ),
         ),
-
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(
@@ -435,7 +428,6 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             ],
           ),
         ),
-
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(
@@ -466,7 +458,6 @@ class _CatalogoMenuState extends State<CatalogoMenu> {
             ],
           ),
         ),
-
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(

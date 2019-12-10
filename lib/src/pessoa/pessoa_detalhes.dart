@@ -29,8 +29,7 @@ class _PessoaDetalhesState extends State<PessoaDetalhes> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Loja detalhes", style: Constants.textoAppTitulo,),
-        elevation: 0.0,
+        title: Text(p.nome),
         actions: <Widget>[
           IconButton(
             icon: Icon(CupertinoIcons.search, color: Constants.colorIconsAppMenu,),

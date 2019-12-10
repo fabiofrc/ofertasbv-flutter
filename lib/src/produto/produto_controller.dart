@@ -9,7 +9,6 @@ import 'package:rxdart/rxdart.dart';
 class ProdutoController extends BlocBase {
   ProdutoApiProvider _produtoApiProvider = ProdutoApiProvider();
 
-  List<Produto> produtos;
   int pageNumber = 1;
   double pixels = 0.0;
 
@@ -28,7 +27,8 @@ class ProdutoController extends BlocBase {
       responseOut = produto.switchMap(createProduto);
       listView.listen((list) => _counter.add(list.length));
 
-      _subject.addStream(Observable.fromFuture(_produtoApiProvider.getAllById(pageNumber)));
+      _subject.addStream(
+          Observable.fromFuture(_produtoApiProvider.getAllById(pageNumber)));
       _controller.listen((notification) => loadPhotos(notification));
     } catch (e) {
       throw e;
@@ -40,20 +40,26 @@ class ProdutoController extends BlocBase {
   Stream<List<Produto>> get outController => _streamController.stream;
 
   Future<List<Produto>> getAll() async {
-    produtos = await _produtoApiProvider.getAll();
-    //produtos += await _produtoApiProvider.getAllNext();
+    List<Produto> produtos = await _produtoApiProvider.getAll();
     _streamController.add(produtos);
     return produtos;
   }
 
   Future<List<Produto>> getAllBySubCategoriaById(int id) async {
-   produtos = await _produtoApiProvider.getAllBySubCategoriaById(id);
+    List<Produto> produtos =
+        await _produtoApiProvider.getAllBySubCategoriaById(id);
     _streamController.add(produtos);
     return produtos;
   }
 
   Future<List<Produto>> getAllByPromocaoById(int id) async {
-   produtos = await _produtoApiProvider.getAllByPromocaoById(id);
+    List<Produto> produtos = await _produtoApiProvider.getAllByPromocaoById(id);
+    _streamController.add(produtos);
+    return produtos;
+  }
+
+  Future<List<Produto>> getAllByNome(String nome) async {
+    List<Produto> produtos = await _produtoApiProvider.getAllByNome(nome);
     _streamController.add(produtos);
     return produtos;
   }
@@ -68,13 +74,15 @@ class ProdutoController extends BlocBase {
   Observable<List<Produto>> get stream => _subject.stream;
   Sink<ScrollNotification> get sink => _controller.sink;
 
-  Future<void> loadPhotos([ScrollNotification notification,]) async {
+  Future<void> loadPhotos([
+    ScrollNotification notification,
+  ]) async {
     if (notification.metrics.pixels == notification.metrics.maxScrollExtent &&
         pixels != notification.metrics.pixels) {
       pixels = notification.metrics.pixels;
 
       pageNumber++;
-      produtos = await _produtoApiProvider.getAllById(pageNumber);
+      List<Produto> produtos = await _produtoApiProvider.getAllById(pageNumber);
       _subject.sink.add(produtos);
     }
   }

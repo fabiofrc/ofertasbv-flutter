@@ -11,42 +11,62 @@ import 'package:ofertasbv/src/subcategoria/subcategoria_model.dart';
 class ProdutoList extends StatefulWidget {
   Promocao p;
   SubCategoria s;
+  Produto pd;
 
-  ProdutoList({Key key, this.p, this.s}) : super(key: key);
+  ProdutoList({Key key, this.p, this.s, this.pd}) : super(key: key);
 
   @override
-  _ProdutoListState createState() => _ProdutoListState(p: this.p, s: this.s);
+  _ProdutoListState createState() =>
+      _ProdutoListState(p: this.p, s: this.s, pd: this.pd);
 }
 
 class _ProdutoListState extends State<ProdutoList>
     with AutomaticKeepAliveClientMixin<ProdutoList> {
+  final _bloc = BlocProvider.getBloc<ProdutoController>();
+
   Promocao p;
   SubCategoria s;
+  Produto pd;
 
-  _ProdutoListState({this.p, this.s});
-
-  final _bloc = BlocProvider.getBloc<ProdutoController>();
+  _ProdutoListState({this.p, this.s, this.pd});
 
   @override
   void initState() {
     if (s != null) {
       _bloc.getAllBySubCategoriaById(s.id);
-    } else if (p != null) {
+    }
+    if (p != null) {
       _bloc.getAllByPromocaoById(p.id);
-    } else {
+    }
+    if (pd != null) {
+      _bloc.getAllByNome(pd.nome.substring(0, 5));
+    }
+    if (s == null && p == null && pd == null) {
       _bloc.getAll();
     }
     super.initState();
   }
 
-//  @override
-//  void dispose() {
-//    _bloc.dispose();
-//    super.dispose();
-//  }
+  @override
+  void dispose() {
+    //_bloc.dispose();
+    super.dispose();
+  }
 
   Future<void> onRefresh() {
-    return _bloc.getAll();
+    if (s != null) {
+      return _bloc.getAllBySubCategoriaById(s.id);
+    }
+    if (p != null) {
+      return _bloc.getAllByPromocaoById(p.id);
+    }
+    if (pd != null) {
+      return _bloc.getAllByNome(pd.nome.substring(0, 5));
+    }
+    if (s == null && p == null && pd == null) {
+      return _bloc.getAll();
+    }
+    return null;
   }
 
   @override
@@ -105,25 +125,31 @@ class _ProdutoListState extends State<ProdutoList>
                       ),
                     ),
                   ),
-
                   Container(
-                    width: 180,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(p.nome, style: TextStyle(fontWeight: FontWeight.w500),),
-                        Text("cód. ${p.id}", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),),
-                        Text(
-                          "R\$ ${p.valorUnitario}",
-                          style: TextStyle(
-                            color: Colors.green[700],
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20,
+                      width: 180,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            p.nome,
+                            style: TextStyle(fontWeight: FontWeight.w500),
                           ),
-                        ),
-                      ],
-                    )
-                  ),
+                          Text(
+                            "cód. ${p.id}",
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            "R\$ ${p.valorUnitario}",
+                            style: TextStyle(
+                              color: Colors.green[700],
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      )),
                   Container(
                     width: 50,
                     child: Icon(Icons.favorite_border),
@@ -132,7 +158,7 @@ class _ProdutoListState extends State<ProdutoList>
               ),
             ),
           ),
-          onTap: (){
+          onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {

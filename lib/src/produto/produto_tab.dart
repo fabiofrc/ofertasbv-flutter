@@ -29,8 +29,7 @@ class _ProdutoTabState extends State<ProdutoTab> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Produtos", style: Constants.textoAppTitulo,),
-          elevation: 0.0,
+          title: Text("Produtos"),
           actions: <Widget>[
             StreamBuilder<Object>(
               stream: _bloc.counter,

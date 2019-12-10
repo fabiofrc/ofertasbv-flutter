@@ -17,8 +17,7 @@ class PessoaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lojas", style: Constants.textoAppTitulo,),
-        elevation: 0.0,
+        title: Text("Lojas"),
         actions: <Widget>[
           StreamBuilder<Object>(
             stream: _bloc.counter,

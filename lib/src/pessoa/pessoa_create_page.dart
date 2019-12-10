@@ -158,9 +158,7 @@ class _PessoaCreatePageState extends State<PessoaCreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastro pessoa", style: Constants.textoAppTitulo,),
-        centerTitle: true,
-        elevation: 0.0,
+        title: Text("Cadastro pessoa"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.file_upload, color: Constants.colorIconsAppMenu,),

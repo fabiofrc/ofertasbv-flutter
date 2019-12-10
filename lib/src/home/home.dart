@@ -47,9 +47,7 @@ class _HomePageState extends State<HomePage>
           appBar: AppBar(
             primary: true,
             bottomOpacity: 1.0,
-            title: Text("OFERTASBV", style: Constants.textoAppTitulo,),
-            elevation: 0.0,
-            centerTitle: false,
+            title: Text("OFERTASBV"),
             actions: <Widget>[
               IconButton(
                 icon: Icon(CupertinoIcons.search, color: Constants.colorIconsAppMenu,),

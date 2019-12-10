@@ -73,9 +73,7 @@ class _CategoriaCreatePageState extends State<CategoriaCreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Categoria cadastros", style: Constants.textoAppTitulo,),
-        centerTitle: true,
-        elevation: 0.0,
+        title: Text("Categoria cadastros"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.file_upload, color: Constants.colorIconsAppMenu,),
